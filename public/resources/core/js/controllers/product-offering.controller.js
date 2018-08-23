@@ -474,6 +474,37 @@
                         $rootScope.$broadcast(EVENTS.MESSAGE_ADDED, 'error', {
                             error: error
                     });
+
+                    /* Hyperledger functionalities start*/
+                    var chainProviderPromise = setChainProvider(provider);
+                    var chainLicensePromise = setChainLicense(license);
+                    var chainPricingPromise = setChainPrice(price);
+                    var chainSLAPromise = setChainSLA(sla);
+                    Promise.all([chainProviderPromise, chainLicensePromise, chainPricingPromise, chainSLAPromise]).then(function(responses){
+                        var provider = responses[0];
+                        var license = responses[1];
+                        var pricing = response[2];
+                        var sla = responses[3];
+                        var agreementPromise = setChainAgreement(provider, license, sla);
+                            agreementPromise.then(function(agreementCreated){
+                                $rootScope.$broadcast(EVENTS.MESSAGE_ADDED, 'created', {
+                                    resource: 'agreement',
+                                    name: agreementCreated.id
+                                });
+                            },function (response){
+                                var defaultMessage = 'There was an unexpected error that prevented the ' +
+                                    'system from creating an agreement on the chain';
+                                var error = Utils.parseError(response, defaultMessage);
+        
+                                $rootScope.$broadcast(EVENTS.MESSAGE_ADDED, 'error', {
+                                    error: error
+                            });
+                        });
+                    });
+                    
+
+                    /* Hyperledger functionalities end*/
+                    
                 }, function (response) {
                         var defaultMessage = 'There was an unexpected error that prevented the ' +
                             'system from creating a new offering';

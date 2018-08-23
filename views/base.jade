@@ -42,7 +42,12 @@ html(ng-app="app")
           SHARING_CLASSES: '#{ proxyPath }/#{ rssPath }/rss/cdrs/classes',
           SHARING_SETTLEMENT: '#{ proxyPath }/#{ rssPath }/rss/settlement',
           SHARING_REPORTS: '#{ proxyPath }/#{ rssPath }/rss/settlement/reports',
-          SHOPPING_CART: '#{ shoppingCartPath }/:action/:id'
+          SHOPPING_CART: '#{ shoppingCartPath }/:action/:id',
+          CHAIN_PRICE: '#{ proxyPath}/#{ chainPath}/api/synchronicity.Pricing',
+          CHAIN_AGREEMENT: '#{ proxyPath}/#{ chainPath}/api/synchronicity.Agreement',
+          CHAIN_PROVIDER: '#{ proxyPath}/#{ chainPath}/api/synchronicity.CreateProvider',
+          CHAIN_LICENSE:  '#{ proxyPath}/#{ chainPath}/api/synchronicity.License',
+          CHAIN_SLA:  '#{ proxyPath}/#{ chainPath}/api/synchronicity.License',
         })
         .constant('PLATFORM_REVENUE', #{ platformRevenue })
         .constant('USAGE_CHART_URL', '#{ usageChartURL }')

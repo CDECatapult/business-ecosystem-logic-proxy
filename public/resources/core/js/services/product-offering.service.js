@@ -698,6 +698,105 @@
             return deferred.promise;
         }
 
+        /* Hyperledger funtionalities*/
+   /*      function storeLicenseOnChain(){
+            var participant = chainProvider(vm.data.relatedParty.toJSON());
+            license = vm.license.toJSON();
+            chainLicense(license);
+        }
+
+        function chainProvider(relatedParty){
+            var hyperledgerBaseUrl = 'http://127.0.0.1:3000';
+            var getProviderUrl = hyperledgerBaseUrl+'/api/synchronicity.CreateProvider'
+            var postData = {'name': relatedParty.name, 'href': relatedParty.href}
+            $http.post(getProviderUrl, postData).then(function successCallback(response){
+                return response;
+            });
+        }
+
+        function chainLicense(license){
+            var hyperledgerBaseUrl = 'http://127.0.0.1:3000';
+            var getProviderUrl = hyperledgerBaseUrl+'/api/synchronicity.CreateLicense'
+            var postData = license
+            $http.post(getProviderUrl, postData).then(function successCallback(response){
+                return response;
+            });
+        } */
+
+  
+
+        function setChainPrice(){
+            var deferred = $q.defer();
+            var priceResource = $resource(URLS.CHAIN_PRICE);
+            if(productOfferingPrice.length){
+                var priceTypeDictionary = {ONE_TIME: 'ONETIME', RECURRING: 'SUBSCRIPTION', USAGE: 'USAGEBASED'};
+                var priceType = priceTypeDictionary[productOfferingPrice.priceType];
+                var pricing = {'amount':productOfferingPrice.taxIncludedAmount, 'pricingModel':priceType}
+            }else{
+                var pricing = {'amount':0, 'pricingModel':'FREE'};
+            }
+            priceResource.save(pricing, function(pricingCreated){
+                deferred.resolve(pricingCreated);
+            }, function(response){
+                deferred.reject(response);
+            })
+            return deferred.promise;
+
+
+        }
+        function setChainAgreement(provider, license, pricing, sla){
+            var deferred = $q.defer();
+            var agreement = {"provider": provider, "license": license, "pricing": pricing, "sla": sla}
+            var agreementResource = $resource(URLS.CHAIN_AGREEMENT);
+            agreementResource.save(agreement, function(agreementCreated){
+                deferred.resolve(agreementCreated);
+            }, function(response){
+                deferred.reject(response);
+            });
+            return deferred.promise;
+        }
+
+        function setChainProvider(){
+            var deferred = $q.defer();
+            var relatedParty = {'name': relatedParty.name, 'href': relatedParty.href};
+            var providerResource = $resource(URLS.CHAIN_PROVIDER);
+            providerResource.save(relatedParty, function(providerCreated){
+                deferred.resolve(providerCreated);
+            }, function(response){
+                deferred.reject(response);
+            });
+            return deferred.promise;
+        }
+        
+        function setChainLicense(){
+            var license = vm.license.toJSON();
+            var deferred = $q.defer();
+            var licenseResource = $resource(URLS.CHAIN_LICENSE);
+            licenseResource.save(license, function(licenseCreated){
+                deferred.resolve(licenseCreated);
+            }, function(response){
+                deferred.reject(response);
+            });
+            return deferred.promise;
+        }
+
+
+
+        function setChainSLA(sla){
+            var deferred = $q.defer();
+            var slaResource = $resource(URLS.CHAIN_SLA);
+            slaResource.save(sla, function(slaCreated){
+                deferred.resolve(slaCreated);
+            }, function(response){
+                deferred.reject(response);
+            });
+            return deferred.promise;
+        }
+
+        /* End Hyperledger functionalities*/
+
+
+
         function setSla(sla) {
             var deferred = $q.defer();
             var slaResource = $resource(URLS.SLA_SET);

@@ -335,6 +335,7 @@ var renderTemplate = function(req, res, viewName) {
         orderingPath: config.endpoints.ordering.path,
         inventoryPath: config.endpoints.inventory.path,
         chargingPath: config.endpoints.charging.path,
+        chainPath: config.endpoints.chain.path,
         partyPath: config.endpoints.party.path,
         billingPath: config.endpoints.billing.path,
         customerPath: config.endpoints.customer.path,

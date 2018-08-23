@@ -7,18 +7,22 @@ ENV VERSION no-cache1
 ENV VERSION multiple-broker
 ENV VERSION SLA
 
-RUN apt-get update && apt-get install -y git xinetd python-pip wget && \
+RUN apt-get update && apt-get install -y  xinetd python-pip wget && \
     pip install sh requests && \
-    git clone https://github.com/caposseleDigicat/business-ecosystem-logic-proxy.git
+    #git clone https://github.com/caposseleDigicat/business-ecosystem-logic-proxy.git
+
+RUN mkdir business-ecosystem-logic-proxy
 
 WORKDIR business-ecosystem-logic-proxy
+
+COPY / ./
 
 ENV VERSION SLA
 
 RUN wget https://nodejs.org/dist/v6.9.1/node-v6.9.1-linux-x64.tar.xz && \
     tar -xvf node-v6.9.1-linux-x64.tar.xz && \
     echo 'export PATH=$PATH:/business-ecosystem-logic-proxy/node-v6.9.1-linux-x64/bin' >> ~/.bashrc && \
-    git checkout $VERSION && \
+    #git checkout $VERSION && \
     mkdir indexes && \
     mkdir themes
 
@@ -36,11 +40,11 @@ RUN export PATH=$PATH:/business-ecosystem-logic-proxy/node-v6.9.1-linux-x64/bin 
     cp config.js.template etc/config.js && \
     echo "module.exports = require('./etc/config');" > config.js
 
-COPY ./entrypoint.sh /
-COPY ./cleanIndex.sh /
-COPY ./getConfig.js /business-ecosystem-logic-proxy
+COPY ./docker/entrypoint.sh /
+COPY ./docker/cleanIndex.sh /
+COPY ./docker/getConfig.js /business-ecosystem-logic-proxy
      
-COPY ./serviceIndexes /etc/xinetd.d/
+COPY ./docker/serviceIndexes /etc/xinetd.d/
 
 EXPOSE 8004
 
