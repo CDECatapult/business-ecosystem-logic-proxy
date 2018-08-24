@@ -471,7 +471,12 @@
             timeframes: timeframes,
             purposes: purposes,
             transferabilities: transferabilities,
-            standards: standards
+            standards: standards,           
+            setChainProvider: setChainProvider,
+            setChainLicense: setChainLicense,
+            setChainPrice: setChainPrice,
+            setChainSLA: setChainSLA
+
         };
 
         function query(deferred, filters, method, callback) {
@@ -756,7 +761,7 @@
             return deferred.promise;
         }
 
-        function setChainProvider(){
+        function setChainProvider(relatedParty){
             var deferred = $q.defer();
             var relatedParty = {'name': relatedParty.name, 'href': relatedParty.href};
             var providerResource = $resource(URLS.CHAIN_PROVIDER);
@@ -768,8 +773,8 @@
             return deferred.promise;
         }
         
-        function setChainLicense(){
-            var license = vm.license.toJSON();
+        function setChainLicense(license){
+            //var license = vm.license.toJSON();
             var deferred = $q.defer();
             var licenseResource = $resource(URLS.CHAIN_LICENSE);
             licenseResource.save(license, function(licenseCreated){

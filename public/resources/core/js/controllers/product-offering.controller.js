@@ -466,6 +466,42 @@
                             resource: 'offering',
                             name: offeringCreated.name
                         });
+
+                        /* Hyperledger functionalities start*/
+                        //var chainProviderPromise = setChainProvider(provider);
+                       /*  
+                        var licenseTest = {
+                                "$class": "synchronicity.License",
+                                "hash": "licenseTest"
+                            }
+                        var chainLicensePromise = Offering.setChainLicense(licenseTest);
+                        //var chainPricingPromise = Offering.setChainPrice(price);
+                        //var chainSLAPromise = Offering.setChainSLA(sla);
+                        //Promise.all([chainProviderPromise, chainLicensePromise, chainPricingPromise, chainSLAPromise]).then(function(responses){
+                        Promise.all([chainLicensePromise]).then(function(responses){    
+                            //var provider = responses[0];
+                            var license = responses[0];  //1
+                            // var pricing = response[2];
+                            // var sla = responses[3];
+                            // var agreementPromise = Offering.setChainAgreement(provider, license, sla);
+                            //     agreementPromise.then(function(agreementCreated){
+                            //         $rootScope.$broadcast(EVENTS.MESSAGE_ADDED, 'created', {
+                            //             resource: 'agreement',
+                            //             name: agreementCreated.id
+                            //         });
+                                },function (response){
+                                    var defaultMessage = 'There was an unexpected error that prevented the ' +
+                                        'system from creating an agreement on the chain';
+                                    var error = Utils.parseError(response, defaultMessage);
+            
+                                    $rootScope.$broadcast(EVENTS.MESSAGE_ADDED, 'error', {
+                                        error: error
+                                });
+                            //}); */
+                     //   });
+                        
+
+                        /* Hyperledger functionalities end*/
                     }, function (response) {
                         var defaultMessage = 'There was an unexpected error that prevented the ' +
                             'system from creating a new SLA';
@@ -475,35 +511,6 @@
                             error: error
                     });
 
-                    /* Hyperledger functionalities start*/
-                    var chainProviderPromise = setChainProvider(provider);
-                    var chainLicensePromise = setChainLicense(license);
-                    var chainPricingPromise = setChainPrice(price);
-                    var chainSLAPromise = setChainSLA(sla);
-                    Promise.all([chainProviderPromise, chainLicensePromise, chainPricingPromise, chainSLAPromise]).then(function(responses){
-                        var provider = responses[0];
-                        var license = responses[1];
-                        var pricing = response[2];
-                        var sla = responses[3];
-                        var agreementPromise = setChainAgreement(provider, license, sla);
-                            agreementPromise.then(function(agreementCreated){
-                                $rootScope.$broadcast(EVENTS.MESSAGE_ADDED, 'created', {
-                                    resource: 'agreement',
-                                    name: agreementCreated.id
-                                });
-                            },function (response){
-                                var defaultMessage = 'There was an unexpected error that prevented the ' +
-                                    'system from creating an agreement on the chain';
-                                var error = Utils.parseError(response, defaultMessage);
-        
-                                $rootScope.$broadcast(EVENTS.MESSAGE_ADDED, 'error', {
-                                    error: error
-                            });
-                        });
-                    });
-                    
-
-                    /* Hyperledger functionalities end*/
                     
                 }, function (response) {
                         var defaultMessage = 'There was an unexpected error that prevented the ' +

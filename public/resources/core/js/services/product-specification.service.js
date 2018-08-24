@@ -103,7 +103,7 @@
             buildInitialData: buildInitialData,
             createCharacteristic: createCharacteristic,
             createCharacteristicValue: createCharacteristicValue,
-            extendBundledProducts: extendBundledProducts
+            extendBundledProducts: extendBundledProducts,
         };
 
         function query(filters, method) {

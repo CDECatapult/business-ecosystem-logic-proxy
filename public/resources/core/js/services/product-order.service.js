@@ -76,7 +76,9 @@
             count: count,
             create: create,
             detail: detail,
-            update: update
+            update: update,
+            setChainAgreement: setChainAgreement,
+            getLicense: getLicense
         };
 
         function query(filters, deferred, method, callback) {
@@ -329,6 +331,48 @@
 
             return result;
         }
+   
+   /* Hyperledger funtionalities*/
+
+        function setChainAgreement(href, provider, consumer, licenseTitle, licenseDescription){
+            var deferred = $q.defer();
+            var agreement = {
+                href: href,
+                provider: provider,
+                consumer: consumer, 
+                licenseTitle: licenseTitle, 
+                licenseDescription: licenseDescription
+            };
+            var agreementResource = $resource(URLS.CHAIN_AGREEMENT);
+            agreementResource.save(agreement, function(agreementCreated){
+                deferred.resolve(agreementCreated);
+            }, function(response){
+                deferred.reject(response);
+            });
+            return deferred.promise;
+        }
+
+        function getLicense(href){
+            var deferred = $q.defer();
+            var params = {};
+            var licenseResource = $resource(href);
+            licenseResource.get(params, function (offering) {
+                var terms = offering.productOfferingTerm[0];
+                var license = { 
+                    licenseTitle: terms.name,
+                    licenseDescription: terms.description
+                }
+                deferred.resolve(license);
+            }, function (response) {
+                deferred.reject(response);
+            });
+            return deferred.promise;
+        }
+
+        /* End Hyperledger functionalities*/
     }
+
+    
+
 
 })();
