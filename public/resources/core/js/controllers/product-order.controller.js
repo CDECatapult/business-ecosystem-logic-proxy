@@ -352,29 +352,7 @@
             apiInfo.notificationContact = vm.billingAccount.getEmailAddress().toString();
 
             ProductOrder.create(apiInfo).then(function(orderCreated) {
-                createPromise.push(ProductOrder.getLicense(vm.orderInfo.orderItem[0].productOffering.href).then(function (licenseRetrieved) {
-                    vm.license = licenseRetrieved;
-                }, function (response){
-                    vm.error = Utils.parseError(response, 'The requested license could not be retrieved');
-                    vm.item.status = ERROR;
-                }));
-                Promise.all(createPromise).then(function(){
-                    //vm.item.status = LOADED;
-                    var href = vm.orderInfo.orderItem[0].productOffering.href;
-                    var provider = getProvider(vm.billingAccount.relatedParty);
-                    var consumer = getConsumer(vm.billingAccount.relatedParty) + "-" + orderCreated.order.id;
-                    var licenseTitle = vm.license.licenseTitle;
-                    var licenseDescription = vm.license.licenseDescription;
-
-                    ProductOrder.setChainAgreement(href, provider, consumer, licenseTitle, licenseDescription).then(function(){
-
-                    },function (response){
-                        vm.error = Utils.parseError(response, 'The requested license could not be stored in the chain');
-                    });
-                    }, function (response){
-                        vm.error = Utils.parseError(response, 'The requested license could not be retrieved');
-                        vm.item.status = ERROR;
-                });
+                
                 
                 if ('x-redirect-url' in orderCreated.headers) {
 
@@ -405,6 +383,29 @@
                         interval = $interval(function () {
                             if (ppalWindow.closed) {
                                 paymentFinished(true);
+                                createPromise.push(ProductOrder.getLicense(vm.orderInfo.orderItem[0].productOffering.href).then(function (licenseRetrieved) {
+                                    vm.license = licenseRetrieved;
+                                }, function (response){
+                                    vm.error = Utils.parseError(response, 'The requested license could not be retrieved');
+                                    vm.item.status = ERROR;
+                                }));
+                                Promise.all(createPromise).then(function(){
+                                    //vm.item.status = LOADED;
+                                    var href = vm.orderInfo.orderItem[0].productOffering.href;
+                                    var provider = getProvider(vm.billingAccount.relatedParty);
+                                    var consumer = getConsumer(vm.billingAccount.relatedParty) + "-" + orderCreated.order.id;
+                                    var licenseTitle = vm.license.licenseTitle;
+                                    var licenseDescription = vm.license.licenseDescription;
+                
+                                    ProductOrder.setChainAgreement(href, provider, consumer, licenseTitle, licenseDescription).then(function(){
+                
+                                    },function (response){
+                                        vm.error = Utils.parseError(response, 'The requested license could not be stored in the chain');
+                                    });
+                                    }, function (response){
+                                        vm.error = Utils.parseError(response, 'The requested license could not be retrieved');
+                                        vm.item.status = ERROR;
+                                });
                             }
                         }, 500);
                     }
@@ -412,8 +413,32 @@
                 } else {
                     vm.createOrderStatus = FINISHED;
                     cleanCartItems();
+                    createPromise.push(ProductOrder.getLicense(vm.orderInfo.orderItem[0].productOffering.href).then(function (licenseRetrieved) {
+                        vm.license = licenseRetrieved;
+                    }, function (response){
+                        vm.error = Utils.parseError(response, 'The requested license could not be retrieved');
+                        vm.item.status = ERROR;
+                    }));
+                    Promise.all(createPromise).then(function(){
+                        //vm.item.status = LOADED;
+                        var href = vm.orderInfo.orderItem[0].productOffering.href;
+                        var provider = getProvider(vm.billingAccount.relatedParty);
+                        var consumer = getConsumer(vm.billingAccount.relatedParty) + "-" + orderCreated.order.id;
+                        var licenseTitle = vm.license.licenseTitle;
+                        var licenseDescription = vm.license.licenseDescription;
+    
+                        ProductOrder.setChainAgreement(href, provider, consumer, licenseTitle, licenseDescription).then(function(){
+    
+                        },function (response){
+                            vm.error = Utils.parseError(response, 'The requested license could not be stored in the chain');
+                        });
+                        }, function (response){
+                            vm.error = Utils.parseError(response, 'The requested license could not be retrieved');
+                            vm.item.status = ERROR;
+                    });
                     $state.go('inventory');
                 }
+                
             }, function (response) {
 
                 vm.createOrderStatus = ERROR;
