@@ -1,9 +1,9 @@
-const { cleanEnv, bool, host, port, str, url } = require("envalid");
+const { cleanEnv, bool, host, port, str, url, json } = require("envalid");
 
 const env = cleanEnv(process.env, {
   HOST: host({ default: "localhost" }),
   PORT: port({ default: 80 }),
-  EXT_PORT: port({ default: 8004 }),
+  EXT_PORT: port({ default: 80 }),
   // Express
   EXPRESS_PROXY_PREFIX: str({ default: "" }),
   EXPRESS_PORTAL_PREFIX: str({ default: "" }),
@@ -31,7 +31,17 @@ const env = cleanEnv(process.env, {
   SSL_CERT_FILE: str({ default: "cert/cert.crt" }),
   SSL_KEY_FILE: str({ default: "cert/key.key" }),
   SSL_CA_FILE: str({ default: "cert/ca.crt" }),
-  SSL_PORT: port({ default: 443 })
+  SSL_PORT: port({ default: 443 }),
+  // OAuth2
+  OAUTH2_SERVER: url({ default: "https://account.lab.fiware.org" }),
+  OAUTH2_CLIENT_ID: str({ default: "", example: "--client-id--" }),
+  OAUTH2_CLIENT_SECRET: str({ default: "", example: "--client-secret--" }),
+  OAUTH2_CALLBACK_URL: url({
+    default: "http://localhost/auth/fiware/callback"
+  }),
+  OAUTH2_ROLES: json({
+    default: '{"admin":"provider","customer":"customer","seller":"seller","orgAdmin":"orgAdmin"}'
+  })
 });
 
 const config = {
@@ -48,36 +58,26 @@ const config = {
   releaseDate: env.RELEASE_DATE,
   gitHash: env.GIT_HASH,
   doc: env.DOC_URL,
-  userDoc: env.USER_DOC_URL
-};
-
-config.proxy = {
-  enabled: true,
-  host: env.PROXT_HOST,
-  port: env.PROXY_PORT,
-  secured: env.PROXY_SECURED
-};
-
-config.https = {
-  enabled: true,
-  certFile: env.SSL_CERT_FILE,
-  keyFile: env.SSL_KEY_FILE,
-  caFile: env.SSL_CA_FILE,
-  port: env.SSL_PORT
-};
-
-// OAuth2 configuration
-//'server': 'http://34.213.26.168:8000/',
-config.oauth2 = {
-  server: "https://account.lab.fiware.org",
-  clientID: "--client-id--",
-  clientSecret: "--client-secret--",
-  callbackURL: "http://localhost/auth/fiware/callback",
-  roles: {
-    admin: "provider",
-    customer: "customer",
-    seller: "seller",
-    orgAdmin: "orgAdmin"
+  userDoc: env.USER_DOC_URL,
+  proxy: {
+    enabled: true,
+    host: env.PROXT_HOST,
+    port: env.PROXY_PORT,
+    secured: env.PROXY_SECURED
+  },
+  https: {
+    enabled: true,
+    certFile: env.SSL_CERT_FILE,
+    keyFile: env.SSL_KEY_FILE,
+    caFile: env.SSL_CA_FILE,
+    port: env.SSL_PORT
+  },
+  oauth2: {
+    server: env.OAUTH2_SERVER,
+    clientID: env.OAUTH2_CLIENT_ID,
+    clientSecret: env.OAUTH2_CLIENT_SECRET,
+    callbackURL: env.OAUTH2_CALLBACK_URL,
+    roles: env.OAUTH2_ROLES
   }
 };
 
