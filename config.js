@@ -40,8 +40,15 @@ const env = cleanEnv(process.env, {
     default: "http://localhost/auth/fiware/callback"
   }),
   OAUTH2_ROLES: json({
-    default: '{"admin":"provider","customer":"customer","seller":"seller","orgAdmin":"orgAdmin"}'
-  })
+    default:
+      '{"admin":"provider","customer":"customer","seller":"seller","orgAdmin":"orgAdmin"}'
+  }),
+  CUSTOMER_ROLE_REQUIRED: bool({ default: false }),
+  MONGO_HOST: host({ default: "localhost" }),
+  MONGO_PORT: port({ default: 27017 }),
+  MONGO_USERNAME: str({ default: "" }),
+  MONGO_PASSWORD: str({ default: "" }),
+  MONGO_DBNAME: str({ default: "belp" })
 });
 
 const config = {
@@ -78,19 +85,16 @@ const config = {
     clientSecret: env.OAUTH2_CLIENT_SECRET,
     callbackURL: env.OAUTH2_CALLBACK_URL,
     roles: env.OAUTH2_ROLES
+  },
+  // Customer Role Required to buy items
+  customerRoleRequired: env.CUSTOMER_ROLE_REQUIRED,
+  mongoDb: {
+    server: env.MONGO_HOST,
+    port: env.MONGO_PORT,
+    user: env.MONGO_USERNAME,
+    password: env.MONGO_PASSWORD,
+    db: env.MONGO_DBNAME
   }
-};
-
-// Customer Role Required to buy items
-config.customerRoleRequired = false;
-
-// MongoDB
-config.mongoDb = {
-  server: "localhost",
-  port: 27017,
-  user: "",
-  password: "",
-  db: "belp"
 };
 
 // Configure endpoints
