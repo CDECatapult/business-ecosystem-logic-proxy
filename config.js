@@ -1,4 +1,4 @@
-const { cleanEnv, bool, host, port, str, url, json } = require("envalid");
+const { cleanEnv, bool, host, port, num, str, url, json } = require("envalid");
 
 const env = cleanEnv(process.env, {
   HOST: host({ default: "localhost" }),
@@ -48,7 +48,21 @@ const env = cleanEnv(process.env, {
   MONGO_PORT: port({ default: 27017 }),
   MONGO_USERNAME: str({ default: "" }),
   MONGO_PASSWORD: str({ default: "" }),
-  MONGO_DBNAME: str({ default: "belp" })
+  MONGO_DBNAME: str({ default: "belp" }),
+  // Percentage of the generated revenues that belongs to the system
+  PCT_REVENUE_MODEL: num({ default: 30 }),
+  // Billing Account owner role
+  BILLING_ACCOUNT_OWNER_ROLE: str({ default: "bill receiver" }),
+  // list of paths that will not check authentication/authorization
+  PUBLIC_PATHS: json({
+    default: "[]",
+    example: '["/public/*","/static/css/"]'
+  }),
+  MAGIC_KEY: str({ default: undefined }),
+  USAGE_CHART_URL: url({
+    default:
+      "https://mashup.lab.fiware.org/fdelavega/UsageChart?mode=embedded&theme=wirecloud.fiwarelabtheme"
+  })
 });
 
 const config = {
@@ -67,13 +81,13 @@ const config = {
   doc: env.DOC_URL,
   userDoc: env.USER_DOC_URL,
   proxy: {
-    enabled: true,
+    enabled: env.PROXY_ENABLED,
     host: env.PROXT_HOST,
     port: env.PROXY_PORT,
     secured: env.PROXY_SECURED
   },
   https: {
-    enabled: true,
+    enabled: env.SSL_ENABLED,
     certFile: env.SSL_CERT_FILE,
     keyFile: env.SSL_KEY_FILE,
     caFile: env.SSL_CA_FILE,
@@ -94,7 +108,12 @@ const config = {
     user: env.MONGO_USERNAME,
     password: env.MONGO_PASSWORD,
     db: env.MONGO_DBNAME
-  }
+  },
+  revenueModel: env.PCT_REVENUE_MODEL,
+  billingAccountOwnerRole: env.BILLING_ACCOUNT_OWNER_ROLE,
+  publicPaths: env.PUBLIC_PATHS,
+  magicKey: env.MAGIC_KEY,
+  usageChartURL: env.USAGE_CHART_URL
 };
 
 // Configure endpoints
@@ -102,8 +121,8 @@ config.endpoints = {
   management: {
     path: "management",
     host: "localhost",
-    port: config.port,
-    appSsl: config.https.enabled
+    port: env.PORT,
+    appSsl: env.SSL_ENABLED
   },
   catalog: {
     path: "DSProductCatalog",
@@ -162,30 +181,15 @@ config.endpoints = {
   sla: {
     path: "SLAManagement",
     host: "localhost",
-    port: config.port,
+    port: env.PORT,
     appSsl: false
   },
   reputation: {
     path: "REPManagement",
     host: "localhost",
-    port: config.port,
+    port: env.PORT,
     appSsl: false
   }
 };
-
-// Percentage of the generated revenues that belongs to the system
-config.revenueModel = 30;
-
-// Billing Account owner role
-config.billingAccountOwnerRole = "bill receiver";
-
-// list of paths that will not check authentication/authorization
-// example: ['/public/*', '/static/css/']
-config.publicPaths = [];
-
-config.magicKey = undefined;
-
-config.usageChartURL =
-  "https://mashup.lab.fiware.org/fdelavega/UsageChart?mode=embedded&theme=wirecloud.fiwarelabtheme";
 
 module.exports = config;
