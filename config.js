@@ -1,5 +1,9 @@
 const { cleanEnv, bool, host, port, num, str, url, json } = require("envalid");
 
+function firstOf(envVar, fallback) {
+  return typeof envVar === "undefined" ? fallback : envVar;
+}
+
 const env = cleanEnv(process.env, {
   HOST: host({ default: "localhost" }),
   PORT: port({ default: 80 }),
@@ -62,7 +66,67 @@ const env = cleanEnv(process.env, {
   USAGE_CHART_URL: url({
     default:
       "https://mashup.lab.fiware.org/fdelavega/UsageChart?mode=embedded&theme=wirecloud.fiwarelabtheme"
-  })
+  }),
+  // Endpoints
+  ENDPOINT_MANAGEMENT_PATH: str({ default: "management" }),
+  ENDPOINT_MANAGEMENT_HOST: host({ default: "localhost" }),
+  ENDPOINT_MANAGEMENT_PORT: str({ default: undefined }),
+  ENDPOINT_MANAGEMENT_APP_SSL: bool({ default: undefined }),
+
+  ENDPOINT_CATALOG_PATH: str({ default: "DSProductCatalog" }),
+  ENDPOINT_CATALOG_HOST: host({ default: "localhost" }),
+  ENDPOINT_CATALOG_PORT: str({ default: 8080 }),
+  ENDPOINT_CATALOG_APP_SSL: bool({ default: false }),
+
+  ENDPOINT_ORDERING_PATH: str({ default: "DSProductOrdering" }),
+  ENDPOINT_ORDERING_HOST: host({ default: "localhost" }),
+  ENDPOINT_ORDERING_PORT: str({ default: 8080 }),
+  ENDPOINT_ORDERING_APP_SSL: bool({ default: false }),
+
+  ENDPOINT_INVENTORY_PATH: str({ default: "DSProductInventory" }),
+  ENDPOINT_INVENTORY_HOST: host({ default: "localhost" }),
+  ENDPOINT_INVENTORY_PORT: str({ default: 8080 }),
+  ENDPOINT_INVENTORY_APP_SSL: bool({ default: false }),
+
+  ENDPOINT_CHARGING_PATH: str({ default: "charging" }),
+  ENDPOINT_CHARGING_HOST: host({ default: "localhost" }),
+  ENDPOINT_CHARGING_PORT: str({ default: 8006 }),
+  ENDPOINT_CHARGING_APP_SSL: bool({ default: false }),
+
+  ENDPOINT_RSS_PATH: str({ default: "DSRevenueSharing" }),
+  ENDPOINT_RSS_HOST: host({ default: "localhost" }),
+  ENDPOINT_RSS_PORT: str({ default: 8080 }),
+  ENDPOINT_RSS_APP_SSL: bool({ default: false }),
+
+  ENDPOINT_PARTY_PATH: str({ default: "DSPartyManagement" }),
+  ENDPOINT_PARTY_HOST: host({ default: "localhost" }),
+  ENDPOINT_PARTY_PORT: str({ default: 8080 }),
+  ENDPOINT_PARTY_APP_SSL: bool({ default: false }),
+
+  ENDPOINT_BILLING_PATH: str({ default: "DSBillingManagement" }),
+  ENDPOINT_BILLING_HOST: host({ default: "localhost" }),
+  ENDPOINT_BILLING_PORT: str({ default: 8080 }),
+  ENDPOINT_BILLING_APP_SSL: bool({ default: false }),
+
+  ENDPOINT_CUSTOMER_PATH: str({ default: "DSCustomerManagement" }),
+  ENDPOINT_CUSTOMER_HOST: host({ default: "localhost" }),
+  ENDPOINT_CUSTOMER_PORT: str({ default: 8080 }),
+  ENDPOINT_CUSTOMER_APP_SSL: bool({ default: false }),
+
+  ENDPOINT_USAGE_PATH: str({ default: "DSUsageManagement" }),
+  ENDPOINT_USAGE_HOST: host({ default: "localhost" }),
+  ENDPOINT_USAGE_PORT: str({ default: 8080 }),
+  ENDPOINT_USAGE_APP_SSL: bool({ default: false }),
+
+  ENDPOINT_SLA_PATH: str({ default: "SLAManagement" }),
+  ENDPOINT_SLA_HOST: host({ default: "localhost" }),
+  ENDPOINT_SLA_PORT: str({ default: undefined }),
+  ENDPOINT_SLA_APP_SSL: bool({ default: false }),
+
+  ENDPOINT_REPUTATION_PATH: str({ default: "REPManagement" }),
+  ENDPOINT_REPUTATION_HOST: host({ default: "localhost" }),
+  ENDPOINT_REPUTATION_PORT: str({ default: undefined }),
+  ENDPOINT_REPUTATION_APP_SSL: bool({ default: false })
 });
 
 const config = {
@@ -119,76 +183,76 @@ const config = {
 // Configure endpoints
 config.endpoints = {
   management: {
-    path: "management",
-    host: "localhost",
-    port: env.PORT,
-    appSsl: env.SSL_ENABLED
+    path: env.ENDPOINT_MANAGEMENT_PATH,
+    host: env.ENDPOINT_MANAGEMENT_HOST,
+    port: firstOf(env.ENDPOINT_MANAGEMENT_PORT, env.PORT),
+    appSsl: firstOf(env.ENDPOINT_MANAGEMENT_APP_SSL, env.SSL_ENABLED)
   },
   catalog: {
-    path: "DSProductCatalog",
-    host: "localhost",
-    port: "8080",
-    appSsl: false
+    path: env.ENDPOINT_CATALOG_PATH,
+    host: env.ENDPOINT_CATALOG_HOST,
+    port: env.ENDPOINT_CATALOG_PORT,
+    appSsl: env.ENDPOINT_CATALOG_APP_SSL
   },
   ordering: {
-    path: "DSProductOrdering",
-    host: "localhost",
-    port: "8080",
-    appSsl: false
+    path: env.ENDPOINT_ORDERING_PATH,
+    host: env.ENDPOINT_ORDERING_HOST,
+    port: env.ENDPOINT_ORDERING_PORT,
+    appSsl: env.ENDPOINT_ORDERING_APP_SSL
   },
   inventory: {
-    path: "DSProductInventory",
-    host: "localhost",
-    port: "8080",
-    appSsl: false
+    path: env.ENDPOINT_INVENTORY_PATH,
+    host: env.ENDPOINT_INVENTORY_HOST,
+    port: env.ENDPOINT_INVENTORY_PORT,
+    appSsl: env.ENDPOINT_INVENTORY_APP_SSL
   },
   charging: {
-    path: "charging",
-    host: "localhost",
-    port: "8006",
-    appSsl: false
+    path: env.ENDPOINT_CHARGING_PATH,
+    host: env.ENDPOINT_CHARGING_HOST,
+    port: env.ENDPOINT_CHARGING_PORT,
+    appSsl: env.ENDPOINT_CHARGING_APP_SSL
   },
   rss: {
-    path: "DSRevenueSharing",
-    host: "localhost",
-    port: "8080",
-    appSsl: false
+    path: env.ENDPOINT_RSS_PATH,
+    host: env.ENDPOINT_RSS_HOST,
+    port: env.ENDPOINT_RSS_PORT,
+    appSsl: env.ENDPOINT_RSS_APP_SSL
   },
   party: {
-    path: "DSPartyManagement",
-    host: "localhost",
-    port: "8080",
-    appSsl: false
+    path: env.ENDPOINT_PARTY_PATH,
+    host: env.ENDPOINT_PARTY_HOST,
+    port: env.ENDPOINT_PARTY_PORT,
+    appSsl: env.ENDPOINT_PARTY_APP_SSL
   },
   billing: {
-    path: "DSBillingManagement",
-    host: "localhost",
-    port: "8080",
-    appSsl: false
+    path: env.ENDPOINT_BILLING_PATH,
+    host: env.ENDPOINT_BILLING_HOST,
+    port: env.ENDPOINT_BILLING_PORT,
+    appSsl: env.ENDPOINT_BILLING_APP_SSL
   },
   customer: {
-    path: "DSCustomerManagement",
-    host: "localhost",
-    port: "8080",
-    appSsl: false
+    path: env.ENDPOINT_CUSTOMER_PATH,
+    host: env.ENDPOINT_CUSTOMER_HOST,
+    port: env.ENDPOINT_CUSTOMER_PORT,
+    appSsl: env.ENDPOINT_CUSTOMER_APP_SSL
   },
   usage: {
-    path: "DSUsageManagement",
-    host: "localhost",
-    port: "8080",
-    appSsl: false
+    path: env.ENDPOINT_USAGE_PATH,
+    host: env.ENDPOINT_USAGE_HOST,
+    port: env.ENDPOINT_USAGE_PORT,
+    appSsl: env.ENDPOINT_USAGE_APP_SSL
   },
   sla: {
-    path: "SLAManagement",
-    host: "localhost",
-    port: env.PORT,
-    appSsl: false
+    path: env.ENDPOINT_SLA_PATH,
+    host: env.ENDPOINT_SLA_HOST,
+    port: firstOf(env.ENDPOINT_SLA_PORT, env.PORT),
+    appSsl: env.ENDPOINT_SLA_APP_SSL
   },
   reputation: {
-    path: "REPManagement",
-    host: "localhost",
-    port: env.PORT,
-    appSsl: false
+    path: env.ENDPOINT_REPUTATION_PATH,
+    host: env.ENDPOINT_REPUTATION_HOST,
+    port: firstOf(env.ENDPOINT_REPUTATION_PORT, env.PORT),
+    appSsl: env.ENDPOINT_REPUTATION_APP_SSL
   }
 };
 
