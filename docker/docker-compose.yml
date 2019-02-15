@@ -4,8 +4,40 @@ services:
         image: mongo:3.2
         ports:
             - 27017
+        networks:
+            main:
         volumes:
             - ./proxy-data:/data/db
+
+    mysql:
+        image: mysql:5.7
+        restart: always
+        expose:
+            - 3306
+        volumes:
+            - ./mysql-data:/var/lib/mysql
+        networks:
+            main:
+        environment:
+            - MYSQL_ROOT_PASSWORD=my-secret-pw
+            - MYSQL_DATABASE=RSS
+
+    apis:
+        image: digicatsynch/bae-apis-synchronicity:v6.4.0
+        ports:
+            - 4848
+            - 8080
+        links:
+            - mysql
+        depends_on:
+            - mysql
+        networks:
+            main:
+                aliases:
+                    - apis.docker
+        environment:
+            - MYSQL_ROOT_PASSWORD=my-secret-pw
+            - MYSQL_HOST=mysql
 
     proxy:
         image: biz-ecosystem-logic-proxy
@@ -13,8 +45,13 @@ services:
             - mongo
         depends_on:
             - mongo
+            - apis
         ports:
-            - 8000
+            - 8004:8004
+        networks:
+            main:
+                aliases:
+                    - proxy.docker
         volumes:
             - ./proxy-indexes:/business-ecosystem-logic-proxy/indexes
             - ./proxy-themes:/business-ecosystem-logic-proxy/themes
@@ -22,4 +59,26 @@ services:
             - ./proxy-locales:/business-ecosystem-logic-proxy/locales
         environment:
             - NODE_ENV=development
+            - VERSION=6.3.0-rc
+            - HOST=proxy.docker
+            - PORT=8004
+            - PROXY_ENABLED=true
+            - PROXT_HOST=proxy.docker
+            - PROXY_PORT=8004
+            - EXT_PORT=8004
+            - SSL_ENABLED=false
+            - OAUTH2_SERVER=http://localhost/fakeOauth2
+            - OAUTH2_CLIENT_ID=fakeClientID
+            - OAUTH2_CALLBACK_URL=http://proxy.docker:8004/auth/fiware/callback
             - MONGO_HOST=mongo
+            - ENDPOINT_CATALOG_HOST=apis.docker
+            - ENDPOINT_ORDERING_HOST=apis.docker
+            - ENDPOINT_INVENTORY_HOST=apis.docker
+            - ENDPOINT_PARTY_HOST=apis.docker
+            - ENDPOINT_BILLING_HOST=apis.docker
+            - ENDPOINT_CUSTOMER_HOST=apis.docker
+            - ENDPOINT_USAGE_HOST=apis.docker
+
+networks:
+    main:
+        external: true

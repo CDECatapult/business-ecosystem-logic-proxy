@@ -5,3 +5,9 @@ cert
 coverage
 xunit.xml
 /indexes
+mysql-data
+proxy-data
+proxy-indexes
+proxy-locales
+proxy-static
+proxy-themes
