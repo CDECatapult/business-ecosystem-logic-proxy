@@ -78,7 +78,7 @@ echo "Cleaning indexes"
 rm -rf ./indexes/*
 
 echo "Creating indexes..."
-/business-ecosystem-logic-proxy/node-v6.9.1-linux-x64/bin/node fill_indexes.js
-/business-ecosystem-logic-proxy/node-v6.9.1-linux-x64/bin/node collect_static.js
+node fill_indexes.js
+node collect_static.js
 
-/business-ecosystem-logic-proxy/node-v6.9.1-linux-x64/bin/node server.js
+node server.js

@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM node:6.9.1
 
 MAINTAINER Digital Catapult
 
@@ -7,12 +7,8 @@ RUN apt-get update && apt-get install -y xinetd python-pip wget && \
 
 WORKDIR business-ecosystem-logic-proxy
 
-RUN wget https://nodejs.org/dist/v6.9.1/node-v6.9.1-linux-x64.tar.xz && \
-    tar -xvf node-v6.9.1-linux-x64.tar.xz && \
-    echo 'export PATH=$PATH:/business-ecosystem-logic-proxy/node-v6.9.1-linux-x64/bin' >> ~/.bashrc && \
-    mkdir indexes && \
+RUN mkdir indexes && \
     mkdir themes
-
 
 # Indexes used by the Business API Ecosystem for searching
 VOLUME /business-ecosystem-logic-proxy/indexes
@@ -29,8 +25,7 @@ VOLUME /business-ecosystem-logic-proxy/lib
 COPY ./package.json .
 COPY ./package-lock.json .
 COPY ./install.sh .
-RUN export PATH=$PATH:/business-ecosystem-logic-proxy/node-v6.9.1-linux-x64/bin && \
-    ./install.sh
+RUN ./install.sh
 
 # Project sources
 COPY ./controllers controllers
