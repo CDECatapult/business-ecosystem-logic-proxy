@@ -47,10 +47,16 @@ COPY ./log_config.json .
 COPY ./server.js .
 
 # Docker dir (scripts & config)
-COPY ./docker/getConfig.js .
 COPY ./docker/entrypoint.sh /
 COPY ./docker/cleanIndex.sh /
 COPY ./docker/serviceIndexes /etc/xinetd.d/
+
+ENV MONGO_HOST localhost
+ENV MONGO_PORT 27017
+ENV ENDPOINT_INVENTORY_PATH DSProductInventory
+ENV ENDPOINT_INVENTORY_HOST localhost
+ENV ENDPOINT_INVENTORY_PORT 8080
+ENV ENDPOINT_INVENTORY_APP_SSL false
 
 EXPOSE 8004
 

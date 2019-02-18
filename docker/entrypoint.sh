@@ -27,23 +27,28 @@ function test_connection {
     echo "$1 connection, OK"
 }
 
-# Get mongodb host and port from config file
-MONGO_HOST=`/business-ecosystem-logic-proxy/node-v6.9.1-linux-x64/bin/node getConfig mongohost`
-MONGO_PORT=`/business-ecosystem-logic-proxy/node-v6.9.1-linux-x64/bin/node getConfig mongoport`
+function get_protocol {
+  local ssl_enabled=$1
+  case $ssl_enabled in
+    true|1|t) echo "https" ;;
+    false|0|f) echo "http" ;;
+    *) echo "${1} is not a bool" >&2; exit 1 ;;
+  esac
+}
 
 # Wait for mongodb to be running
 test_connection 'MongoDB' ${MONGO_HOST} ${MONGO_PORT}
 
 # Get glassfish host and port from config
-GLASSFISH_HOST=`/business-ecosystem-logic-proxy/node-v6.9.1-linux-x64/bin/node getConfig glasshost`
-GLASSFISH_PORT=`/business-ecosystem-logic-proxy/node-v6.9.1-linux-x64/bin/node getConfig glassport`
+GLASSFISH_HOST=${ENDPOINT_INVENTORY_HOST}
+GLASSFISH_PORT=${ENDPOINT_INVENTORY_PORT}
 
 # Wait for glassfish to be running
 test_connection 'Glassfish' ${GLASSFISH_HOST} ${GLASSFISH_PORT}
 
 # Wait for APIs to be deployed
-GLASSFISH_SCH=`/business-ecosystem-logic-proxy/node-v6.9.1-linux-x64/bin/node getConfig glassprot`
-GLASSFISH_PATH=`/business-ecosystem-logic-proxy/node-v6.9.1-linux-x64/bin/node getConfig glasspath`
+GLASSFISH_SCH=$(get_protocol "$ENDPOINT_INVENTORY_APP_SSL")
+GLASSFISH_PATH=${ENDPOINT_INVENTORY_PATH}
 
 echo "Testing Glasfish APIs deployed"
 wget ${GLASSFISH_SCH}://${GLASSFISH_HOST}:${GLASSFISH_PORT}/${GLASSFISH_PATH}
