@@ -13,8 +13,12 @@ RUN wget https://nodejs.org/dist/v6.9.1/node-v6.9.1-linux-x64.tar.xz && \
     mkdir indexes && \
     mkdir themes
 
+
+# Indexes used by the Business API Ecosystem for searching
 VOLUME /business-ecosystem-logic-proxy/indexes
+# Themes that can be used to customize the web portal
 VOLUME /business-ecosystem-logic-proxy/themes
+# Static files ready to be rendered including the selected theme and js files
 VOLUME /business-ecosystem-logic-proxy/static
 VOLUME /business-ecosystem-logic-proxy/locales
 VOLUME /business-ecosystem-logic-proxy/public/resources/core/js
