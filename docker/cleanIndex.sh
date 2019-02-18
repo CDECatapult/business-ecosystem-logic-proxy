@@ -2,10 +2,12 @@
 
 echo "Cleaning indexes"
 
-rm -rf /business-ecosystem-logic-proxy/indexes/*
-echo $? 2>1
+cd /business-ecosystem-logic-proxy || exit
 
-node /business-ecosystem-logic-proxy/fill_indexes.js
-echo $? 2>1
+rm -rf ./indexes/*
+echo $? 2>&1
+
+node ./fill_indexes.js
+echo $? 2>&1
 
 exit 0
