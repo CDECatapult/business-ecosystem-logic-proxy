@@ -40,7 +40,7 @@ services:
             - MYSQL_HOST=mysql
 
     proxy:
-        image: biz-ecosystem-logic-proxy
+        build: .
         links:
             - mongo
         depends_on:

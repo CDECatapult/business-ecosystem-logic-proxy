@@ -1,0 +1,11 @@
+.git
+coverage
+node_modules
+.DS_Store
+xunit.xml
+mysql-data
+proxy-data
+proxy-indexes
+proxy-locales
+proxy-static
+proxy-themes

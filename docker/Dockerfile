@@ -1,14 +1,12 @@
 FROM ubuntu:16.04
 
-MAINTAINER CoNWeT Lab. Universidad Politécnica de Madrid
-
+MAINTAINER Digital Catapult
 
 RUN apt-get update && apt-get install -y git xinetd python-pip wget && \
     pip install sh requests && \
     git clone https://github.com/CDECatapult/business-ecosystem-logic-proxy.git
 
 WORKDIR business-ecosystem-logic-proxy
-
 
 ENV VERSION feature/env
 
