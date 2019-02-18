@@ -2,8 +2,7 @@ FROM node:6.9.1
 
 MAINTAINER Digital Catapult
 
-RUN apt-get update && apt-get install -y xinetd python-pip wget && \
-    pip install sh requests
+RUN apt-get update && apt-get install -y xinetd wget
 
 WORKDIR business-ecosystem-logic-proxy
 
