@@ -1,4 +1,4 @@
-const config = require('./etc/config.js');
+const config = require('./config.js');
 
 const availableConf = {
     mongohost: config.mongoDb.server,
@@ -10,4 +10,3 @@ const availableConf = {
 };
 
 console.log(availableConf[process.argv[2]]);
-
