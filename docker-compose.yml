@@ -62,15 +62,21 @@ services:
             - VERSION=6.3.0-rc
             - HOST=proxy.docker
             - PORT=8004
+
             - PROXY_ENABLED=true
             - PROXT_HOST=proxy.docker
             - PROXY_PORT=8004
+
             - EXT_PORT=8004
             - SSL_ENABLED=false
-            - OAUTH2_SERVER=http://localhost/fakeOauth2
-            - OAUTH2_CLIENT_ID=fakeClientID
-            - OAUTH2_CALLBACK_URL=http://proxy.docker:8004/auth/fiware/callback
+
+            - OAUTH2_SERVER=http://localhost:3000
+            - OAUTH2_CLIENT_ID=eff50ed2-df09-4d95-b704-cf87e550049c
+            - OAUTH2_CLIENT_SECRET=16eb167a-7414-4140-aa6e-d1661ccfee2b
+            - OAUTH2_CALLBACK_URL=http://localhost:8004/auth/fiware/callback
+
             - MONGO_HOST=mongo
+
             - ENDPOINT_CATALOG_HOST=apis.docker
             - ENDPOINT_ORDERING_HOST=apis.docker
             - ENDPOINT_INVENTORY_HOST=apis.docker
