@@ -2,7 +2,7 @@ FROM node:6.9.1
 
 MAINTAINER Digital Catapult
 
-RUN apt-get update && apt-get install -y xinetd wget
+RUN apt-get update && apt-get install -y wget
 
 WORKDIR business-ecosystem-logic-proxy
 
@@ -42,8 +42,6 @@ COPY ./server.js .
 
 # Docker dir (scripts & config)
 COPY ./docker/entrypoint.sh /
-COPY ./docker/cleanIndex.sh /
-COPY ./docker/serviceIndexes /etc/xinetd.d/
 
 ENV MONGO_HOST localhost
 ENV MONGO_PORT 27017

@@ -68,12 +68,6 @@ done
 # Include this setting to avoid inconsistencies between docker container port and used port
 sed -i "s|config\.port|config\.extPort|" /business-ecosystem-logic-proxy/lib/tmfUtils.js
 
-echo "Adding cleanService to services"
-echo "serviceIndexes  54645/tcp" >> /etc/services
-
-echo "Restarting xinetd service"
-service xinetd restart
-
 echo "Cleaning indexes"
 rm -rf ./indexes/*
 
