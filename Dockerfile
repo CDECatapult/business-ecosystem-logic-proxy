@@ -6,9 +6,6 @@ RUN apt-get update && apt-get install -y wget
 
 WORKDIR business-ecosystem-logic-proxy
 
-RUN mkdir indexes && \
-    mkdir themes
-
 # Indexes used by the Business API Ecosystem for searching
 VOLUME /business-ecosystem-logic-proxy/indexes
 # Themes that can be used to customize the web portal
