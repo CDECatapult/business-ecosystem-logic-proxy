@@ -1,7 +1,5 @@
 FROM node:6.9.1
 
-MAINTAINER Digital Catapult
-
 RUN apt-get update && apt-get install -y wget
 
 WORKDIR business-ecosystem-logic-proxy
