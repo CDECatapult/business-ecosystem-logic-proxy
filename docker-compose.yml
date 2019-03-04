@@ -85,7 +85,7 @@ services:
             - OAUTH2_SERVER=http://fiware-idm:3000
             - OAUTH2_CLIENT_ID=eff50ed2-df09-4d95-b704-cf87e550049c
             - OAUTH2_CLIENT_SECRET=16eb167a-7414-4140-aa6e-d1661ccfee2b
-            - OAUTH2_CALLBACK_URL=http://fiware-idm:3000/auth/fiware/callback
+            - OAUTH2_CALLBACK_URL=http://proxy:8004/auth/fiware/callback
 
             - MONGO_HOST=mongo
 
