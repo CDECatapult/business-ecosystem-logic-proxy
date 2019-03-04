@@ -5,7 +5,7 @@ services:
         ports:
             - 27017
         networks:
-            main:
+            synchronicity:
         volumes:
             - ./proxy-data:/data/db
 
@@ -17,7 +17,7 @@ services:
         volumes:
             - ./mysql-data:/var/lib/mysql
         networks:
-            main:
+            synchronicity:
         environment:
             - MYSQL_ROOT_PASSWORD=my-secret-pw
             - MYSQL_DATABASE=RSS
@@ -32,26 +32,38 @@ services:
         depends_on:
             - mysql
         networks:
-            main:
-                aliases:
-                    - apis.docker
+            synchronicity:
         environment:
             - MYSQL_ROOT_PASSWORD=my-secret-pw
             - MYSQL_HOST=mysql
 
+    # rss:
+    #     image: conwetlab/biz-ecosystem-rss:v6.4.0
+    #     restart: always
+    #     ports:
+    #         - 9999:8080
+    #         - 4444:4848
+    #         - 1111:8181
+    #     links:
+    #         - mysql
+    #     depends_on:
+    #         - mysql
+    #     networks:
+    #         synchronicity:
+    #             aliases:
+    #                 - rss.docker
+    #     volumes:
+    #         - ./docker/rss-conf:/etc/default/rss
+
     proxy:
         build: .
-        links:
-            - mongo
         depends_on:
             - mongo
             - apis
         ports:
             - 8004:8004
         networks:
-            main:
-                aliases:
-                    - proxy.docker
+            synchronicity:
         volumes:
             - ./proxy-indexes:/business-ecosystem-logic-proxy/indexes
             - ./proxy-themes:/business-ecosystem-logic-proxy/themes
@@ -60,31 +72,34 @@ services:
         environment:
             - NODE_ENV=development
             - VERSION=6.3.0-rc
-            - HOST=proxy.docker
+            - HOST=proxy
             - PORT=8004
 
             - PROXY_ENABLED=true
-            - PROXT_HOST=proxy.docker
+            - PROXT_HOST=proxy
             - PROXY_PORT=8004
 
             - EXT_PORT=8004
             - SSL_ENABLED=false
 
-            - OAUTH2_SERVER=http://localhost:3000
+            - OAUTH2_SERVER=http://fiware-idm:3000
             - OAUTH2_CLIENT_ID=eff50ed2-df09-4d95-b704-cf87e550049c
             - OAUTH2_CLIENT_SECRET=16eb167a-7414-4140-aa6e-d1661ccfee2b
-            - OAUTH2_CALLBACK_URL=http://localhost:8004/auth/fiware/callback
+            - OAUTH2_CALLBACK_URL=http://fiware-idm:3000/auth/fiware/callback
 
             - MONGO_HOST=mongo
 
-            - ENDPOINT_CATALOG_HOST=apis.docker
-            - ENDPOINT_ORDERING_HOST=apis.docker
-            - ENDPOINT_INVENTORY_HOST=apis.docker
-            - ENDPOINT_PARTY_HOST=apis.docker
-            - ENDPOINT_BILLING_HOST=apis.docker
-            - ENDPOINT_CUSTOMER_HOST=apis.docker
-            - ENDPOINT_USAGE_HOST=apis.docker
+            - ENDPOINT_CHARGING_HOST=charging
+            - ENDPOINT_RSS_HOST=rss
+
+            - ENDPOINT_CATALOG_HOST=apis
+            - ENDPOINT_ORDERING_HOST=apis
+            - ENDPOINT_INVENTORY_HOST=apis
+            - ENDPOINT_PARTY_HOST=apis
+            - ENDPOINT_BILLING_HOST=apis
+            - ENDPOINT_CUSTOMER_HOST=apis
+            - ENDPOINT_USAGE_HOST=apis
 
 networks:
-    main:
+    synchronicity:
         external: true
