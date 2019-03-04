@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-npm install
+npm install --only=prod
 npm remove search-index-searcher
 npm install search-index-searcher@0.1.27
 npm install search-index-adder@^0.1.27
