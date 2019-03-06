@@ -5,7 +5,7 @@ function firstOf(envVar, fallback) {
 }
 
 const env = cleanEnv(process.env, {
-  HOST: host({ default: "localhost" }),
+  HOST: host({ example: "localhost" }),
   PORT: port({ default: 80 }),
   EXT_PORT: port({ default: 80 }),
   // Express
@@ -37,11 +37,11 @@ const env = cleanEnv(process.env, {
   SSL_CA_FILE: str({ default: "cert/ca.crt" }),
   SSL_PORT: port({ default: 443 }),
   // OAuth2
-  OAUTH2_SERVER: url({ default: "https://account.lab.fiware.org" }),
-  OAUTH2_CLIENT_ID: str({ default: "", example: "--client-id--" }),
-  OAUTH2_CLIENT_SECRET: str({ default: "", example: "--client-secret--" }),
+  OAUTH2_SERVER: url({ example: "https://account.lab.fiware.org" }),
+  OAUTH2_CLIENT_ID: str({ example: "--client-id--" }),
+  OAUTH2_CLIENT_SECRET: str({ example: "--client-secret--" }),
   OAUTH2_CALLBACK_URL: url({
-    default: "http://localhost/auth/fiware/callback"
+    example: "http://localhost/auth/fiware/callback"
   }),
   OAUTH2_ROLES: json({
     default:
@@ -74,47 +74,47 @@ const env = cleanEnv(process.env, {
   ENDPOINT_MANAGEMENT_APP_SSL: bool({ default: undefined }),
 
   ENDPOINT_CATALOG_PATH: str({ default: "DSProductCatalog" }),
-  ENDPOINT_CATALOG_HOST: host({ default: "localhost" }),
+  ENDPOINT_CATALOG_HOST: host(),
   ENDPOINT_CATALOG_PORT: port({ default: 8080 }),
   ENDPOINT_CATALOG_APP_SSL: bool({ default: false }),
 
   ENDPOINT_ORDERING_PATH: str({ default: "DSProductOrdering" }),
-  ENDPOINT_ORDERING_HOST: host({ default: "localhost" }),
+  ENDPOINT_ORDERING_HOST: host(),
   ENDPOINT_ORDERING_PORT: port({ default: 8080 }),
   ENDPOINT_ORDERING_APP_SSL: bool({ default: false }),
 
   ENDPOINT_INVENTORY_PATH: str({ default: "DSProductInventory" }),
-  ENDPOINT_INVENTORY_HOST: host({ default: "localhost" }),
+  ENDPOINT_INVENTORY_HOST: host(),
   ENDPOINT_INVENTORY_PORT: port({ default: 8080 }),
   ENDPOINT_INVENTORY_APP_SSL: bool({ default: false }),
 
   ENDPOINT_CHARGING_PATH: str({ default: "charging" }),
-  ENDPOINT_CHARGING_HOST: host({ default: "localhost" }),
+  ENDPOINT_CHARGING_HOST: host(),
   ENDPOINT_CHARGING_PORT: port({ default: 8006 }),
   ENDPOINT_CHARGING_APP_SSL: bool({ default: false }),
 
   ENDPOINT_RSS_PATH: str({ default: "DSRevenueSharing" }),
-  ENDPOINT_RSS_HOST: host({ default: "localhost" }),
+  ENDPOINT_RSS_HOST: host(),
   ENDPOINT_RSS_PORT: port({ default: 8080 }),
   ENDPOINT_RSS_APP_SSL: bool({ default: false }),
 
   ENDPOINT_PARTY_PATH: str({ default: "DSPartyManagement" }),
-  ENDPOINT_PARTY_HOST: host({ default: "localhost" }),
+  ENDPOINT_PARTY_HOST: host(),
   ENDPOINT_PARTY_PORT: port({ default: 8080 }),
   ENDPOINT_PARTY_APP_SSL: bool({ default: false }),
 
   ENDPOINT_BILLING_PATH: str({ default: "DSBillingManagement" }),
-  ENDPOINT_BILLING_HOST: host({ default: "localhost" }),
+  ENDPOINT_BILLING_HOST: host(),
   ENDPOINT_BILLING_PORT: port({ default: 8080 }),
   ENDPOINT_BILLING_APP_SSL: bool({ default: false }),
 
   ENDPOINT_CUSTOMER_PATH: str({ default: "DSCustomerManagement" }),
-  ENDPOINT_CUSTOMER_HOST: host({ default: "localhost" }),
+  ENDPOINT_CUSTOMER_HOST: host(),
   ENDPOINT_CUSTOMER_PORT: port({ default: 8080 }),
   ENDPOINT_CUSTOMER_APP_SSL: bool({ default: false }),
 
   ENDPOINT_USAGE_PATH: str({ default: "DSUsageManagement" }),
-  ENDPOINT_USAGE_HOST: host({ default: "localhost" }),
+  ENDPOINT_USAGE_HOST: host(),
   ENDPOINT_USAGE_PORT: port({ default: 8080 }),
   ENDPOINT_USAGE_APP_SSL: bool({ default: false }),
 
