@@ -17,7 +17,6 @@ VOLUME /business-ecosystem-logic-proxy/lib
 
 # Install npm dependencies
 COPY ./package.json .
-COPY ./package-lock.json .
 RUN npm install --production
 
 # Project sources
@@ -38,9 +37,8 @@ COPY ./docker/entrypoint.sh /
 COPY ./docker/cleanIndex.sh /
 COPY ./docker/serviceIndexes /etc/xinetd.d/
 
-RUN mkdir etc && \
-    cp config.js.template etc/config.js && \
-    echo "module.exports = require('./etc/config');" > config.js
+COPY config.js.template etc/config.js.template
+RUN echo "module.exports = require('./etc/config');" > config.js
 
 ENV MONGO_HOST mongo
 ENV MONGO_PORT 27017
