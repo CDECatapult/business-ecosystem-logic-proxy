@@ -1,6 +1,6 @@
 /* Copyright (c) 2015 - 2016 CoNWeT Lab., Universidad Politécnica de Madrid
  *
- * This file belongs to the bae-logic-proxy-test of the
+ * This file belongs to the business-ecosystem-logic-proxy of the
  * Business API Ecosystem
  *
  * This program is free software: you can redistribute it and/or modify
@@ -113,6 +113,12 @@ var tmf = (function() {
                     connection: req.connection,
                     reqBody: req.body
                 };
+
+                var header = req.get('X-Terms-Accepted');
+
+                if (result.user != null && header != null) {
+                    result.user.agreedOnTerms = header.toLowerCase() === 'true';
+                }
 
                 // Execute postValidation if status code is lower than 400 and the
                 // function is defined
