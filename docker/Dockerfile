@@ -6,14 +6,15 @@ ENV VERSION working-base
 
 RUN apt-get update && apt-get install -y git xinetd python-pip wget && \
     pip install sh requests && \
-    git clone https://github.com/caposseleDigicat/business-ecosystem-logic-proxy.git
+    git clone https://github.com/CDECatapult/business-ecosystem-logic-proxy.git
 
 WORKDIR business-ecosystem-logic-proxy
 
 RUN wget https://nodejs.org/dist/v6.9.1/node-v6.9.1-linux-x64.tar.xz && \
     tar -xvf node-v6.9.1-linux-x64.tar.xz && \
     echo 'export PATH=$PATH:/business-ecosystem-logic-proxy/node-v6.9.1-linux-x64/bin' >> ~/.bashrc && \
-    git checkout $VERSION && \
+    git fetch && \
+    git checkout ba68ccef9531adc3a827f152a566ad77da295889 && \
     mkdir indexes && \
     mkdir themes
 
