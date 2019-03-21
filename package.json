@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "coveralls": "^3.0.0",
+    "eslint": "^5.15.2",
     "freeport": "1.0.5",
     "istanbul": "0.4.x",
     "jasmine": "2.9.0",
@@ -47,11 +48,15 @@
     "proxyquire": "1.7.3"
   },
   "scripts": {
+    "lint": "eslint .",
     "test": "JASMINE_CONFIG_PATH=test/config/jasmine.json istanbul cover --include-all-sources -x public/**/*.js -x locales/**/*.js -x server.js -x Gruntfile.js -x fill_indexes.js jasmine"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/CDECatapult/business-ecosystem-logic-proxy"
+  },
+  "engines": {
+    "node": "6.9.1"
   },
   "contributors": [
     {

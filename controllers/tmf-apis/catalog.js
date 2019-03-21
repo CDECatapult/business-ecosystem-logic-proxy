@@ -1183,7 +1183,7 @@ var catalog = (function() {
 
         // Check if the product has been upgraded
         if (!!body.version && !!body.productSpecCharacteristic) {
-            var id = !!body.id ? body.id : getURLId(req.apiUrl);
+            var id = body.id ? body.id : getURLId(req.apiUrl);
 
             // Notify the error to the charging backend to downgrade the asset
             return storeMethod({
