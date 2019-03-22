@@ -16,9 +16,9 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+/* eslint no-console: 0 */
 
-var config = require("./config"),
-    indexes = require("./lib/indexes.js"),
+var indexes = require("./lib/indexes.js"),
     request = require("request"),
     utils = require("./lib/utils"),
     Promise = require("promiz");
@@ -144,16 +144,6 @@ var downloadOrdering = function downloadOrdering() {
         .then(indexes.saveIndexOrder);
 };
 
-
-var logAllIndexes = function logAllIndexes(path) {
-    return indexes.search(path, { AND: { "*": ["*"] } })
-            .catch(err => console.log(err))
-    .then(results => {
-        console.log(results);
-    results.hits.forEach(x => console.log(x));
-});
-};
-
 indexes.init()
     .then(downloadProducts)
     .then(downloadCatalogs)
@@ -162,10 +152,3 @@ indexes.init()
     .then(indexes.close)
     .then(() => console.log("All saved!"))
     .catch(e => console.log("Error: ", e.stack));
-
-
-// logAllIndexes(indexes.siTables.catalogs);
-// logAllIndexes(indexes.siTables.products);
-// logAllIndexes(indexes.siTables.offerings);
-// logAllIndexes(indexes.siTables.inventory);
-// logAllIndexes(indexes.siTables.orders);

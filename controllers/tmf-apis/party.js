@@ -20,8 +20,7 @@
 var async = require('async'),
     config = require('./../../config'),
     url = require('url'),
-    utils = require('./../../lib/utils'),
-    logger = require('./../../lib/logger').logger.getLogger('TMF');
+    utils = require('./../../lib/utils');
 
 var party = (function() {
 

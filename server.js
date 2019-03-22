@@ -1,3 +1,4 @@
+/* eslint no-unused-vars: 0 */
 var authorizeService = require('./controllers/authorizeService').authorizeService,
     slaService = require('./controllers/slaService').slaService,
     reputationService = require('./controllers/reputationService').reputationService,
@@ -509,9 +510,9 @@ app.get(config.portalPrefix + '/payment', ensureAuthenticated, function(req, res
 var inventorySubscriptionPath = config.proxyPrefix + "/create/inventory";
 app.post(config.proxyPrefix + inventorySubscriptionPath, inventorySubscription.postNotification);
 inventorySubscription.createSubscription(inventorySubscriptionPath).then(() => {
-    console.log("Subscribed to inventory hub!");
+    logger.info("Subscribed to inventory hub!");
 }).catch(e => {
-    console.log(e);
+    logger.error('createSubscription: ' + e.message);
 });
 
 /////////////////////////////////////////////////////////////////////

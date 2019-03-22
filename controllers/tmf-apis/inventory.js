@@ -18,7 +18,6 @@
  */
 
 var async = require('async'),
-    config = require('./../../config'),
     utils = require('./../../lib/utils'),
     indexes = require('./../../lib/indexes'),
     tmfUtils = require('./../../lib/tmfUtils');

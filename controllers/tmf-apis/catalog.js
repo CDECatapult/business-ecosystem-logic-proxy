@@ -23,7 +23,6 @@ var async = require('async'),
     equal = require('deep-equal'),
     indexes = require('./../../lib/indexes.js'),
     leftPad = require("left-pad"),
-    logger = require('./../../lib/logger').logger.getLogger('TMF'),
     md5 = require("blueimp-md5"),
     Promise = require('promiz'),
     request = require('request'),
@@ -418,7 +417,7 @@ var catalog = (function() {
         var categoryPath = apiUrl.substring(0, apiUrl.indexOf(categoryCollectionPath) +
             categoryCollectionPath.length);
 
-        retrieveAsset(categoryPath + '/' + categoryId, function (err, result) {
+        retrieveAsset(categoryPath + '/' + categoryId, function (err) {
 
             if (err) {
 
@@ -1199,46 +1198,43 @@ var catalog = (function() {
 
     var executePostValidation = function(req, callback) {
         // Attach product spec info for product creation request
-        var body;
 
         if (req.method == 'POST' && productsPattern.test(req.apiUrl)) {
-            body = JSON.parse(req.body);
+            const body = JSON.parse(req.body);
             storeClient.attachProduct(body, req.user, middlewareSave(indexes.saveIndexProduct, [body], req.user, callback));
 
         } else if (req.method == 'POST' && offeringsPattern.test(req.apiUrl)) {
             var catalog = '';
-            var indexBody;
 
-            body = JSON.parse(req.body);
+            const body = JSON.parse(req.body);
 
             if (req.apiUrl.indexOf('/catalog/') > -1) {
                 catalog = req.apiUrl.split('/')[6];
             }
 
-            indexBody = deepcopy(body);
+            const indexBody = deepcopy(body);
             indexBody.catalog = catalog;
             storeClient.attachOffering(body, req.user, middlewareSave(indexes.saveIndexOffering, [indexBody], req.user, callback));
 
         } else if ((req.method == 'PATCH' || req.method == 'PUT') && offeringPattern.test(req.apiUrl)) {
-            var catalog = req.apiUrl.split('/')[6];
-            var indexBody;
+            const catalog = req.apiUrl.split('/')[6];
 
-            body = JSON.parse(req.body);
+            const body = JSON.parse(req.body);
 
-            indexBody = deepcopy(body);
+            const indexBody = deepcopy(body);
             indexBody.catalog = catalog;
 
             storeClient.updateOffering(body, req.user, middlewareSave(indexes.saveIndexOffering, [indexBody], req.user, callback));
 
         } else if (req.method == 'PATCH' && productPattern.test(req.apiUrl)) {
-            var body = JSON.parse(req.reqBody);
+            const body = JSON.parse(req.reqBody);
             var respBody = JSON.parse(req.body);
 
             handleUpgradePostAction(
                 req, body, storeClient.attachUpgradedProduct, middlewareSave(indexes.saveIndexProduct, [respBody], req.user, callback));
 
         } else if (req.method == 'POST' && catalogsPattern.test(req.apiUrl)) {
-            body = JSON.parse(req.body);
+            const body = JSON.parse(req.body);
             indexes.saveIndexCatalog([body])
                 .then(() => callback(null))
                 .catch(() => callback(null));
@@ -1251,7 +1247,7 @@ var catalog = (function() {
     var handleAPIError = function (req, callback) {
         if (productsPattern.test(req.apiUrl) && req.method == 'POST') {
 
-            var body = JSON.parse(req.reqBody);
+            const body = JSON.parse(req.reqBody);
 
             // Notify the error to the charging backend to remove tha asset
             storeClient.rollbackProduct(body, req.user, () => {
@@ -1259,7 +1255,7 @@ var catalog = (function() {
                 callback(null);
             });
         } else if (productPattern.test(req.apiUrl) && req.method == 'PATCH') {
-            var body = JSON.parse(req.reqBody);
+            const body = JSON.parse(req.reqBody);
             handleUpgradePostAction(req, body, storeClient.rollbackProductUpgrade, callback);
 
         }  else {
