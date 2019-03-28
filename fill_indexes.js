@@ -20,39 +20,36 @@
 
 var indexes = require("./lib/indexes.js"),
     request = require("request"),
-    utils = require("./lib/utils"),
-    Promise = require("promiz");
+    utils = require("./lib/utils");
 
 var createUrl = function createUrl(api, extra) {
     return utils.getAPIProtocol(api) + "://" + utils.getAPIHost(api) + ":" + utils.getAPIPort(api) + extra;
 };
 
 var genericRequest = function genericRequest(options, extra) {
-    var p = new Promise();
+    return new Promise((resolve, reject) => {
+      request(options, function (err, response, body) {
+          if (err) {
+              console.log(err);
+              reject(err);
+              return;
+          }
 
-    request(options, function (err, response, body) {
-        if (err) {
-            console.log(err);
-            p.reject(err);
-            return;
-        }
+          if (response.statusCode == 200) {
+              var parsedBody = JSON.parse(body);
 
-        if (response.statusCode == 200) {
-            var parsedBody = JSON.parse(body);
-
-            if (extra) {
-                parsedBody.forEach(function (element) {
-                    element[extra.field] = extra.value;
-                });
-            }
-            p.resolve(parsedBody);
-        } else {
-            p.reject("Unexpected HTTP error code: " + response.statusCode);
-            return;
-        }
+              if (extra) {
+                  parsedBody.forEach(function (element) {
+                      element[extra.field] = extra.value;
+                  });
+              }
+              resolve(parsedBody);
+          } else {
+              reject("Unexpected HTTP error code: " + response.statusCode);
+              return;
+          }
+      });
     });
-
-    return p;
 };
 
 var getProducts = function getProducts() {
