@@ -1,0 +1,30 @@
+version: '3'
+services:
+    # mongo:
+    #     image: mongo:3.2
+    #     restart: always
+    #     ports:
+    #         - 27017:27017
+    #     networks:
+    #         synchronicity:
+    #     volumes:
+    #         - ./mongo-data:/data/db
+
+    proxy:
+        build: .
+        restart: always
+        ports:
+            - '8004:8004'
+        networks:
+            synchronicity:
+                aliases:
+                    - proxy.docker
+        volumes:
+            - ./proxy-conf:/business-ecosystem-logic-proxy/etc
+            - ./proxy-indexes:/business-ecosystem-logic-proxy/indexes
+        environment:
+            - NODE_ENV=development
+
+networks:
+    synchronicity:
+        external: true
