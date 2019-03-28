@@ -1,3 +1,4 @@
+/* eslint no-unused-vars: 0 */
 var authorizeService = require('./controllers/authorizeService').authorizeService,
     slaService = require('./controllers/slaService').slaService,
     reputationService = require('./controllers/reputationService').reputationService,
@@ -63,7 +64,7 @@ config.port = process.env.BAE_LP_PORT || config.port || 8004;
 config.host = process.env.BAE_LP_HOST || config.host || 'localhost';
 
 // Check proxy URL config config
-if (!!process.env.BAE_SERVICE_HOST) {
+if (process.env.BAE_SERVICE_HOST) {
     // If this var is enabled, the service is accessible in a different URL
     let parsedUrl = url.parse(process.env.BAE_SERVICE_HOST);
     config.proxy = {
@@ -93,7 +94,7 @@ config.oauth2.roles.seller = process.env.BAE_LP_OAUTH2_SELLER_ROLE || config.oau
 config.oauth2.roles.customer = process.env.BAE_LP_OAUTH2_CUSTOMER_ROLE || config.oauth2.roles.customer;
 config.oauth2.roles.orgAdmin = process.env.BAE_LP_OAUTH2_ORG_ADMIN_ROLE || config.oauth2.roles.orgAdmin;
 
-if (!!process.env.BAE_LP_OAUTH2_IS_LEGACY) {
+if (process.env.BAE_LP_OAUTH2_IS_LEGACY) {
     config.oauth2.isLegacy = process.env.BAE_LP_OAUTH2_IS_LEGACY == 'true';
 }
 
@@ -119,7 +120,7 @@ config.endpoints.catalog.path = process.env.BAE_LP_ENDPOINT_CATALOG_PATH || conf
 config.endpoints.catalog.port = process.env.BAE_LP_ENDPOINT_CATALOG_PORT || config.endpoints.catalog.port;
 config.endpoints.catalog.host = process.env.BAE_LP_ENDPOINT_CATALOG_HOST || config.endpoints.catalog.host;
 
-if (!!process.env.BAE_LP_ENDPOINT_CATALOG_SECURED) {
+if (process.env.BAE_LP_ENDPOINT_CATALOG_SECURED) {
     config.endpoints.catalog.appSsl = process.env.BAE_LP_ENDPOINT_CATALOG_SECURED == 'true';
 }
 
@@ -128,7 +129,7 @@ config.endpoints.ordering.path = process.env.BAE_LP_ENDPOINT_ORDERING_PATH || co
 config.endpoints.ordering.port = process.env.BAE_LP_ENDPOINT_ORDERING_PORT || config.endpoints.ordering.port;
 config.endpoints.ordering.host = process.env.BAE_LP_ENDPOINT_ORDERING_HOST || config.endpoints.ordering.host;
 
-if (!!process.env.BAE_LP_ENDPOINT_ORDERING_SECURED) {
+if (process.env.BAE_LP_ENDPOINT_ORDERING_SECURED) {
     config.endpoints.ordering.appSsl = process.env.BAE_LP_ENDPOINT_ORDERING_SECURED == 'true';
 }
 
@@ -137,7 +138,7 @@ config.endpoints.inventory.path = process.env.BAE_LP_ENDPOINT_INVENTORY_PATH || 
 config.endpoints.inventory.port = process.env.BAE_LP_ENDPOINT_INVENTORY_PORT || config.endpoints.inventory.port;
 config.endpoints.inventory.host = process.env.BAE_LP_ENDPOINT_INVENTORY_HOST || config.endpoints.inventory.host;
 
-if (!!process.env.BAE_LP_ENDPOINT_INVENTORY_SECURED) {
+if (process.env.BAE_LP_ENDPOINT_INVENTORY_SECURED) {
     config.endpoints.inventory.appSsl = process.env.BAE_LP_ENDPOINT_INVENTORY_SECURED == 'true';
 }
 
@@ -146,7 +147,7 @@ config.endpoints.charging.path = process.env.BAE_LP_ENDPOINT_CHARGING_PATH || co
 config.endpoints.charging.port = process.env.BAE_LP_ENDPOINT_CHARGING_PORT || config.endpoints.charging.port;
 config.endpoints.charging.host = process.env.BAE_LP_ENDPOINT_CHARGING_HOST || config.endpoints.charging.host;
 
-if (!!process.env.BAE_LP_ENDPOINT_CHARGING_SECURED) {
+if (process.env.BAE_LP_ENDPOINT_CHARGING_SECURED) {
     config.endpoints.charging.appSsl = process.env.BAE_LP_ENDPOINT_CHARGING_SECURED == 'true';
 }
 
@@ -155,7 +156,7 @@ config.endpoints.rss.path = process.env.BAE_LP_ENDPOINT_RSS_PATH || config.endpo
 config.endpoints.rss.port = process.env.BAE_LP_ENDPOINT_RSS_PORT || config.endpoints.rss.port;
 config.endpoints.rss.host = process.env.BAE_LP_ENDPOINT_RSS_HOST || config.endpoints.rss.host;
 
-if (!!process.env.BAE_LP_ENDPOINT_RSS_SECURED) {
+if (process.env.BAE_LP_ENDPOINT_RSS_SECURED) {
     config.endpoints.rss.appSsl = process.env.BAE_LP_ENDPOINT_RSS_SECURED == 'true';
 }
 
@@ -164,7 +165,7 @@ config.endpoints.party.path = process.env.BAE_LP_ENDPOINT_PARTY_PATH || config.e
 config.endpoints.party.port = process.env.BAE_LP_ENDPOINT_PARTY_PORT || config.endpoints.party.port;
 config.endpoints.party.host = process.env.BAE_LP_ENDPOINT_PARTY_HOST || config.endpoints.party.host;
 
-if (!!process.env.BAE_LP_ENDPOINT_PARTY_SECURED) {
+if (process.env.BAE_LP_ENDPOINT_PARTY_SECURED) {
     config.endpoints.party.appSsl = process.env.BAE_LP_ENDPOINT_PARTY_SECURED == 'true';
 }
 
@@ -173,7 +174,7 @@ config.endpoints.billing.path = process.env.BAE_LP_ENDPOINT_BILLING_PATH || conf
 config.endpoints.billing.port = process.env.BAE_LP_ENDPOINT_BILLING_PORT || config.endpoints.billing.port;
 config.endpoints.billing.host = process.env.BAE_LP_ENDPOINT_BILLING_HOST || config.endpoints.billing.host;
 
-if (!!process.env.BAE_LP_ENDPOINT_BILLING_SECURED) {
+if (process.env.BAE_LP_ENDPOINT_BILLING_SECURED) {
     config.endpoints.billing.appSsl = process.env.BAE_LP_ENDPOINT_BILLING_SECURED == 'true';
 }
 
@@ -182,7 +183,7 @@ config.endpoints.customer.path = process.env.BAE_LP_ENDPOINT_CUSTOMER_PATH || co
 config.endpoints.customer.port = process.env.BAE_LP_ENDPOINT_CUSTOMER_PORT || config.endpoints.customer.port;
 config.endpoints.customer.host = process.env.BAE_LP_ENDPOINT_CUSTOMER_HOST || config.endpoints.customer.host;
 
-if (!!process.env.BAE_LP_ENDPOINT_CUSTOMER_SECURED) {
+if (process.env.BAE_LP_ENDPOINT_CUSTOMER_SECURED) {
     config.endpoints.customer.appSsl = process.env.BAE_LP_ENDPOINT_CUSTOMER_SECURED == 'true';
 }
 
@@ -191,7 +192,7 @@ config.endpoints.usage.path = process.env.BAE_LP_ENDPOINT_USAGE_PATH || config.e
 config.endpoints.usage.port = process.env.BAE_LP_ENDPOINT_USAGE_PORT || config.endpoints.usage.port;
 config.endpoints.usage.host = process.env.BAE_LP_ENDPOINT_USAGE_HOST || config.endpoints.usage.host;
 
-if (!!process.env.BAE_LP_ENDPOINT_USAGE_SECURED) {
+if (process.env.BAE_LP_ENDPOINT_USAGE_SECURED) {
     config.endpoints.usage.appSsl = process.env.BAE_LP_ENDPOINT_USAGE_SECURED == 'true';
 }
 
@@ -509,9 +510,9 @@ app.get(config.portalPrefix + '/payment', ensureAuthenticated, function(req, res
 var inventorySubscriptionPath = config.proxyPrefix + "/create/inventory";
 app.post(config.proxyPrefix + inventorySubscriptionPath, inventorySubscription.postNotification);
 inventorySubscription.createSubscription(inventorySubscriptionPath).then(() => {
-    console.log("Subscribed to inventory hub!");
+    logger.info("Subscribed to inventory hub!");
 }).catch(e => {
-    console.log(e);
+    logger.error('createSubscription: ' + e.message);
 });
 
 /////////////////////////////////////////////////////////////////////

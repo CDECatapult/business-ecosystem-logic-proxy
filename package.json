@@ -15,7 +15,6 @@
     "cookie-parser": "1.4.0",
     "deep-equal": "^1.0.1",
     "deepcopy": "^0.6.3",
-    "errorhandler": "1.4.x",
     "express": "4.x",
     "express-session": "1.12.1",
     "jade": "^1.11.0",
@@ -39,19 +38,25 @@
     "i18n-2": "^0.7.2"
   },
   "devDependencies": {
+    "coveralls": "^3.0.0",
+    "eslint": "^5.15.2",
     "freeport": "1.0.5",
     "istanbul": "0.4.x",
     "jasmine": "2.9.0",
+    "jasmine-reporters": "^2.3.2",
     "nock": "3.1.0",
-    "proxyquire": "1.7.3",
-    "coveralls": "^3.0.0"
+    "proxyquire": "1.7.3"
   },
   "scripts": {
-    "test": "JASMINE_CONFIG_PATH=test/config/jasmine.json node_modules/.bin/istanbul cover --include-all-sources -x public/**/*.js -x locales/**/*.js -x server.js -x Gruntfile.js -x fill_indexes.js node_modules/.bin/jasmine"
+    "lint": "eslint .",
+    "test": "JASMINE_CONFIG_PATH=test/config/jasmine.json istanbul cover --include-all-sources -x public/**/*.js -x locales/**/*.js -x server.js -x Gruntfile.js -x fill_indexes.js jasmine"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/FIWARE-TMForum/business-ecosystem-logic-proxy"
+    "url": "https://github.com/CDECatapult/business-ecosystem-logic-proxy"
+  },
+  "engines": {
+    "node": "6.9.1"
   },
   "contributors": [
     {

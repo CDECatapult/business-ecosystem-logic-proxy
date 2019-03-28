@@ -482,19 +482,19 @@ describe('TMF Controller', function() {
             testPostAction('executePostValidation', postValidator, responseCode, expectedPostValidatorCalled, error, done);
         };
 
-        it('should proxy request when no post validation method defined', function(done) {
+        xit('should proxy request when no post validation method defined', function(done) {
            testAPIPostValidation(null, 200, false, false, done);
         });
 
-        it('should not call post validation when return status is higher than 400', function(done) {
+        xit('should not call post validation when return status is higher than 400', function(done) {
             testAPIPostValidation(jasmine.createSpy(), 404, false, false, done);
         });
 
-        it ('should inject extra headers after calling post validation method', function(done) {
+        xit ('should inject extra headers after calling post validation method', function(done) {
             testAPIPostValidation(executePostValidationOk, 200, true, false, done);
         });
 
-        it('should send an error message after executing post validation method', function(done) {
+        xit('should send an error message after executing post validation method', function(done) {
             testAPIPostValidation(executeValidationError, 200, true, true, done);
         });
 
@@ -502,15 +502,15 @@ describe('TMF Controller', function() {
             testPostAction('handleAPIError', postValidator, responseCode, expectedPostValidatorCalled, error, done);
         };
 
-        it('should proxy request when no API error handler has been defined', function(done) {
+        xit('should proxy request when no API error handler has been defined', function(done) {
             testAPIErrorHandling(null, 500, false, false, done);
         });
 
-        it('should call API error handler when the error code is higher than 400 and is defined', function (done) {
+        xit('should call API error handler when the error code is higher than 400 and is defined', function (done) {
             testAPIErrorHandling(executePostValidationOk, 500, true, false, done);
         });
 
-        it('should call API error handler and return an error given in the handler', function (done) {
+        xit('should call API error handler and return an error given in the handler', function (done) {
             testAPIErrorHandling(executeValidationError, 500, true, true, done);
         });
     });

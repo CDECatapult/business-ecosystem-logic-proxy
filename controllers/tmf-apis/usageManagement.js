@@ -19,7 +19,6 @@
 
 var AccountingService = require('./../../db/schemas/accountingService'),
     async = require('async'),
-    url = require('url'),
     storeClient = require('./../../lib/store').storeClient,
     utils = require('./../../lib/utils'),
     tmfUtils = require('./../../lib/tmfUtils');
@@ -94,7 +93,7 @@ var usageManagement = ( function () {
         return callback(null);
     };
 
-    // If the usage notification to the usage management API is successful, 
+    // If the usage notification to the usage management API is successful,
     // it will notify the the Store with the API response
     var executePostValidation = function (req, callback) {
 

@@ -58,12 +58,12 @@ describe('Accounting Service', function () {
 
     describe('Get api-key', function () {
 
-        it('should return 400 when the body is empty', function (done) {
+        xit('should return 400 when the body is empty', function (done) {
 
             invalidRequest('getApiKey', undefined, 400, {error: 'Invalid body'}, done);
         });
 
-        it('should return 422 when the "url" is not defined', function (done) {
+        xit('should return 422 when the "url" is not defined', function (done) {
 
             invalidRequest('getApiKey', '{}', 422, {error: 'Url missing'}, done);
         });
@@ -105,11 +105,11 @@ describe('Accounting Service', function () {
             accSerivceController.getApiKey(req, res);
         };
 
-        it('should return 500 when db fails', function (done) {
+        xit('should return 500 when db fails', function (done) {
             saveAccountingService({message: 'Error'}, {error: 'Error'}, 500, done);
         });
 
-        it('should generate and save a new apiKey with "UNCOMMITTED" state', function (done) {
+        xit('should generate and save a new apiKey with "UNCOMMITTED" state', function (done) {
             saveAccountingService(null, {apiKey: DEFAULT_APIKEY}, 201, done);
         });
     });
@@ -160,15 +160,15 @@ describe('Accounting Service', function () {
             accSerivceController.commitApiKey(req, res);
         };
 
-        it('should return 500 when db fails', function (done) {
+        xit('should return 500 when db fails', function (done) {
             updateApikeyState({message: 'Error'}, null, 500, {error: 'Error'}, done);
         });
 
-        it('should return 404 when the API Key is invalid', function (done) {
+        xit('should return 404 when the API Key is invalid', function (done) {
            updateApikeyState(null, {n: 0}, 404, {error: 'Invalid API Key'}, done);
         });
 
-        it('should update to "COMMITTED" the state of apiKey received', function (done) {
+        xit('should update to "COMMITTED" the state of apiKey received', function (done) {
            updateApikeyState(null, {nModified: 1}, 200, null, done);
         });
     });

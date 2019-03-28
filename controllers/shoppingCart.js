@@ -151,7 +151,7 @@ var shoppingCart = (function() {
 
         var userName = req.user.id;
 
-        CartItem.remove({ user: userName }, function(err, result) {
+        CartItem.remove({ user: userName }, function(err) {
 
             if (err) {
                 endRequest(res, 500, null, { error: err.message });

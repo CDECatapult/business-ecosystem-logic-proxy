@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
-    
+
     grunt.initConfig({
         jasmine_nodejs: {
             // task specific (default) options
@@ -19,7 +19,6 @@ module.exports = function(grunt) {
                     },
                     junit: {
                          savePath: ".",
-                         filePrefix: "junit-report",
                          consolidate: true,
                          useDotNotation: true,
                          filePrefix: "xunit.xml"
