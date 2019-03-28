@@ -1,30 +1,53 @@
-version: '3'
+version: "3"
 services:
-    # mongo:
-    #     image: mongo:3.2
-    #     restart: always
-    #     ports:
-    #         - 27017:27017
-    #     networks:
-    #         synchronicity:
-    #     volumes:
-    #         - ./mongo-data:/data/db
+  # mongo:
+  #     image: mongo:3.2
+  #     restart: always
+  #     ports:
+  #         - 27017:27017
+  #     networks:
+  #         synchronicity:
+  #     volumes:
+  #         - ./mongo-data:/data/db
 
-    proxy:
-        build: .
-        restart: always
-        ports:
-            - '8004:8004'
-        networks:
-            synchronicity:
-                aliases:
-                    - proxy.docker
-        volumes:
-            - ./proxy-conf:/business-ecosystem-logic-proxy/etc
-            - ./proxy-indexes:/business-ecosystem-logic-proxy/indexes
-        environment:
-            - NODE_ENV=development
+  proxy:
+    build: .
+    restart: always
+    ports:
+      - "8004:8004"
+    networks:
+      synchronicity:
+        aliases:
+          - proxy.docker
+    volumes:
+      - ./proxy-indexes:/business-ecosystem-logic-proxy/indexes
+    environment:
+      - NODE_ENV=development
+      - VERSION=6.3.0-rc
+
+      - HOST=proxy.docker
+      - PORT=8004
+      - PROXT_HOST=proxy.docker
+      - EXT_PORT=8004
+
+      - OAUTH2_SERVER=http://idm.docker:3000
+      - OAUTH2_CLIENT_ID=eff50ed2-df09-4d95-b704-cf87e550049c
+      - OAUTH2_CLIENT_SECRET=16eb167a-7414-4140-aa6e-d1661ccfee2b
+      - OAUTH2_CALLBACK_URL=http://proxy.docker:8004/auth/fiware/callback
+
+      - MONGO_HOST=mongo
+
+      - ENDPOINT_CHARGING_HOST=charging.docker
+      - ENDPOINT_RSS_HOST=rss.docker
+
+      - ENDPOINT_CATALOG_HOST=apis.docker
+      - ENDPOINT_ORDERING_HOST=apis.docker
+      - ENDPOINT_INVENTORY_HOST=apis.docker
+      - ENDPOINT_PARTY_HOST=apis.docker
+      - ENDPOINT_BILLING_HOST=apis.docker
+      - ENDPOINT_CUSTOMER_HOST=apis.docker
+      - ENDPOINT_USAGE_HOST=apis.docker
 
 networks:
-    synchronicity:
-        external: true
+  synchronicity:
+    external: true
