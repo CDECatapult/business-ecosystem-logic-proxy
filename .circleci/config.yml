@@ -19,6 +19,10 @@ jobs:
           command: npm install
 
       - run:
+          name: Copy config file
+          command: cp config.js.template config.js
+
+      - run:
           name: Lint javascript files
           command: npm run lint
 
