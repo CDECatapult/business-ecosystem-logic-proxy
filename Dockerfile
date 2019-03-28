@@ -33,7 +33,6 @@ COPY ./server.js .
 # Docker dir (scripts & config)
 COPY ./docker/entrypoint.sh /
 
-COPY config.js.template etc/config.js.template
 RUN echo "module.exports = require('./etc/config');" > config.js
 
 ENV MONGO_HOST mongo
