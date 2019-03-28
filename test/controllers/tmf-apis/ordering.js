@@ -19,7 +19,6 @@
 
 var nock = require('nock'),
     proxyquire =  require('proxyquire'),
-    Promise = require('promiz'),
     md5 = require("blueimp-md5"),
     testUtils = require('../../utils');
 

@@ -23,7 +23,6 @@
 
 var config = require('./../../config'),
     utils = require('./../../lib/utils'),
-    Promise = require('promiz'),
     proxyrequire = require("proxyquire");
 
 describe('Test inventory subscription helper and endpoint', function () {
