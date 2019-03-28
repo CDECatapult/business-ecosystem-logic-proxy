@@ -1,6 +1,4 @@
-FROM node:6.9.1
-
-RUN apt-get update && apt-get install -y xinetd wget
+FROM node:6.17.0
 
 WORKDIR business-ecosystem-logic-proxy
 
@@ -34,8 +32,6 @@ COPY ./server.js .
 
 # Docker dir (scripts & config)
 COPY ./docker/entrypoint.sh /
-COPY ./docker/cleanIndex.sh /
-COPY ./docker/serviceIndexes /etc/xinetd.d/
 
 COPY config.js.template etc/config.js.template
 RUN echo "module.exports = require('./etc/config');" > config.js

@@ -1,0 +1,5 @@
+.circleci
+.git
+coverage
+node_modules
+xunit.xml
