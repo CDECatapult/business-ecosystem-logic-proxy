@@ -2,4 +2,5 @@
 .git
 coverage
 node_modules
+proxy-conf
 xunit.xml
