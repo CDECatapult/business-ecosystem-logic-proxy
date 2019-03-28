@@ -18,7 +18,7 @@
  */
 
 var defaultConfig = {
-    port: 7496,
+    port: 8004,
     version: {
         version: '6.3.0',
         releaseDate: '2017-07-01',
@@ -43,6 +43,12 @@ var defaultConfig = {
             host: 'localhost',
             port: 7496,
             appSsl: false
+        },
+        sla: {
+          path: 'SLAManagement',
+          host: 'localhost',
+          port: 7787,
+          appSsl: false
         },
         catalog: {
             path: 'catalog',
