@@ -2,7 +2,7 @@
 coverage
 node_modules
 proxy-conf
-config.js
+proxy-indexes
 cert
 .grunt
 xunit.xml
