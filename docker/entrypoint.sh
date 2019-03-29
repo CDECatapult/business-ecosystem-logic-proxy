@@ -67,7 +67,8 @@ done
 # Include this setting to avoid inconsistencies between docker container port and used port
 sed -i "s|config\.port|config\.extPort|" /business-ecosystem-logic-proxy/lib/tmfUtils.js
 
-echo "Build frontend..."
+echo "Creating indexes..."
+node fill_indexes.js
 node collect_static.js
 
 node server.js
