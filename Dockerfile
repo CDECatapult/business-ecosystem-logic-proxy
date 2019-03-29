@@ -1,9 +1,9 @@
-FROM node:6.17.0
+FROM node:6.17.0-alpine
 
 WORKDIR business-ecosystem-logic-proxy
 
-# Indexes used by the Business API Ecosystem for searching
-VOLUME /business-ecosystem-logic-proxy/indexes
+RUN apk add --no-cache bash
+
 # Themes that can be used to customize the web portal
 VOLUME /business-ecosystem-logic-proxy/themes
 # Static files ready to be rendered including the selected theme and js files
@@ -15,7 +15,7 @@ VOLUME /business-ecosystem-logic-proxy/lib
 
 # Install npm dependencies
 COPY ./package.json .
-RUN npm install --production
+RUN npm install --production --no-optional
 
 # Project sources
 COPY ./controllers controllers
