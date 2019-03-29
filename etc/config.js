@@ -39,7 +39,9 @@ const env = cleanEnv(process.env, {
   // OAuth2
   OAUTH2_SERVER: url({ example: "https://account.lab.fiware.org" }),
   OAUTH2_CLIENT_ID: str({ example: "eff50ed2-df09-4d95-b704-cf87e550049c" }),
-  OAUTH2_CLIENT_SECRET: str({ example: "16eb167a-7414-4140-aa6e-d1661ccfee2b" }),
+  OAUTH2_CLIENT_SECRET: str({
+    example: "16eb167a-7414-4140-aa6e-d1661ccfee2b"
+  }),
   OAUTH2_CALLBACK_URL: url({
     example: "http://localhost/auth/fiware/callback"
   }),
@@ -48,11 +50,15 @@ const env = cleanEnv(process.env, {
       '{"admin":"provider","customer":"customer","seller":"seller","orgAdmin":"orgAdmin"}'
   }),
   CUSTOMER_ROLE_REQUIRED: bool({ default: false }),
+  // Mongo
   MONGO_HOST: host({ example: "localhost" }),
   MONGO_PORT: port({ default: 27017 }),
   MONGO_USERNAME: str({ default: "" }),
   MONGO_PASSWORD: str({ default: "" }),
   MONGO_DBNAME: str({ default: "belp" }),
+  // Redis
+  REDIS_HOST: host({ devDefault: "redis" }),
+  REDIS_PORT: port({ default: 6379 }),
   // Percentage of the generated revenues that belongs to the system
   PCT_REVENUE_MODEL: num({ default: 30 }),
   // Billing Account owner role
@@ -172,6 +178,10 @@ const config = {
     user: env.MONGO_USERNAME,
     password: env.MONGO_PASSWORD,
     db: env.MONGO_DBNAME
+  },
+  redis: {
+    host: env.REDIS_HOST,
+    port: env.REDIS_PORT
   },
   revenueModel: env.PCT_REVENUE_MODEL,
   billingAccountOwnerRole: env.BILLING_ACCOUNT_OWNER_ROLE,
