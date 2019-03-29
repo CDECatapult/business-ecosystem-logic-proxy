@@ -15,7 +15,7 @@ VOLUME /business-ecosystem-logic-proxy/lib
 
 # Install npm dependencies
 COPY ./package.json .
-RUN npm install --production
+RUN npm install --production --no-optional
 
 # Project sources
 COPY ./controllers controllers
