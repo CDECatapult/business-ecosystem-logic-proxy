@@ -1,6 +1,8 @@
-FROM node:6.17.0
+FROM node:6.17.0-alpine
 
 WORKDIR business-ecosystem-logic-proxy
+
+RUN apk add --no-cache bash git
 
 # Indexes used by the Business API Ecosystem for searching
 VOLUME /business-ecosystem-logic-proxy/indexes
