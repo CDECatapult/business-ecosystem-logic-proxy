@@ -4,8 +4,6 @@ WORKDIR business-ecosystem-logic-proxy
 
 RUN apk add --no-cache bash git
 
-# Indexes used by the Business API Ecosystem for searching
-VOLUME /business-ecosystem-logic-proxy/indexes
 # Themes that can be used to customize the web portal
 VOLUME /business-ecosystem-logic-proxy/themes
 # Static files ready to be rendered including the selected theme and js files

@@ -24,8 +24,6 @@ services:
       synchronicity:
         aliases:
           - proxy.docker
-    volumes:
-      - ./proxy-indexes:/business-ecosystem-logic-proxy/indexes
     environment:
       - NODE_ENV=development
       - VERSION=6.3.0-rc
