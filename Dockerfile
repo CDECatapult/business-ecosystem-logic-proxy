@@ -28,7 +28,6 @@ COPY ./public public
 COPY ./views views
 COPY ./config.js .
 COPY ./collect_static.js .
-COPY ./fill_indexes.js .
 COPY ./log_config.json .
 COPY ./server.js .
 

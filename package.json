@@ -48,7 +48,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "JASMINE_CONFIG_PATH=test/config/jasmine.json istanbul cover --include-all-sources -x public/**/*.js -x locales/**/*.js -x server.js -x Gruntfile.js -x fill_indexes.js jasmine"
+    "test": "JASMINE_CONFIG_PATH=test/config/jasmine.json istanbul cover --include-all-sources -x public/**/*.js -x locales/**/*.js -x server.js -x Gruntfile.js jasmine"
   },
   "repository": {
     "type": "git",
