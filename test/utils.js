@@ -17,112 +17,129 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+process.env.HOST = "localhost";
+process.env.PROXT_HOST = "proxy.docker";
+process.env.OAUTH2_SERVER = "https://account.lab.fiware.org";
+process.env.OAUTH2_CLIENT_ID = "";
+process.env.OAUTH2_CLIENT_SECRET = "";
+process.env.OAUTH2_CALLBACK_URL = "http://localhost/auth/fiware/callback";
+process.env.MONGO_HOST = "localhost";
+process.env.ENDPOINT_CATALOG_HOST = "localhost";
+process.env.ENDPOINT_ORDERING_HOST = "localhost";
+process.env.ENDPOINT_INVENTORY_HOST = "localhost";
+process.env.ENDPOINT_CHARGING_HOST = "localhost";
+process.env.ENDPOINT_RSS_HOST = "localhost";
+process.env.ENDPOINT_PARTY_HOST = "localhost";
+process.env.ENDPOINT_BILLING_HOST = "localhost";
+process.env.ENDPOINT_CUSTOMER_HOST = "localhost";
+process.env.ENDPOINT_USAGE_HOST = "localhost";
+
 var defaultConfig = {
-    port: 8004,
-    version: {
-        version: '6.3.0',
-        releaseDate: '2017-07-01',
-        gitHash: '1234567890',
-        doc: 'https://fiware-tmforum.github.io/Business-API-Ecosystem/',
-        userDoc: 'http://business-api-ecosystem.readthedocs.io/en/develop'
+  port: 8004,
+  version: {
+    version: "6.3.0",
+    releaseDate: "2017-07-01",
+    gitHash: "1234567890",
+    doc: "https://fiware-tmforum.github.io/Business-API-Ecosystem/",
+    userDoc: "http://business-api-ecosystem.readthedocs.io/en/develop"
+  },
+  proxyPrefix: "",
+  oauth2: {
+    server: "https://account.lab.fiware.org",
+    clientID: "client",
+    roles: {
+      admin: "provider",
+      seller: "seller",
+      customer: "customer",
+      orgAdmin: "orgAdmin"
+    }
+  },
+  endpoints: {
+    management: {
+      path: "management",
+      host: "localhost",
+      port: 7496,
+      appSsl: false
     },
-    proxyPrefix: '',
-    oauth2: {
-        server: 'https://account.lab.fiware.org',
-        clientID: 'client',
-        roles: {
-            admin: 'provider',
-            seller: 'seller',
-            customer: 'customer',
-            orgAdmin: 'orgAdmin'
-        }
+    sla: {
+      path: "SLAManagement",
+      host: "localhost",
+      port: 7787,
+      appSsl: false
     },
-    endpoints: {
-        management: {
-            path: 'management',
-            host: 'localhost',
-            port: 7496,
-            appSsl: false
-        },
-        sla: {
-          path: 'SLAManagement',
-          host: 'localhost',
-          port: 7787,
-          appSsl: false
-        },
-        catalog: {
-            path: 'catalog',
-            host: 'catalog.com',
-            port: 99,
-            appSsl: false
-        },
-        ordering: {
-            path: 'ordering',
-            host: 'ordering.com',
-            port: 189,
-            appSsl: false
-        },
-        inventory: {
-            path: 'inventory',
-            host: 'inventory.com',
-            port: 475,
-            appSsl: false
-        },
-        charging: {
-            path: 'charging',
-            host: 'charging.com',
-            port: 35,
-            appSsl: false
-        },
-        rss: {
-            path: 'rss',
-            host: 'rss.com',
-            port: 753,
-            appSsl: false
-        },
-        party: {
-            path: 'party',
-            host: 'party.com',
-            port: 74,
-            appSsl: false
-        },
-        billing: {
-            path: 'billing',
-            host: 'billing.com',
-            port: 78,
-            appSsl: false
-        },
-        customer: {
-            path: 'customer',
-            host: 'customer.com',
-            port: 82,
-            appSsl: false
-        },
-        usage: {
-            path: 'usage',
-            host: 'usage.com',
-            port: 78,
-            appSsl: false
-        }
+    catalog: {
+      path: "catalog",
+      host: "catalog.com",
+      port: 99,
+      appSsl: false
     },
-    billingAccountOwnerRole: 'bill receiver',
-    revenueModel: 30
+    ordering: {
+      path: "ordering",
+      host: "ordering.com",
+      port: 189,
+      appSsl: false
+    },
+    inventory: {
+      path: "inventory",
+      host: "inventory.com",
+      port: 475,
+      appSsl: false
+    },
+    charging: {
+      path: "charging",
+      host: "charging.com",
+      port: 35,
+      appSsl: false
+    },
+    rss: {
+      path: "rss",
+      host: "rss.com",
+      port: 753,
+      appSsl: false
+    },
+    party: {
+      path: "party",
+      host: "party.com",
+      port: 74,
+      appSsl: false
+    },
+    billing: {
+      path: "billing",
+      host: "billing.com",
+      port: 78,
+      appSsl: false
+    },
+    customer: {
+      path: "customer",
+      host: "customer.com",
+      port: 82,
+      appSsl: false
+    },
+    usage: {
+      path: "usage",
+      host: "usage.com",
+      port: 78,
+      appSsl: false
+    }
+  },
+  billingAccountOwnerRole: "bill receiver",
+  revenueModel: 30
 };
 
 exports.getDefaultConfig = function() {
-    // Return a copy to avoid side effects
-    return JSON.parse(JSON.stringify(defaultConfig));
+  // Return a copy to avoid side effects
+  return JSON.parse(JSON.stringify(defaultConfig));
 };
 
 var emptyFunction = function() {};
 exports.emptyLogger = {
-    logger: {
-        getLogger: function() {
-            return {
-                'info': emptyFunction,
-                'warn': emptyFunction,
-                'error': emptyFunction
-            }
-        }
+  logger: {
+    getLogger: function() {
+      return {
+        info: emptyFunction,
+        warn: emptyFunction,
+        error: emptyFunction
+      };
     }
+  }
 };

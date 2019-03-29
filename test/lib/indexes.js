@@ -200,7 +200,7 @@ describe("Test index helper library", function () {
     it('should initialize the search index when calling init', function(done) {
         var db = {};
         var si = {};
-        var down = require('leveldown');
+        var redisdown = require('redisdown');
 
         testIndexInit(null, db, null, si, 5, 5, {
             offerings: si,
@@ -215,7 +215,9 @@ describe("Test index helper library", function () {
                 // Validate levelup creation
                 expect(levelMock).toHaveBeenCalledWith(indexPath, {
                     valueEncoding: 'json',
-                    db: down
+                    db: redisdown,
+                    host: 'redis',
+                    port: 6379
                 }, jasmine.any(Function));
 
                 // Validate search indexes creation
@@ -227,24 +229,30 @@ describe("Test index helper library", function () {
     });
 
     it('should fail to initialize the search index when leveldb fails', function (done) {
-        var down = require('leveldown');
+      var redisdown = require('redisdown');
+      var redis = require("redis-mock");
+      var client = redis.createClient();
 
         testIndexInit('Level error', {}, null, {}, 1, 0, {}, null, (levelMock) => {
             expect(levelMock).toHaveBeenCalledWith('indexes/offerings', {
                 valueEncoding: 'json',
-                db: down
+                db: redisdown,
+                host: 'redis',
+                port: 6379
             }, jasmine.any(Function));
         }, done);
     });
 
     it('should fail to initialize the search index when si fails', function (done) {
-        var down = require('leveldown');
+        var redisdown = require('redisdown');
         var db = {};
 
         testIndexInit(null, db, 'Search error', {}, 1, 1, {}, null, (levelMock, searchIndex) => {
             expect(levelMock).toHaveBeenCalledWith('indexes/offerings', {
                 valueEncoding: 'json',
-                db: down
+                db: redisdown,
+                host: 'redis',
+                port: 6379
             }, jasmine.any(Function));
 
             expect(searchIndex).toHaveBeenCalledWith({
