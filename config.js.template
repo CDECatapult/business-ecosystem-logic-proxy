@@ -65,7 +65,7 @@ config.mongoDb = {
 };
 
 config.redis = {
-  server: 'redis',
+  host: 'redis',
   port: 6379
 };
 
