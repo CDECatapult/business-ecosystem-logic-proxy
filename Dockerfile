@@ -21,10 +21,12 @@ RUN npm install --production
 COPY ./controllers controllers
 COPY ./db db
 COPY ./default_locales default_locales
+COPY ./etc etc
 COPY ./lib lib
 COPY ./locales locales
 COPY ./public public
 COPY ./views views
+COPY ./config.js .
 COPY ./collect_static.js .
 COPY ./fill_indexes.js .
 COPY ./log_config.json .
@@ -32,9 +34,6 @@ COPY ./server.js .
 
 # Docker dir (scripts & config)
 COPY ./docker/entrypoint.sh /
-
-COPY config.js.template etc/config.js.template
-RUN echo "module.exports = require('./etc/config');" > config.js
 
 ENV MONGO_HOST mongo
 ENV MONGO_PORT 27017

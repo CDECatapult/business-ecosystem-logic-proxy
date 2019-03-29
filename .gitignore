@@ -1,8 +1,9 @@
 *.DS_Store
+coverage
 node_modules
-config.js
+proxy-conf
+proxy-indexes
 cert
 .grunt
-coverage
 xunit.xml
 /indexes
