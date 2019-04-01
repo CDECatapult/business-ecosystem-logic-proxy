@@ -1,9 +1,8 @@
 version: 2
 jobs:
-  build:
+  test:
     docker:
       - image: circleci/node:6.17.0
-
     steps:
       - checkout
 
@@ -35,3 +34,30 @@ jobs:
           key: v1-node-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - node_modules
+
+  docker-build:
+    docker:
+      - image: docker:18.01.0-ce-git
+    steps:
+      - checkout
+
+      - setup_remote_docker
+
+      - run:
+          name: Build the docker image
+          command: |
+            docker build -t digicatsynch/logicproxy7:$CIRCLE_SHA1 .
+
+      - run:
+          name: Push the docker image
+          command: |
+            docker push digicatsynch/logicproxy7:$CIRCLE_SHA1
+
+workflows:
+  version: 2
+  logic-proxy:
+    jobs:
+      - test
+      - docker-build:
+          requires:
+            - test
