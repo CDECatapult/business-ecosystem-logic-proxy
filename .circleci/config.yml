@@ -51,11 +51,18 @@ jobs:
       - run:
           name: Build the docker image
           command: |
-            docker build -t digicatsynch/logicproxy7:$CIRCLE_SHA1 .
+            docker build -t logicproxy7 .
+
+      - run:
+          name: Tag the docker image
+          command: |
+            docker tag logicproxy7 digicatsynch/logicproxy7:$CIRCLE_SHA1
+            docker tag logicproxy7 digicatsynch/logicproxy7:ci-$CIRCLE_BUILD_NUM
 
       - run:
           name: Push the docker image
           command: |
+            docker push digicatsynch/logicproxy7:$CIRCLE_SHA1
             docker push digicatsynch/logicproxy7:ci-$CIRCLE_BUILD_NUM
 
 workflows:
