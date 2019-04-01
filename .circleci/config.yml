@@ -35,7 +35,7 @@ jobs:
           paths:
             - node_modules
 
-  docker-build:
+  docker-ci-build:
     docker:
       - image: docker:18.01.0-ce-git
     steps:
@@ -56,13 +56,13 @@ jobs:
       - run:
           name: Push the docker image
           command: |
-            docker push digicatsynch/logicproxy7:$CIRCLE_SHA1
+            docker push digicatsynch/logicproxy7:ci-$CIRCLE_BUILD_NUM
 
 workflows:
   version: 2
   logic-proxy:
     jobs:
       - test
-      - docker-build:
+      - docker-ci-build:
           requires:
             - test
