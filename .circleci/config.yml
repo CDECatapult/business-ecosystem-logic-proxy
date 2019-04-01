@@ -44,6 +44,11 @@ jobs:
       - setup_remote_docker
 
       - run:
+          name: Login to docker
+          command: |
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+
+      - run:
           name: Build the docker image
           command: |
             docker build -t digicatsynch/logicproxy7:$CIRCLE_SHA1 .
