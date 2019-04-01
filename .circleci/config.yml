@@ -58,39 +58,13 @@ jobs:
           command: |
             docker tag logicproxy7 digicatsynch/logicproxy7:$CIRCLE_SHA1
             docker tag logicproxy7 digicatsynch/logicproxy7:ci-$CIRCLE_BUILD_NUM
+            docker tag logicproxy7 digicatsynch/logicproxy7:${CIRCLE_BRANCH##feature/}
 
       - run:
           name: Push the docker image
           command: |
             docker push digicatsynch/logicproxy7:$CIRCLE_SHA1
             docker push digicatsynch/logicproxy7:ci-$CIRCLE_BUILD_NUM
-
-  docker-feature-branches:
-    docker:
-      - image: docker:18.01.0-ce-git
-    steps:
-      - checkout
-
-      - setup_remote_docker
-
-      - run:
-          name: Login to docker
-          command: |
-            docker login -u $DOCKER_USER -p $DOCKER_PASS
-
-      - run:
-          name: Build the docker image
-          command: |
-            docker build -t logicproxy7 .
-
-      - run:
-          name: Tag the docker image
-          command: |
-            docker tag logicproxy7 digicatsynch/logicproxy7:${CIRCLE_BRANCH##feature/}
-
-      - run:
-          name: Push the docker image
-          command: |
             docker push digicatsynch/logicproxy7:${CIRCLE_BRANCH##feature/}
 
 workflows:
@@ -101,9 +75,3 @@ workflows:
       - docker-ci-build:
           requires:
             - test
-      - docker-feature-branches:
-          requires:
-            - docker-ci-build
-          filters:
-            branches:
-              only: /^feature\/(?:[A-Za-z0-9_][A-Za-z0-9_.-]{1,127})?$/
