@@ -30,7 +30,7 @@ function genericRequest(options, extra) {
     return new Promise((resolve, reject) => {
       request(options, function (err, response, body) {
           if (err) {
-              console.log(err);
+              console.error(err);
               reject(err);
               return;
           }
@@ -45,7 +45,7 @@ function genericRequest(options, extra) {
               }
               resolve(parsedBody);
           } else {
-              reject("Unexpected HTTP error code: " + response.statusCode);
+              reject(new Error("Unexpected HTTP error code: " + response.statusCode));
               return;
           }
       });
@@ -92,16 +92,19 @@ function getOrders() {
 }
 
 function downloadProducts() {
+    console.log('Download products...')
     return getProducts()
         .then(indexes.saveIndexProduct);
 }
 
 function downloadOfferings(catalog, qstring) {
+    console.log('Download offerings...')
     return getOfferings(catalog, qstring)
         .then(indexes.saveIndexOffering);
 }
 
 function downloadCatalogOfferings(catalogs) {
+    console.log('Download catalog offerings...')
     var promise = Promise.resolve();
     if (catalogs.length) {
         catalogs.forEach(function (catalog) {
@@ -127,16 +130,19 @@ function downloadCatalogOfferings(catalogs) {
 }
 
 function downloadCatalogs() {
+    console.log('Download catalogs...')
     return getCatalogs()
         .then(downloadCatalogOfferings);
 }
 
 function downloadInventory() {
+    console.log('Download inventory...')
     return getInventory()
         .then(indexes.saveIndexInventory);
 }
 
 function downloadOrdering() {
+    console.log('Download ordering...')
     return getOrders()
         .then(indexes.saveIndexOrder);
 }
