@@ -22,15 +22,15 @@ var indexes = require("./lib/indexes.js"),
     request = require("request"),
     utils = require("./lib/utils");
 
-var createUrl = function createUrl(api, extra) {
+function createUrl(api, extra) {
     return utils.getAPIProtocol(api) + "://" + utils.getAPIHost(api) + ":" + utils.getAPIPort(api) + extra;
-};
+}
 
-var genericRequest = function genericRequest(options, extra) {
+function genericRequest(options, extra) {
     return new Promise((resolve, reject) => {
       request(options, function (err, response, body) {
           if (err) {
-              console.log(err);
+              console.error(err);
               reject(err);
               return;
           }
@@ -45,19 +45,19 @@ var genericRequest = function genericRequest(options, extra) {
               }
               resolve(parsedBody);
           } else {
-              reject("Unexpected HTTP error code: " + response.statusCode);
+              reject(new Error("Unexpected HTTP error code: " + response.statusCode));
               return;
           }
       });
     });
-};
+}
 
-var getProducts = function getProducts() {
+function getProducts() {
     var url = createUrl("DSProductCatalog", "/DSProductCatalog/api/catalogManagement/v2/productSpecification");
     return genericRequest(url);
-};
+}
 
-var getOfferings = function getOfferings(catalog, qstring) {
+function getOfferings(catalog, qstring) {
      // For every catalog!
     var url;
     if (catalog) {
@@ -74,34 +74,37 @@ var getOfferings = function getOfferings(catalog, qstring) {
         field: "catalog",
         value: catalog
     });
-};
+}
 
-var getCatalogs = function getCatalogs() {
+function getCatalogs() {
     var url = createUrl("DSProductCatalog", "/DSProductCatalog/api/catalogManagement/v2/catalog");
     return genericRequest(url);
-};
+}
 
-var getInventory = function getInventory() {
+function getInventory() {
     var url = createUrl("DSProductInventory", "/DSProductInventory/api/productInventory/v2/product");
     return genericRequest(url);
-};
+}
 
-var getOrders = function getOrders() {
+function getOrders() {
     var url = createUrl("DSProductOrdering", "/DSProductOrdering/api/productOrdering/v2/productOrder");
     return genericRequest(url);
-};
+}
 
-var downloadProducts = function downloadProducts() {
+function downloadProducts() {
+    console.log('Download products...')
     return getProducts()
         .then(indexes.saveIndexProduct);
-};
+}
 
-var downloadOfferings = function downloadOfferings(catalog, qstring) {
+function downloadOfferings(catalog, qstring) {
+    console.log('Download offerings...')
     return getOfferings(catalog, qstring)
         .then(indexes.saveIndexOffering);
-};
+}
 
-var downloadCatalogOfferings = function downloadCatalogOfferings(catalogs) {
+function downloadCatalogOfferings(catalogs) {
+    console.log('Download catalog offerings...')
     var promise = Promise.resolve();
     if (catalogs.length) {
         catalogs.forEach(function (catalog) {
@@ -124,22 +127,25 @@ var downloadCatalogOfferings = function downloadCatalogOfferings(catalogs) {
         return indexes.saveIndexCatalog(catalogs)
     });
     return promise;
-};
+}
 
-var downloadCatalogs = function downloadCatalogs() {
+function downloadCatalogs() {
+    console.log('Download catalogs...')
     return getCatalogs()
         .then(downloadCatalogOfferings);
-};
+}
 
-var downloadInventory = function downloadInventory() {
+function downloadInventory() {
+    console.log('Download inventory...')
     return getInventory()
         .then(indexes.saveIndexInventory);
-};
+}
 
-var downloadOrdering = function downloadOrdering() {
+function downloadOrdering() {
+    console.log('Download ordering...')
     return getOrders()
         .then(indexes.saveIndexOrder);
-};
+}
 
 indexes.init()
     .then(downloadProducts)
@@ -148,4 +154,4 @@ indexes.init()
     .then(downloadOrdering)
     .then(indexes.close)
     .then(() => console.log("All saved!"))
-    .catch(e => console.log("Error: ", e.stack));
+    .catch(e => console.error("Error: ", e, e.message));
