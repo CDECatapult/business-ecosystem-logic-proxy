@@ -101,7 +101,7 @@ workflows:
       - docker-ci-build:
           requires:
             - test
-      - docker-feature-branches
+      - docker-feature-branches:
           requires:
             - docker-ci-build
           filters:
