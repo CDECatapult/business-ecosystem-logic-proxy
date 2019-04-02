@@ -35,7 +35,7 @@ jobs:
           paths:
             - node_modules
 
-  docker-ci-build:
+  docker-build:
     docker:
       - image: docker:18.01.0-ce-git
     steps:
@@ -67,11 +67,41 @@ jobs:
             docker push digicatsynch/logicproxy7:ci-$CIRCLE_BUILD_NUM
             docker push digicatsynch/logicproxy7:${CIRCLE_BRANCH##feature/}
 
+    release-version:
+      docker:
+        - image: docker:18.01.0-ce-git
+      steps:
+        - checkout
+
+        - setup_remote_docker
+
+        - run:
+            name: Login to docker
+            command: |
+              docker login -u $DOCKER_USER -p $DOCKER_PASS
+
+        - run:
+            name: Build the docker image
+            command: |
+              docker build -t digicatsynch/logicproxy7:${CIRCLE_TAG##v} .
+
+        - run:
+            name: Push the docker image
+            command: |
+              docker push digicatsynch/logicproxy7:${CIRCLE_TAG##v}
 workflows:
   version: 2
   logic-proxy:
     jobs:
       - test
-      - docker-ci-build:
+      - docker-build:
           requires:
             - test
+  tagged-build:
+    jobs:
+      - release-version:
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
