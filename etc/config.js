@@ -16,6 +16,7 @@ const env = cleanEnv(process.env, {
   EXPRESS_SESSION_SECRET: str({ default: "keyboard cat" }),
   EXPRESS_THEME: str({ default: "" }),
   // Version
+  SENTRY_DSN: url({ default: undefined }),
   VERSION: str({ default: "6.4.0" }),
   RELEASE_DATE: str({ default: "" }),
   GIT_HASH: str({ default: "" }),
@@ -145,6 +146,9 @@ const config = {
   logOutPath: env.EXPRESS_LOGOUT_PATH,
   sessionSecret: env.EXPRESS_SESSION_SECRET,
   theme: env.EXPRESS_THEME,
+  sentry: {
+    dsn: env.SENTRY_DSN
+  },
   version: env.VERSION,
   releaseDate: env.RELEASE_DATE,
   gitHash: env.GIT_HASH,

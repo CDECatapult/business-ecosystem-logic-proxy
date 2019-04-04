@@ -25,7 +25,8 @@ var authorizeService = require('./controllers/authorizeService').authorizeServic
     url = require('url'),
     utils = require('./lib/utils'),
     auth = require('./lib/auth').auth,
-    uuidv4 = require('uuid/v4');
+    uuidv4 = require('uuid/v4'),
+    Sentry = require('@sentry/node');
 
 const debug = !(process.env.NODE_ENV == 'production');
 
@@ -254,10 +255,19 @@ mongoose.connection.on('reconnected', function() {
 var app = express();
 app.set('port', PORT);
 
+if (config.sentry && config.sentry.dsn) {
+  Sentry.init({ dsn: config.sentry.dsn });
+  app.use(Sentry.Handlers.requestHandler());
+}
+
 // Attach i18n to express
 i18n.expressBind(app, {
     locales: ['en', 'es']
 });
+
+if (config.sentry && config.sentry.dsn) {
+  app.use(Sentry.Handlers.errorHandler());
+}
 
 app.use(function(req, res, next){
     trycatch(function(){
