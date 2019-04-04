@@ -17,6 +17,7 @@ const env = cleanEnv(process.env, {
   EXPRESS_THEME: str({ default: "" }),
   // Version
   SENTRY_DSN: url({ default: undefined }),
+  SENTRY_ENVIRONMENT: str({ devDefault: "devel" }),
   VERSION: str({ default: "6.4.0" }),
   RELEASE_DATE: str({ default: "" }),
   GIT_HASH: str({ default: "" }),
@@ -147,7 +148,8 @@ const config = {
   sessionSecret: env.EXPRESS_SESSION_SECRET,
   theme: env.EXPRESS_THEME,
   sentry: {
-    dsn: env.SENTRY_DSN
+    dsn: env.SENTRY_DSN,
+    environment: env.SENTRY_ENVIRONMENT
   },
   version: env.VERSION,
   releaseDate: env.RELEASE_DATE,
