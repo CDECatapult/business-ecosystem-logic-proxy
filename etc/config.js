@@ -28,9 +28,9 @@ const env = cleanEnv(process.env, {
     default: "http://business-api-ecosystem.readthedocs.io/en/v6.4.0"
   }),
   // Proxy
-  PROXY_ENABLED: bool({ default: true }),
-  PROXT_HOST: host({ example: "localhost" }),
-  PROXY_PORT: port({ default: 8004 }),
+  PROXY_ENABLED: bool({ default: false }),
+  PROXY_HOST: host({ example: "localhost" }),
+  PROXY_PORT: port({ default: 80 }),
   PROXY_SECURED: bool({ default: false }),
   // SSL
   SSL_ENABLED: bool({ default: false }),
@@ -158,7 +158,7 @@ const config = {
   userDoc: env.USER_DOC_URL,
   proxy: {
     enabled: env.PROXY_ENABLED,
-    host: env.PROXT_HOST,
+    host: env.PROXY_HOST,
     port: env.PROXY_PORT,
     secured: env.PROXY_SECURED
   },
