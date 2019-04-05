@@ -730,7 +730,7 @@ describe("Test index helper library", function () {
             done();
         }, (si, err) => {
             expect(si.search).toHaveBeenCalledWith({query: {AND: {sortedId: ['000000000001']}}});
-            expect(err.message).toBe("The product 1 is not indexed, result.length = 0 to be 'The specified product id is not indexed");
+            expect(err.message).toBe('The product 1 is not indexed, result.length = 0');
 
             expect(si.add).not.toHaveBeenCalled();
             expect(si.defaultPipeline).not.toHaveBeenCalled();
