@@ -26,11 +26,10 @@ services:
           - proxy.docker
     environment:
       - NODE_ENV=development
-      - VERSION=6.3.0-rc
 
       - HOST=proxy.docker
       - PORT=8004
-      - PROXT_HOST=proxy.docker
+      - PROXY_HOST=proxy.docker
       - EXT_PORT=8004
 
       - OAUTH2_SERVER=http://idm.docker:3000
