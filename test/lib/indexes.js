@@ -725,7 +725,17 @@ describe("Test index helper library", function () {
             searchdata: []
         };
 
-        testOfferingProductError(extra, 'The specified product id is not indexed', done);
+        helper(extra, 'saveIndexOffering', () => {
+            expect("Error, promise resolved instead of rejected").toBe(true);
+            done();
+        }, (si, err) => {
+            expect(si.search).toHaveBeenCalledWith({query: {AND: {sortedId: ['000000000001']}}});
+            expect(err.message).toBe("The product 1 is not indexed, result.length = 0 to be 'The specified product id is not indexed");
+
+            expect(si.add).not.toHaveBeenCalled();
+            expect(si.defaultPipeline).not.toHaveBeenCalled();
+            done();
+        }, [notBundleOffer]);
     });
 
     var testSaveCategoryOffering = function testSaveCategoryOffering (ids, offer, convOffer, done) {
