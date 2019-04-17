@@ -185,16 +185,19 @@ html(ng-app="app")
       .col-sm-1
         ul.list-inline.pull-left
           li.small
-          a(href="https://www.digicatapult.org.uk") img(src="#{ contextPath }/resources/core/images/DC-Logo-Grey.png")
+          a(href="https://www.digicatapult.org.uk") 
+            img(src="#{ contextPath }/resources/core/images/DC-Logo-Grey.png")
 
       .col-sm-5
       .col-sm-6
         ul.list-inline.pull-right
           li.small
-          a(href="https://www.fiware.org") img(src="#{ contextPath }/resources/core/images/synchronicity-logo.png")
+          a(href="https://www.fiware.org") 
+            img(src="#{ contextPath }/resources/core/images/synchronicity-logo.png")
           li.small ·
           li.small
-            a(href="https://www.tmforum.org") img(src="#{ contextPath }/resources/core/images/synchronicity-logo.png")
+          a(href="https://www.tmforum.org") 
+            img(src="#{ contextPath }/resources/core/images/synchronicity-logo.png")
 
     if user
       include ./modals/user-profile.modal.jade
