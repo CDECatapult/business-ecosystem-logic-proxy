@@ -41,6 +41,11 @@ footer {
     margin-top: 30px;
 }
 
+.footer-main {
+    padding: 20px 0px 10px 0px;
+    font-size: 14px;
+}
+
 a {
     cursor: pointer;
     color: #48b9c9;
