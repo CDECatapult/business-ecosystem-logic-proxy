@@ -42,8 +42,9 @@ footer {
     position: fixed;
     bottom: 0;
     left: 0;
-    height: 10%;
+    height: 8%;
     width: 100%;
+    background-color: #ECEFF1;
 }
 /*
 .footer-main {
