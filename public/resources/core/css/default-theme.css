@@ -39,14 +39,14 @@ body {
 
 footer {
     margin-top: 30px;
+    z-index: 999;
 }
-
+/*
 .footer-main {
     padding: 20px 0px 10px 0px;
     font-size: 14px;
-    z-index: 999;
 }
-
+*/
 a {
     cursor: pointer;
     color: #48b9c9;
