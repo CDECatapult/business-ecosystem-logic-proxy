@@ -178,21 +178,26 @@ html(ng-app="app")
 
     footer.clearfix
       hr.fiware-line
-      .col-sm-1(ng-controller="LangCtrl as langVM")
-        select(ng-model="langVM.locale" ng-change="langVM.onLocaleChange()")
+      //.col-sm-1(ng-controller="LangCtrl as langVM")
+        //select(ng-model="langVM.locale" ng-change="langVM.onLocaleChange()")
           option(value="en") English
           option(value="es") Español
-
+      .col-sm-1
+        ul.list-inline.pull-left
+          li.small
+          a(href="https://www.digicatapult.org.uk") 
+            img(src="#{ contextPath }/resources/core/images/DC_Logo_Grey.png" width="72" height="28")
+            
       .col-sm-5
-        ul.list-inline
-          li.small © 2015-2017 CoNWeT Lab., Universidad Politécnica de Madrid
       .col-sm-6
         ul.list-inline.pull-right
           li.small
-            a(href="https://www.fiware.org") FIWARE
-          li.small ·
+          a(href="https://www.fiware.org") 
+            img(src="#{ contextPath }/resources/core/images/powered-by-fiware-logo.png" width="170" height="19")
           li.small
-            a(href="https://www.tmforum.org") TM FORUM
+          li.small
+          a(href="https://www.tmforum.org") 
+            img(src="#{ contextPath }/resources/core/images/tmf-logo.png" width="70" height="18")
 
     if user
       include ./modals/user-profile.modal.jade

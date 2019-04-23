@@ -38,9 +38,21 @@ body {
 }
 
 footer {
-    margin-top: 30px;
+    /*margin-top: 30px;*/
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 8%;
+    width: 100%;
+    z-index: 2;
+    background-color: #EFEFEF;
 }
-
+/*
+.footer-main {
+    padding: 20px 0px 10px 0px;
+    font-size: 14px;
+}
+*/
 a {
     cursor: pointer;
     color: #48b9c9;
