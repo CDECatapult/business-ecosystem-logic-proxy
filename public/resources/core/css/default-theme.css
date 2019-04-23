@@ -44,7 +44,8 @@ footer {
     left: 0;
     height: 8%;
     width: 100%;
-    background-color: #F48586;
+    z-index: 2;
+    background-color: #8DCAAA;
 }
 /*
 .footer-main {
