@@ -28,7 +28,7 @@ ul.rating {
 
 body {
     padding-top: 55px;
-    margin-bottom: 8%;
+    margin-bottom: 6rem;
     background-color: #ECEFF1; /* BLUE GREY - 50 */
 }
 
@@ -43,7 +43,7 @@ footer {
     position: fixed;
     bottom: 0;
     left: 0;
-    height: 8%;
+    height: 5rem;
     width: 100%;
     z-index: 2;
     background-color: #EFEFEF;
