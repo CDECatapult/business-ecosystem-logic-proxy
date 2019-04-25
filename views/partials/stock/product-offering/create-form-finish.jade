@@ -22,12 +22,12 @@ form(name="step.form", novalidate)
           required
           readonly
         )
-  .form-group
-    label #{ __("Status") }
-    .status-group
-      .status-item(ng-repeat="status in FILTER_STATUS", class="status-{{ status.value | lowercase }}", ng-class="{ active: createVM.data.lifecycleStatus == status.value }")
-        span.item-icon
-        span.item-text {{ status.value }}
+  //.form-group
+  //  label #{ __("Status") }
+  //  .status-group
+  //    .status-item(ng-repeat="status in FILTER_STATUS", class="status-{{ status.value | lowercase }}", ng-class="{ active: createVM.data.lifecycleStatus == status.value }")
+  //      span.item-icon
+  //      span.item-text {{ status.value }}
   .form-group
     label #{ __("Description") }
     textarea.form-control(
@@ -51,16 +51,16 @@ form(name="step.form", novalidate)
         table.table.table-bordered
           thead
             tr
-              th #{ __("Status") }
+              //th #{ __("Status") }
               th #{ __("Name") }
               th #{ __("Type") }
               th #{ __("Last Updated") }
           tbody
             tr
-              td
-                .status-item(class="status-{{ createVM.product.lifecycleStatus | lowercase }}")
-                  span.item-icon
-                  span.item-text {{ createVM.product.lifecycleStatus }}
+              //td
+              //  .status-item(class="status-{{ createVM.product.lifecycleStatus | lowercase }}")
+              //    span.item-icon
+              //    span.item-text {{ createVM.product.lifecycleStatus }}
               th {{ createVM.product.name }}
               td
                 span.label(ng-class="createVM.product.isBundle ? 'label-bundle' : 'label-single'")
@@ -75,16 +75,16 @@ form(name="step.form", novalidate)
       table.table.table-bordered
         thead
           tr
-            th #{ __("Status") }
+            //th #{ __("Status") }
             th #{ __("Name") }
             th #{ __("Type") }
             th #{ __("Last Updated") }
         tbody
           tr(ng-repeat="offering in createVM.data.bundledProductOffering")
-            td
-              .status-item(class="status-{{ offering.lifecycleStatus | lowercase }}")
-                span.item-icon
-                span.item-text {{ offering.lifecycleStatus }}
+            //td
+            //  .status-item(class="status-{{ offering.lifecycleStatus | lowercase }}")
+            //    span.item-icon
+            //    span.item-text {{ offering.lifecycleStatus }}
             th {{ offering.name }}
             td
               span.label(ng-class="offering.isBundle ? 'label-bundle' : 'label-single'")
@@ -100,16 +100,16 @@ form(name="step.form", novalidate)
       table.table.table-bordered
         thead
           tr
-            th #{ __("Status") }
+            //th #{ __("Status") }
             th #{ __("Name") }
             th #{ __("Role") }
             th #{ __("Last Updated") }
         tbody
           tr
-            td
-              .status-item(class="status-{{ createVM.catalogue.lifecycleStatus | lowercase }}")
-                span.item-icon
-                span.item-text {{ createVM.catalogue.lifecycleStatus }}
+            //td
+            //  .status-item(class="status-{{ createVM.catalogue.lifecycleStatus | lowercase }}")
+            //    span.item-icon
+            //    span.item-text {{ createVM.catalogue.lifecycleStatus }}
             th {{ createVM.catalogue.name }}
             td {{ createVM.catalogue.getRoleOf(user.id) }}
             td

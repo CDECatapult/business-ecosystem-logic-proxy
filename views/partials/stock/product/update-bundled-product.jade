@@ -30,7 +30,7 @@
       table.table.table-bordered.table-hover
         thead
           tr
-            th #{ __("Status") }
+            //th #{ __("Status") }
             th #{ __("Name") }
             th #{ __("ID") }
             th #{ __("Brand") }
@@ -38,10 +38,10 @@
             th #{ __("Last Updated") }
         tbody
           tr(ng-repeat="productSpec in updateVM.item.bundledProductSpecification")
-            td
-              .status-item(class="status-{{ productSpec.lifecycleStatus | lowercase }}")
-                span.item-icon
-                span.item-text {{ productSpec.lifecycleStatus }}
+            //td
+            //  .status-item(class="status-{{ productSpec.lifecycleStatus | lowercase }}")
+            //    span.item-icon
+            //   span.item-text {{ productSpec.lifecycleStatus }}
             th
               a(ui-sref="stock.product.update({ productId: productSpec.id })", ui-sref-opts="{ inherit: false }") {{ productSpec.name }}
             td {{ productSpec.productNumber }}

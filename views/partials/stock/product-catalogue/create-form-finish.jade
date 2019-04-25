@@ -9,11 +9,11 @@ form(name="step.form", novalidate)
       readonly
     )
   .form-group
-    label #{ __("Status") }
-    .status-group
-      .status-item(ng-repeat="status in FILTER_STATUS", class="status-{{ status.value | lowercase }}", ng-class="{ active: createVM.data.lifecycleStatus == status.value }")
-        span.item-icon
-        span.item-text {{ status.value }}
+    //label #{ __("Status") }
+    //.status-group
+    //  .status-item(ng-repeat="status in FILTER_STATUS", class="status-{{ status.value | lowercase }}", ng-class="{ active: createVM.data.lifecycleStatus == status.value }")
+    //    span.item-icon
+    //    span.item-text {{ status.value }}
   .form-group
     label #{ __("Description") }
     textarea.form-control(

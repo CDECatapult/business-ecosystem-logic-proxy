@@ -34,16 +34,16 @@ form(name="step.form", novalidate)
             table.table.table-bordered.table-hover.table-selectable
               thead
                 tr
-                  th #{ __("Status") }
+                //  th #{ __("Status") }
                   th #{ __("Name") }
                   th #{ __("Type") }
                   th #{ __("Last Updated") }
               tbody
                 tr(ng-repeat="offering in searchVM.list", ng-class="{ active: createVM.hasOffering(offering) }", ng-click="createVM.toggleOffering(offering)")
-                  td
-                    .status-item(class="status-{{ offering.lifecycleStatus | lowercase }}")
-                      span.item-icon
-                      span.item-text {{ offering.lifecycleStatus }}
+                  //td
+                  //  .status-item(class="status-{{ offering.lifecycleStatus | lowercase }}")
+                  //    span.item-icon
+                  //    span.item-text {{ offering.lifecycleStatus }}
                   th {{ offering.name }}
                   td
                     span.label(ng-class="offering.isBundle ? 'label-bundle' : 'label-single'")

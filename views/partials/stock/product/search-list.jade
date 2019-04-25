@@ -2,7 +2,7 @@
   table.table.table-bordered.table-hover
     thead
       tr
-        th #{ __("Status") }
+        //th #{ __("Status") }
         th #{ __("Name") }
         th #{ __("ID") }
         th #{ __("Brand") }
@@ -10,10 +10,10 @@
         th #{ __("Last Updated") }
     tbody
       tr(ng-repeat="product in searchVM.list")
-        td
-          .status-item(class="status-{{ product.lifecycleStatus | lowercase }}")
-            span.item-icon
-            span.item-text {{ product.lifecycleStatus }}
+        //td
+        //  .status-item(class="status-{{ product.lifecycleStatus | lowercase }}")
+        //    span.item-icon
+        //    span.item-text {{ product.lifecycleStatus }}
         th
           a(ui-sref="stock.product.update({ productId: product.id })", ui-sref-opts="{ inherit: false }") {{ product.name }}
         td {{ product.productNumber }}

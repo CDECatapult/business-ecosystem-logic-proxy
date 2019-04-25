@@ -33,7 +33,7 @@ form(name="step.form", novalidate)
             table.table.table-bordered.table-hover.table-selectable
               thead
                 tr
-                  th #{ __("Status") }
+                  //th #{ __("Status") }
                   th #{ __("Name") }
                   th #{ __("ID") }
                   th #{ __("Brand") }
@@ -41,10 +41,10 @@ form(name="step.form", novalidate)
                   th #{ __("Last Updated") }
               tbody
                 tr(ng-repeat="product in searchVM.list", ng-class="{ active: createVM.hasProduct(product) }", ng-click="createVM.toggleProduct(product)")
-                  td
-                    .status-item(class="status-{{ product.lifecycleStatus | lowercase }}")
-                      span.item-icon
-                      span.item-text {{ product.lifecycleStatus }}
+                  //td
+                  //  .status-item(class="status-{{ product.lifecycleStatus | lowercase }}")
+                  //    span.item-icon
+                  //    span.item-text {{ product.lifecycleStatus }}
                   th {{ product.name }}
                   td {{ product.productNumber }}
                   td {{ product.brand }}
