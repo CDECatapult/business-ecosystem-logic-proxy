@@ -13,7 +13,7 @@
           time(am-time-ago="product.lastUpdate")
         p v{{ product.version }}
         p.item-description {{ product.description ? product.description : '#{ __("No description provided.") }' }}
-      .status-group
-        .status-item.active(class="status-{{ product.lifecycleStatus | lowercase }}")
-          span.item-icon
-          span.item-text {{ product.lifecycleStatus }}
+      //.status-group
+      //  .status-item.active(class="status-{{ product.lifecycleStatus | lowercase }}")
+      //    span.item-icon
+      //    span.item-text {{ product.lifecycleStatus }}

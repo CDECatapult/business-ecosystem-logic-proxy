@@ -24,10 +24,10 @@
             p.item-description {{ offering.description ? offering.description : '#{ __("No description provided.") }' }}
           .h5.text-right
             strong {{ offering.formatCheapestPriceplan() }}
-          .status-group
-            .status-item.active(class="status-{{ offering.lifecycleStatus | lowercase }}")
-              span.item-icon
-              span.item-text {{ offering.lifecycleStatus }}
+          //.status-group
+          //  .status-item.active(class="status-{{ offering.lifecycleStatus | lowercase }}")
+          //    span.item-icon
+          //    span.item-text {{ offering.lifecycleStatus }}
     .table-responsive(ng-switch-when="2")
       table.table.table-bordered.table-hover
         thead

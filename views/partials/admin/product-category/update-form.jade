@@ -22,12 +22,12 @@
           span(ng-message="required") #{ __("This field is required.") }
           span(ng-message="maxlength") #{ __("This field must not exceed 30 chars.") }
           span(ng-message="unique") #{ __("This name is already taken.") }
-      .form-group
-        label Status
-        .status-group
-          .status-item(ng-repeat="status in FILTER_STATUS", class="status-{{ status.value | lowercase }}", ng-class="{ active: updateVM.data.lifecycleStatus == status.value }")
-            span.item-icon
-            span.item-text {{ status.value }}
+      //.form-group
+      //  label Status
+      //  .status-group
+      //    .status-item(ng-repeat="status in FILTER_STATUS", class="status-{{ status.value | lowercase }}", ng-class="{ active: updateVM.data.lifecycleStatus == status.value }")
+      //      span.item-icon
+      //      span.item-text {{ status.value }}
       .form-group
         label
           span #{ __("Description") }
