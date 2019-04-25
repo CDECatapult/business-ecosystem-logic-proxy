@@ -28,6 +28,7 @@ ul.rating {
 
 body {
     padding-top: 55px;
+    margin-bottom: 6rem;
     background-color: #ECEFF1; /* BLUE GREY - 50 */
 }
 
@@ -42,7 +43,7 @@ footer {
     position: fixed;
     bottom: 0;
     left: 0;
-    height: 8%;
+    height: 5rem;
     width: 100%;
     z-index: 2;
     background-color: #EFEFEF;
@@ -2049,7 +2050,7 @@ a.thumbnail:focus {
     margin-bottom: 5px;
 }
 .item-description {
-    height: 40px;
+    height: 58px;
     overflow: hidden;
 }
 
