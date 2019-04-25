@@ -19,8 +19,8 @@
           dt #{ __("Offering") }
           dd
             a(ui-sref="offering.detail({ offeringId: orderItem.productOffering.id })" ui-sref-opts="{ inherit: false }") {{ orderItem.productOffering.name }}
-          dt #{ __("Status") }
-          dd {{ orderItem.state }}
+          //dt #{ __("Status") }
+          //dd {{ orderItem.state }}
           dt #{ __("Vendor name") }
           dd {{ detailVM.getVendorName(orderItem) }}
           dt #{ __("Characteristics") }
