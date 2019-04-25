@@ -5,16 +5,16 @@
         .h4
           strong #{ __("Search filters") }
       .modal-body
-        .form-group.no-user-select(ng-show="filterVM.exists('status')")
-          .h4
-            strong #{ __("Status") }
-          hr
-          .item-checkbox(ng-repeat="(key, value) in filterVM.getStatusStates()")
-            label.checkbox
-              .track
-                input(type="checkbox", value="{{ value }}", ng-checked="filterVM.checkboxChecked('status', value)", ng-click="filterVM.toggleCheckbox('status', value)")
-                i.fa.fa-lg
-              | {{ value }}
+        //.form-group.no-user-select(ng-show="filterVM.exists('status')")
+        //  .h4
+        //    strong #{ __("Status") }
+        //  hr
+        //  .item-checkbox(ng-repeat="(key, value) in filterVM.getStatusStates()")
+        //    label.checkbox
+        //      .track
+        //        input(type="checkbox", value="{{ value }}", ng-checked="filterVM.checkboxChecked('status', value)", ng-click="filterVM.toggleCheckbox('status', value)")
+        //        i.fa.fa-lg
+        //      | {{ value }}
         .form-group.no-user-select(ng-show="filterVM.exists('role')")
           .h4
             strong #{ __("Role") }
