@@ -27,8 +27,8 @@
               dd {{ detailVM.item.orderDate ? (detailVM.item.orderDate | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a') : '#{ __("No data provided.") }' }}
               dt #{ __("Priority") }
               dd {{ detailVM.item.priority }}
-              dt #{ __("Status") }
-              dd {{ detailVM.item.state }}
+              //dt #{ __("Status") }
+              //dd {{ detailVM.item.state }}
               dt #{ __("Desired delivery date") }
               dd {{ detailVM.item.requestedCompletionDate ? (detailVM.item.requestedCompletionDate | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a') : '#{ __("No data provided.") }' }}
               dt #{ __("Expected delivery date") }

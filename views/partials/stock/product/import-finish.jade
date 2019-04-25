@@ -12,10 +12,10 @@ form(name="step.form", novalidate)
         )
   .form-group
     label Status
-    .status-group
-      .status-item(ng-repeat="status in FILTER_STATUS", class="status-{{ status.value | lowercase }}", ng-class="{ active: createVM.datastore.lifecycleStatus == status.value }")
-        span.item-icon
-        span.item-text {{ status.value }}
+    //.status-group
+    //  .status-item(ng-repeat="status in FILTER_STATUS", class="status-{{ status.value | lowercase }}", ng-class="{ active: createVM.datastore.lifecycleStatus == status.value }")
+    //    span.item-icon
+    //    span.item-text {{ status.value }}
   .form-group
     label Description
     textarea.form-control(

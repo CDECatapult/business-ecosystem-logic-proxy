@@ -12,15 +12,15 @@ ui-view
         table.table.table-bordered.table-hover
           thead
             tr
-              th #{ __("Status") }
+              //th #{ __("Status") }
               th #{ __("Name") }
               th #{ __("Last Updated") }
           tbody
             tr(ng-repeat="category in searchVM.list | orderByParentId")
-              td
-                .status-item(class="status-{{ category.lifecycleStatus | lowercase }}")
-                  span.item-icon
-                  span.item-text {{ category.lifecycleStatus }}
+              //td
+              //  .status-item(class="status-{{ category.lifecycleStatus | lowercase }}")
+              //    span.item-icon
+              //    span.item-text {{ category.lifecycleStatus }}
               td
                 span(ng-repeat="parentCategory in category.getBreadcrumb()") {{ parentCategory.name }} / 
                 a(ui-sref="admin.productCategory.update({ categoryId: category.id })", ui-sref-opts="{ inherit: false }")

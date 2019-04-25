@@ -14,8 +14,8 @@
             dl.dl-horizontal.order-title-group
               dt.order-title #{ __("Customer") }
               dd.order-title-info {{ productOrder.getCustomer().id }}
-              dt.order-title #{ __("Status") }
-              dd.order-title-info {{ productOrder.state }}
+              //dt.order-title #{ __("Status") }
+              //dd.order-title-info {{ productOrder.state }}
               dt.order-title #{ __("Priority") }
               dd.order-title-info {{ productOrder.priority }}
       .panel-body
@@ -39,8 +39,8 @@
             dl.limit-table
               dt #{ __("Description") }
               dd.text-dark-secondary {{ orderItem.productOffering.description ? orderItem.productOffering.description : '#{ __("No description provided.") }' }}
-              dt #{ __("Status") }
-              dd.text-dark-secondary {{ orderItem.state }}
+              //dt #{ __("Status") }
+              //dd.text-dark-secondary {{ orderItem.state }}
               dt #{ __("Price") }
               dd.text-dark-secondary {{ productOrder.formatPriceplanOf($index) }}
               dt #{ __("Appointment") }

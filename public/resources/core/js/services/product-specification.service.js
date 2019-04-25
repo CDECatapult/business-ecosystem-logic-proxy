@@ -308,7 +308,7 @@
         function buildInitialData() {
             return {
                 version: '0.1',
-                lifecycleStatus: LIFECYCLE_STATUS.ACTIVE,
+                lifecycleStatus: LIFECYCLE_STATUS.LAUNCHED,
                 isBundle: false,
                 bundledProductSpecification: [],
                 productSpecCharacteristic: [],

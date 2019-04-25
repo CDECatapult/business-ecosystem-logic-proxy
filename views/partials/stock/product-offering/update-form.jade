@@ -49,12 +49,12 @@ form(name="updateVM.form", novalidate)
       .form-group
         label #{ __("Last Updated") }
         input.form-control(type="text", readonly, value="{{ updateVM.item.lastUpdate | amCalendar }}")
-  .form-group
-    label #{ __("Status") }
-    .status-group
-      .status-item(ng-repeat="status in FILTER_STATUS", class="status-{{ status.value | lowercase }}", ng-click="updateVM.updateStatus(status.value)", ng-class="{ active: updateVM.data.lifecycleStatus == status.value, enabled: updateVM.data.lifecycleStatus == status.value && !updateVM.statusUpdated }")
-        span.item-icon
-        span.item-text {{ status.value }}
+  //.form-group
+    //label #{ __("Status") }
+    //.status-group
+    //  .status-item(ng-repeat="status in FILTER_STATUS", class="status-{{ status.value | lowercase }}", ng-click="updateVM.updateStatus(status.value)", ng-class="{ active: updateVM.data.lifecycleStatus == status.value, enabled: updateVM.data.lifecycleStatus == status.value && !updateVM.statusUpdated }")
+    //    span.item-icon
+    //    span.item-text {{ status.value }}
   .form-group
     label
       span #{ __("Description") }
@@ -71,16 +71,16 @@ form(name="updateVM.form", novalidate)
       table.table.table-bordered
         thead
           tr
-            th #{ __("Status") }
+            //th #{ __("Status") }
             th #{ __("Name") }
             th #{ __("Type") }
             th #{ __("Last Updated") }
         tbody
           tr(ng-repeat="offering in updateVM.item.bundledProductOffering")
-            td
-              .status-item(class="status-{{ offering.lifecycleStatus | lowercase }}")
-                span.item-icon
-                span.item-text {{ offering.lifecycleStatus }}
+            //td
+            //  .status-item(class="status-{{ offering.lifecycleStatus | lowercase }}")
+            //   span.item-icon
+            //    span.item-text {{ offering.lifecycleStatus }}
             th
               a(ui-sref="stock.offering.update({ offeringId: offering.id })", ui-sref-opts="{ inherit: false }") {{ offering.name }}
             td

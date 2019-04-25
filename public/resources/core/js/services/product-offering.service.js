@@ -424,7 +424,7 @@
                 category: [],
                 description: '',
                 isBundle: false,
-                lifecycleStatus: LIFECYCLE_STATUS.ACTIVE,
+                lifecycleStatus: LIFECYCLE_STATUS.LAUNCHED,
                 name: '',
                 place: [],
                 productOfferingPrice: [],

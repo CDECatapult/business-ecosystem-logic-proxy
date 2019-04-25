@@ -24,25 +24,25 @@
             p.item-description {{ offering.description ? offering.description : '#{ __("No description provided.") }' }}
           .h5.text-right
             strong {{ offering.formatCheapestPriceplan() }}
-          .status-group
-            .status-item.active(class="status-{{ offering.lifecycleStatus | lowercase }}")
-              span.item-icon
-              span.item-text {{ offering.lifecycleStatus }}
+          //.status-group
+          //  .status-item.active(class="status-{{ offering.lifecycleStatus | lowercase }}")
+          //    span.item-icon
+          //    span.item-text {{ offering.lifecycleStatus }}
     .table-responsive(ng-switch-when="2")
       table.table.table-bordered.table-hover
         thead
           tr
-            th #{ __("Status") }
+            //th #{ __("Status") }
             th #{ __("Name") }
             th #{ __("Data source spec.") }
             th #{ __("Type") }
             th #{ __("Last Updated") }
         tbody
           tr(ng-repeat="offering in updateVM.item.bundledProductOffering")
-            td
-              .status-item(class="status-{{ offering.lifecycleStatus | lowercase }}")
-                span.item-icon
-                span.item-text {{ offering.lifecycleStatus }}
+            //td
+            //  .status-item(class="status-{{ offering.lifecycleStatus | lowercase }}")
+            //    span.item-icon
+            //    span.item-text {{ offering.lifecycleStatus }}
             th
               a(ui-sref="stock.offering.update({ offeringId: offering.id })", ui-sref-opts="{ inherit: false }") {{ offering.name }}
             th
