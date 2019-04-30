@@ -70,7 +70,7 @@ node collect_static.js
 
 if [ "$NODE_ENV" == "development" ]; then
   echo "Starting server in development mode..."
-  node server.js
+  nodemon --verbose --ignore 'locales/*.js' server.js
 else
   echo "Starting server in production mode..."
   node server.js

@@ -13,8 +13,8 @@ services:
       - ./controllers:/business-ecosystem-logic-proxy/controllers
       - ./db:/business-ecosystem-logic-proxy/db
       - ./default_locales:/business-ecosystem-logic-proxy/default_locales
+      - ./etc:/business-ecosystem-logic-proxy/etc
       - ./lib:/business-ecosystem-logic-proxy/lib
-      - ./locales:/business-ecosystem-logic-proxy/locales
       - ./views:/business-ecosystem-logic-proxy/views
     environment:
       - NODE_ENV=development
