@@ -660,8 +660,11 @@ function onlistening() {
                 });
 
                 request(uri, function(err, res, body) {
-                    if (err || res.statusCode != 200) {
-                        reject('Failed to retrieve charge periods');
+                    if (err) {
+                        reject(err)
+                    } else if (res.statusCode != 200) {
+                      logger.error(res.statusCode)
+                        reject(Error('Failed to retrieve charge periods'));
                     } else {
                         resolve(JSON.parse(body));
                     }
@@ -676,8 +679,11 @@ function onlistening() {
                 });
 
                 request(uri, function(err, res, body) {
-                    if (err || res.statusCode != 200) {
-                        reject('Failed to retrieve currency codes');
+                    if (err) {
+                        reject(err)
+                    } else if (res.statusCode != 200) {
+                        logger.error(res.statusCode)
+                        reject(Error('Failed to retrieve currency codes'));
                     } else {
                         resolve(JSON.parse(body));
                     }
