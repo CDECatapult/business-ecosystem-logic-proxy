@@ -18,7 +18,7 @@
  */
 
 process.env.HOST = "localhost";
-process.env.PROXT_HOST = "proxy.docker";
+process.env.PROXY_HOST = "proxy.docker";
 process.env.OAUTH2_SERVER = "https://account.lab.fiware.org";
 process.env.OAUTH2_CLIENT_ID = "";
 process.env.OAUTH2_CLIENT_SECRET = "";
