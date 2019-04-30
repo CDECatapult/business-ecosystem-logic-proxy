@@ -66,6 +66,8 @@ done
 
 echo "Creating indexes..."
 node fill_indexes.js
+
+echo "Generate the frontend..."
 node collect_static.js
 
 if [ "$NODE_ENV" == "development" ]; then
