@@ -6,6 +6,7 @@ proxy-conf
 proxy-indexes
 cert
 .grunt
+.env
 xunit.xml
 /indexes
 mongo-data
