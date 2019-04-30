@@ -36,6 +36,7 @@ process.env.ENDPOINT_USAGE_HOST = "localhost";
 
 var defaultConfig = {
   port: 8004,
+  extPort: 8004,
   version: {
     version: "6.3.0",
     releaseDate: "2017-07-01",
