@@ -4,6 +4,8 @@ WORKDIR business-ecosystem-logic-proxy
 
 RUN apk add --no-cache bash
 
+RUN npm install -g nodemon
+
 # Themes that can be used to customize the web portal
 VOLUME /business-ecosystem-logic-proxy/themes
 # Static files ready to be rendered including the selected theme and js files

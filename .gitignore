@@ -1,9 +1,13 @@
 *.DS_Store
+*.pyc
 coverage
 node_modules
 proxy-conf
 proxy-indexes
 cert
 .grunt
+.env
 xunit.xml
 /indexes
+mongo-data
+mysql-data

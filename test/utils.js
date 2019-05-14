@@ -18,7 +18,7 @@
  */
 
 process.env.HOST = "localhost";
-process.env.PROXT_HOST = "proxy.docker";
+process.env.PROXY_HOST = "proxy.docker";
 process.env.OAUTH2_SERVER = "https://account.lab.fiware.org";
 process.env.OAUTH2_CLIENT_ID = "";
 process.env.OAUTH2_CLIENT_SECRET = "";
@@ -36,6 +36,7 @@ process.env.ENDPOINT_USAGE_HOST = "localhost";
 
 var defaultConfig = {
   port: 8004,
+  extPort: 8004,
   version: {
     version: "6.3.0",
     releaseDate: "2017-07-01",
