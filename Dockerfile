@@ -19,17 +19,20 @@ VOLUME /business-ecosystem-logic-proxy/lib
 COPY ./package.json .
 RUN npm install --production --no-optional
 
+# Minify frontend
+COPY ./default_locales default_locales
+COPY ./public public
+COPY ./views views
+COPY ./collect_static.js .
+RUN node collect_static.js
+
 # Project sources
 COPY ./controllers controllers
 COPY ./db db
-COPY ./default_locales default_locales
 COPY ./etc etc
 COPY ./lib lib
 COPY ./locales locales
-COPY ./public public
-COPY ./views views
 COPY ./config.js .
-COPY ./collect_static.js .
 COPY ./fill_indexes.js .
 COPY ./log_config.json .
 COPY ./server.js .

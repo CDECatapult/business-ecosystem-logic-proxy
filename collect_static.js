@@ -17,15 +17,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 /* eslint no-console: 0 */
-const config = require('./config');
 const compressor = require('node-minify');
 const fs = require('fs');
 const mergedirs = require('merge-dirs');
 const path = require('path');
 
 const staticPath = './static';
-
-const debug = !(process.env.NODE_ENV == 'production');
 
 const deleteContents = function (path) {
     fs.readdirSync(path).forEach((file) => {
@@ -42,21 +39,6 @@ const deleteContents = function (path) {
 const deleteDir = function (path) {
     deleteContents(path);
     fs.rmdirSync(path);
-};
-
-const loadTheme = function () {
-    // Check if the provided theme exists
-    if (!fs.existsSync('./themes/' + config.theme)) {
-        console.log('The configured theme ' + config.theme + ' has not been provided');
-        process.exit(1);
-    }
-
-    console.log('Loading Theme ' + config.theme);
-
-    // Merge default files with theme ones
-    mergedirs.default('./themes/' + config.theme, './static', 'overwrite');
-
-    console.log('Theme loaded');
 };
 
 const minimizejs = function () {
@@ -92,7 +74,7 @@ const minimizejs = function () {
 
 const mergeLocales = function() {
     // Check if the plugin includes locales
-    let localesDir = './themes/' + config.theme + '/locales'
+    let localesDir = './themes/locales'
     if (fs.existsSync(localesDir) && fs.statSync(localesDir).isDirectory()) {
         // Parse and merge files
         fs.readdirSync(localesDir).map(f => {
@@ -120,12 +102,6 @@ const mergeLocales = function() {
     }
 }
 
-// Check if a theme has been provided or the system is in production
-if (!config.theme && debug) {
-    console.log('The default theme is configured and debug mode is active, nothing to do');
-    process.exit(1);
-}
-
 // Delete prev static files
 if(fs.existsSync(staticPath)) {
     deleteContents(staticPath);
@@ -137,14 +113,7 @@ if(fs.existsSync(staticPath)) {
 mergedirs.default('./views', './static/views', 'overwrite');
 mergedirs.default('./public', './static/public', 'overwrite');
 
-if (config.theme) {
-    // If a theme has been provided merge it with default files
-    loadTheme();
-    mergeLocales();
-}
 
-if (!debug) {
-    // If the system is in production compile jades and minimize js files
-    minimizejs();
-    console.log('JavaScript files minimized');
-}
+// If the system is in production compile jades and minimize js files
+minimizejs();
+console.log('JavaScript files minimized');
