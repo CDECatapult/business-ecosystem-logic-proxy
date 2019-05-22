@@ -51,7 +51,7 @@ services:
       - PAYPAL_CLIENT_SECRET=client_secret_here
 
   apis:
-    image: digicatsynch/bae-apis-synchronicity:sla2
+    image: digicatsynch/docker-tmf-apis:1.0.0
     restart: always
     ports:
       - 4848:4848
