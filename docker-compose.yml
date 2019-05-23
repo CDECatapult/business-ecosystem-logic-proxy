@@ -16,6 +16,7 @@ services:
       - ./etc:/business-ecosystem-logic-proxy/etc
       - ./lib:/business-ecosystem-logic-proxy/lib
       - ./views:/business-ecosystem-logic-proxy/views
+      - ./public:/business-ecosystem-logic-proxy/public
     environment:
       - NODE_ENV=development
 

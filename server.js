@@ -321,6 +321,10 @@ app.use(config.portalPrefix + '/', express.static(__dirname + staticPath + '/pub
 app.set('views', __dirname + staticPath + '/views');
 app.set('view engine', 'jade');
 
+if (debug) {
+  app.disable('view cache');
+}
+
 app.locals.taxRate = config.taxRate || 20;
 
 /////////////////////////////////////////////////////////////////////
