@@ -58,22 +58,22 @@ form(name="step.form", novalidate)
         )
           span(ng-message="required") #{ __("This field is required.") }
           span(ng-message="maxlength") #{ __("This field must not exceed %s chars.", "30") }
-    .col-sm-4
-      .form-group(
-        ng-class="{ 'has-error' : createForm.hasError(step.form.productNumber) }"
-      )
-        label #{ __("Enter an ID Number") }
-        input.form-control(
-          type="text"
-          name="productNumber"
-          ng-model="createVM.data.productNumber"
-          required
-        )
-        .help-block(
-          ng-messages="step.form.productNumber.$error"
-          ng-show="createForm.hasError(step.form.productNumber)"
-        )
-          span(ng-message="required") #{ __("This field is required.") }
+    //.col-sm-4
+    //  .form-group(
+    //    ng-class="{ 'has-error' : createForm.hasError(step.form.productNumber) }"
+    //  )
+    //    label #{ __("Enter an ID Number") }
+    //    input.form-control(
+    //      type="text"
+    //      name="productNumber"
+    //      ng-model="createVM.data.productNumber"
+    //      required
+    //    )
+    //    .help-block(
+    //      ng-messages="step.form.productNumber.$error"
+    //      ng-show="createForm.hasError(step.form.productNumber)"
+    //    )
+    //      span(ng-message="required") #{ __("This field is required.") }
   .form-group
     label
       span #{ __("Enter a description") }

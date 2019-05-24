@@ -30,7 +30,7 @@
     thead
       tr
         th #{ __("Name") }
-        th #{ __("Version") }
+        //th #{ __("Version") }
         th #{ __("Type") }
         th #{ __("Pricing") }
         th #{ __("Last Updated") }
@@ -38,8 +38,8 @@
       tr(ng-repeat="offering in detailVM.item.bundledProductOffering")
         th
           a(ui-sref="offering.detail({ offeringId: offering.id })", ui-sref-opts="{ inherit: false }") {{ offering.name }}
-        th
-          | v{{ offering.version }}
+        //th
+        //  | v{{ offering.version }}
         td
           span.label(class="label-single")
             | #{ __("Single") }
