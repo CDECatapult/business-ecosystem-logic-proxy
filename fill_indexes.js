@@ -43,6 +43,7 @@ function genericRequest(options, extra) {
                       element[extra.field] = extra.value;
                   });
               }
+              console.log('parsedBody', parsedBody)
               resolve(parsedBody);
           } else {
               reject(new Error("Unexpected HTTP error code: " + response.statusCode));
