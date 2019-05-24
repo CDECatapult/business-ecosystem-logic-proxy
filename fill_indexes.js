@@ -148,11 +148,17 @@ function downloadOrdering() {
         .then(indexes.saveIndexOrder);
 }
 
+let sleep = ms => new Promise(res => setTimeout(res, ms))
+
 indexes.init()
     .then(downloadProducts)
+    .then(() => sleep(2000))
     .then(downloadCatalogs)
+    .then(() => sleep(2000))
     .then(downloadInventory)
+    .then(() => sleep(2000))
     .then(downloadOrdering)
+    .then(() => sleep(2000))
     .then(indexes.close)
     .then(() => console.log("All saved!"))
     .catch(e => console.error("Error: ", e, e.message));
