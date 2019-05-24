@@ -1,20 +1,5 @@
 version: "3"
 services:
-  # mongo:
-  #     image: mongo:3.2
-  #     restart: always
-  #     ports:
-  #         - 27017:27017
-  #     networks:
-  #         synchronicity:
-  #     volumes:
-  #         - ./mongo-data:/data/db
-
-  redis:
-    image: redis:3.2.8-alpine
-    networks:
-      synchronicity:
-
   proxy:
     build: .
     restart: always
@@ -24,8 +9,18 @@ services:
       synchronicity:
         aliases:
           - proxy.docker
+    volumes:
+      - ./controllers:/business-ecosystem-logic-proxy/controllers
+      - ./db:/business-ecosystem-logic-proxy/db
+      - ./default_locales:/business-ecosystem-logic-proxy/default_locales
+      - ./etc:/business-ecosystem-logic-proxy/etc
+      - ./lib:/business-ecosystem-logic-proxy/lib
+      - ./views:/business-ecosystem-logic-proxy/views
+      - ./public:/business-ecosystem-logic-proxy/public
     environment:
       - NODE_ENV=development
+
+      - SENTRY_ENVIRONMENT=devel
 
       - HOST=proxy.docker
       - PORT=8004
@@ -33,11 +28,12 @@ services:
       - EXT_PORT=8004
 
       - OAUTH2_SERVER=http://idm.docker:3000
-      - OAUTH2_CLIENT_ID=eff50ed2-df09-4d95-b704-cf87e550049c
-      - OAUTH2_CLIENT_SECRET=16eb167a-7414-4140-aa6e-d1661ccfee2b
+      - OAUTH2_CLIENT_ID=${OAUTH2_CLIENT_ID}
+      - OAUTH2_CLIENT_SECRET=${OAUTH2_CLIENT_SECRET}
       - OAUTH2_CALLBACK_URL=http://proxy.docker:8004/auth/fiware/callback
 
       - MONGO_HOST=mongo
+      - REDIS_HOST=redis
 
       - ENDPOINT_CHARGING_HOST=charging.docker
       - ENDPOINT_RSS_HOST=rss.docker

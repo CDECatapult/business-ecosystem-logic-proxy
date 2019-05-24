@@ -64,11 +64,13 @@ while [[ ${STATUS} -ne 0  && ${I} -lt 50 ]]; do
     I=${I}+1
 done
 
-# Include this setting to avoid inconsistencies between docker container port and used port
-sed -i "s|config\.port|config\.extPort|" /business-ecosystem-logic-proxy/lib/tmfUtils.js
-
 echo "Creating indexes..."
 node fill_indexes.js
-node collect_static.js
 
-node server.js
+if [ "$NODE_ENV" == "development" ]; then
+  echo "Starting server in development mode..."
+  nodemon --verbose --ignore 'locales/*.js' server.js
+else
+  echo "Starting server in production mode..."
+  node server.js
+fi

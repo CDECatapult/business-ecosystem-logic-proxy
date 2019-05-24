@@ -43,6 +43,7 @@ function genericRequest(options, extra) {
                       element[extra.field] = extra.value;
                   });
               }
+              console.log('parsedBody', parsedBody)
               resolve(parsedBody);
           } else {
               reject(new Error("Unexpected HTTP error code: " + response.statusCode));
@@ -147,11 +148,17 @@ function downloadOrdering() {
         .then(indexes.saveIndexOrder);
 }
 
+let sleep = ms => new Promise(res => setTimeout(res, ms))
+
 indexes.init()
     .then(downloadProducts)
+    .then(() => sleep(1000))
     .then(downloadCatalogs)
+    .then(() => sleep(1000))
     .then(downloadInventory)
+    .then(() => sleep(1000))
     .then(downloadOrdering)
+    .then(() => sleep(1000))
     .then(indexes.close)
     .then(() => console.log("All saved!"))
     .catch(e => console.error("Error: ", e, e.message));
