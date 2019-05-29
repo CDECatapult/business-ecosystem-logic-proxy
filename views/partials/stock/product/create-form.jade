@@ -4,7 +4,7 @@ form(name="step.form", novalidate)
       .form-group(
         ng-class="{ 'has-error': createForm.hasError(step.form.name) }"
       )
-        label #{ __("Enter a name") }
+        label #{ __("Name of data asset") }
         input.form-control(
           type="text"
           name="name"
@@ -24,7 +24,7 @@ form(name="step.form", novalidate)
       .form-group(
         ng-class="{ 'has-error' : createForm.hasError(step.form.version) }"
       )
-        label #{ __("Enter a version") }
+        label #{ __("Version") }
         input.form-control(
           type="text"
           name="version"
@@ -43,7 +43,7 @@ form(name="step.form", novalidate)
       .form-group(
         ng-class="{ 'has-error' : createForm.hasError(step.form.brand) }"
       )
-        label #{ __("Enter a brand") }
+        label #{ __("Owner") }
         input.form-control(
           type="text"
           name="brand"
@@ -76,9 +76,52 @@ form(name="step.form", novalidate)
     //      span(ng-message="required") #{ __("This field is required.") }
   .form-group
     label
-      span #{ __("Enter a description") }
+      span #{ __("Description") }
       small.text-muted (#{ __("optional") })
     textarea.form-control(rows="3", name="description", ng-model="createVM.data.description")
+  .row
+    .col-sm-8
+      label
+        span #{ __("Add picture") }
+    .col-sm-12
+      .thumbnail.thumbnail-lg
+        img(no-image, ng-src="{{ createVM.data.attachment[0].url }}")
+  .row
+    .col-sm-4
+      label #{ __("How to provide?") }
+      select.form-control(ng-model="createVM.pictureFormat")
+        option(value="url") #{ __("Include picture URL") }
+        option(value="file") #{ __("Upload picture") }
+
+    .col-sm-8(ng-if="createVM.pictureFormat == 'url'")
+      .form-group(
+        ng-class="{ 'has-error': createForm.hasError(step.form.picture) }"
+      )
+        label #{ __("Include picture URL") }
+        input.form-control(
+          type="url"
+          name="picture"
+          ng-model="createVM.data.attachment[0].url"
+        )
+        .help-block(
+          ng-messages="step.form.picture.$error"
+          ng-show="createForm.hasError(step.form.picture)"
+        )
+          span(ng-message="url") #{ __("This field must be a valid URL.") }
+
+    .col-sm-8(ng-if="createVM.pictureFormat == 'file'", ng-init="createVM.loadPictureController()")
+      .form-group(
+        ng-class="{ 'has-error': createForm.hasError(step.form.pictureFile) }"
+      )
+        label #{ __("Upload picture") }
+        input.form-control(type="file", name="pictureFile" file-model="createVM.pictureFile")
+        .help-block(
+          ng-messages="step.form.pictureFile.$error"
+          ng-show="createForm.hasError(step.form.pictureFile)"
+        )
+          span(ng-message="format") #{ __("The provided file is not a valid image") }
+          span(ng-message="upload") #{ __("The provided image could not be uploaded") }
+    
   .form-group.text-right
     a.btn.btn-default.z-depth-1(ng-click="createForm.nextStep($index + 1, createVM.stepList[$index + 1])", ng-disabled="!step.form.$valid")
       span.item-text #{ __("Next") }

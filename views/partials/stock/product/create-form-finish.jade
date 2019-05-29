@@ -29,7 +29,7 @@ form(name="step.form", novalidate)
   .row
     .col-sm-8
       .form-group
-        label #{ __("Brand") }
+        label #{ __("Owner") }
         input.form-control(
           type="text"
           name="brand"
@@ -80,7 +80,7 @@ form(name="step.form", novalidate)
   .row(ng-if="createVM.data.attachment[0].url")
     .col-sm-12
       .h4.text-dark-secondary
-        strong #{ __("Attachments") }
+        strong #{ __("Attachmen") }
       .form-group
         label #{ __("Picture URL") }
         input.form-control(
@@ -150,9 +150,16 @@ form(name="step.form", novalidate)
       textarea.form-control(rows="6", name="text", ng-model="createVM.license.terms.description", readonly)
 
   .form-group.text-right
-    a.btn.btn-warning(
-      ng-click="createVM.create()"
-      ng-disabled="!step.form.$valid || createVM.create.status === createVM.STATUS.PENDING"
-    )
-      span.item-icon.fa.fa-spin.fa-spinner(ng-if="createVM.create.status === createVM.STATUS.PENDING")
-      span.item-text #{ __("Create") }
+    .row
+      .col-sm-8
+        .text-left
+          a.btn.btn-default.z-depth-1(ng-click="createForm.nextStep($index - 1, createVM.stepList[$index - 1])")
+            span.item-text #{ __("Back") }
+      .col-sm-4  
+        .text-right   
+          a.btn.btn-warning(
+            ng-click="createVM.create()"
+            ng-disabled="!step.form.$valid || createVM.create.status === createVM.STATUS.PENDING"
+          )
+            span.item-icon.fa.fa-spin.fa-spinner(ng-if="createVM.create.status === createVM.STATUS.PENDING")
+            span.item-text #{ __("Create") }
