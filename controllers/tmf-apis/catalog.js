@@ -29,8 +29,8 @@ var async = require('async'),
     storeClient = require('./../../lib/store').storeClient,
     tmfUtils = require('./../../lib/tmfUtils'),
     url = require('url'),
-    utils = require('./../../lib/utils');
-
+    utils = require('../../lib/utils');
+    //fill_index = require('./../../fill_indexes.js')
 
 var LIFE_CYCLE = 'lifecycleStatus';
 
@@ -1033,6 +1033,22 @@ var catalog = (function() {
         }
         callback(null);
     };
+
+    var validateDelete = function(req, callback){
+        //If the request is for offering, check if it is being used by any user
+        if(offeringsPattern.test(req.apiUrl)){
+            inventory = fill_index.getInventory();
+            urlArray = req.apiUrl.split();
+            offerId = urlArray[urlArray.length-1]
+        }
+        else if(!categoryPattern){
+            return callback({
+                status: 405,
+                message: 'The HTTP method DELETE is not allowed in the accessed API'
+            });
+        }
+        callback(null);
+    }
 
     //////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////// INDEXES ///////////////////////////////////////////
