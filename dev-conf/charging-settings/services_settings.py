@@ -1,5 +1,3 @@
-from __future__ import unicode_literals
-
 VERIFY_REQUESTS = True
 
 SITE = 'http://proxy.docker:8004/'

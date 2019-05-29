@@ -29,7 +29,7 @@ services:
       - MYSQL_DATABASE=RSS
 
   charging:
-    image: digicatsynch/charging7:latest
+    image: digicatsynch/charging7:ci-25
     restart: always
     links:
       - mongo
