@@ -386,23 +386,23 @@
             if (typeList.length) {
                 // Initialize digital asset characteristics
                 vm.digitalChars.push(ProductSpec.createCharacteristic({
-                    name: "Asset type",
-                    description: "Type of the digital asset described in this product specification"
+                    name: "Data asset type",
+                    description: "Type of this data asset"
                 }));
                 vm.digitalChars[0].productSpecCharacteristicValue.push(ProductSpec.createCharacteristicValue({
                     default: true,
                     value: typeList[0].name
                 }));
                 vm.digitalChars.push(ProductSpec.createCharacteristic({
-                    name: "Media type",
-                    description: "Media type of the digital asset described in this product specification"
+                    name: "Data format",
+                    description: "Data format of this data asset"
                 }));
                 vm.digitalChars[1].productSpecCharacteristicValue.push(ProductSpec.createCharacteristicValue({
                     default: true
                 }));
                 vm.digitalChars.push(ProductSpec.createCharacteristic({
-                    name: "Location",
-                    description: "URL pointing to the digital asset described in this product specification"
+                    name: "Endpoint URL",
+                    description: "URL pointing to this data asset"
                 }));
                 vm.digitalChars[2].productSpecCharacteristicValue.push(ProductSpec.createCharacteristicValue({
                     default: true
@@ -494,7 +494,7 @@
             // Initialize digital asset characteristics
             vm.isDigital = true;
             vm.digitalChars.push(ProductSpec.createCharacteristic({
-                name: "Asset type",
+                name: "Data asset type",
                 description: "Type of the digital asset described in this product specification"
             }));
             vm.digitalChars[0].productSpecCharacteristicValue = [];
@@ -503,14 +503,14 @@
                 value: "Basic Service"
             }));
             vm.digitalChars.push(ProductSpec.createCharacteristic({
-                name: "Media type",
+                name: "Data format",
                 description: "Media type of the digital asset described in this product specification"
             }));
             vm.digitalChars[1].productSpecCharacteristicValue.push(ProductSpec.createCharacteristicValue({
                 default: true
             }));
             vm.digitalChars.push(ProductSpec.createCharacteristic({
-                name: "Location",
+                name: "Endpoint URL",
                 description: "URL pointing to the digital asset described in this product specification"
             }));
         }
@@ -759,7 +759,7 @@
             if (typeList.length) {
                 // Initialize digital asset characteristics
                 vm.digitalChars.push(ProductSpec.createCharacteristic({
-                    name: "Asset type",
+                    name: "Data asset type",
                     description: "Type of the data source described in this product specification"
                 }));
                 vm.digitalChars[0].productSpecCharacteristicValue.push(ProductSpec.createCharacteristicValue({
@@ -767,14 +767,14 @@
                     value: typeList[0].name
                 }));
                 vm.digitalChars.push(ProductSpec.createCharacteristic({
-                    name: "Media type",
+                    name: "Data format",
                     description: "Media type of the data source described in this product specification"
                 }));
                 vm.digitalChars[1].productSpecCharacteristicValue.push(ProductSpec.createCharacteristicValue({
                     default: true
                 }));
                 vm.digitalChars.push(ProductSpec.createCharacteristic({
-                    name: "Location",
+                    name: "Endpoint URL",
                     description: "URL pointing to the data source described in this product specification"
                 }));
                 vm.digitalChars[2].productSpecCharacteristicValue.push(ProductSpec.createCharacteristicValue({
@@ -1073,14 +1073,14 @@
                     
                     if (fiware_service != "") {
                         var fiware_serviceChar = ProductSpec.createCharacteristic({
-                            name: 'Fiware-Service',
-                            description: 'Fiware-Service of the data source described in this product specification'
+                            name: 'Fiware-Service (HTTP header to support multitenancy)',
+                            //description: 'Fiware-Service of the data source described in this product specification'
                         });
                     }
                     else{
                         var fiware_serviceChar = ProductSpec.createCharacteristic({
-                            name: 'Fiware-Service',
-                            description: 'Fiware-Service not required for the data source described in this product specification'
+                            name: 'Fiware-Service (HTTP header to support multitenancy)',
+                            //description: 'Fiware-Service not required for the data source described in this product specification'
                         });
                     }
 

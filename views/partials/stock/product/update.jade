@@ -18,7 +18,7 @@
             li(ui-sref-active-eq="active")
               a(ui-sref="stock.product.update")
                 span.item-icon.fa.fa-newspaper-o
-                span.item-text.hidden-xs #{ __("About") }
+                span.item-text.hidden-xs #{ __("General") }
             li(ui-sref-active-eq="active", ng-show="updateVM.item.isBundle")
               a(ui-sref="stock.product.update.bundled")
                 span.item-icon.fa.fa-file
@@ -26,8 +26,8 @@
             li(ui-sref-active-eq="active")
               a(ui-sref="stock.product.update.characteristic")
                 span.item-icon.fa.fa-gears
-                span.item-text.hidden-xs #{ __("Characteristics") }
-            li(ui-sref-active-eq="active")
+                span.item-text.hidden-xs #{ __("Access information") }
+            //li(ui-sref-active-eq="active")
               a(ui-sref="stock.product.update.attachment")
                 span.item-icon.fa.fa-paperclip
                 span.item-text.hidden-xs #{ __("Attachments") }

@@ -1,12 +1,12 @@
 form(name="updateVM.form", novalidate)
-  .h4.text-dark-secondary
+  //.h4.text-dark-secondary
     strong #{ __("General") }
   .row
     .col-sm-8
       .form-group(
         ng-class="{ 'has-error': updateForm.hasError(updateVM.form.name) }"
       )
-        label #{ __("Name") }
+        label #{ __("Name of data asset") }
         input.form-control(
           type="text"
           name="name"
@@ -53,7 +53,7 @@ form(name="updateVM.form", novalidate)
       .form-group(
         ng-class="{ 'has-error' : updateForm.hasError(updateVM.form.brand) }"
       )
-        label #{ __("Brand") }
+        label #{ __("Owner") }
         input.form-control(
           type="text"
           name="brand"
