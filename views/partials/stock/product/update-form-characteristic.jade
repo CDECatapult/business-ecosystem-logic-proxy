@@ -3,9 +3,9 @@
     .panel.panel-default.z-depth-1(ng-repeat="characteristic in updateVM.item.productSpecCharacteristic", ng-init="characteristicIndex = $index")
       .panel-heading
         .h4
-          strong {{ characteristic.name }}
+          strong {{ characteristic.name === 'Asset type' ? 'Data asset type' : characteristic.name === 'Media type' ? 'Data format' : characteristic.name === 'Location' ? 'Endpoint URL' : characteristic.name === 'Fiware-Service' ? 'Fiware-Service (tenant name)' : characteristic.name }}      
       .panel-body
-        p.text-dark-secondary {{ characteristic.description ? characteristic.description : '#{ __("No description provided.") }' }}
+        p.text-dark-secondary {{ characteristic.name === 'Fiware-Service' ? 'HTTP header to support multitenancy. The header needs to be added to the request to identify the service/tenant.' : '' }}
         .form-group
           .item-radio.readonly(ng-repeat="characteristicValue in characteristic.productSpecCharacteristicValue")
             label.radio
