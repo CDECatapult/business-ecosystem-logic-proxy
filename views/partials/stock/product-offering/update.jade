@@ -16,7 +16,7 @@
             li(ui-sref-active-eq="active")
               a(ui-sref="stock.offering.update")
                 span.item-icon.fa.fa-newspaper-o
-                span.item-text.hidden-xs #{ __("About") }
+                span.item-text.hidden-xs #{ __("General") }
             li(ui-sref-active-eq="active", ng-show="updateVM.item.isBundle")
               a(ui-sref="stock.offering.update.bundled")
                 span.item-icon.fa.fa-cube
@@ -25,7 +25,7 @@
               a(ui-sref="stock.offering.update.priceplan")
                 span.item-icon.fa.fa-credit-card
                 span.item-text.hidden-xs #{ __("Agreements") }
-            li(ui-sref-active-eq="active")
+            //li(ui-sref-active-eq="active")
               a(ui-sref="stock.offering.update.category")
                 span.item-icon.fa.fa-tag
                 span.item-text.hidden-xs #{ __("Categories") }

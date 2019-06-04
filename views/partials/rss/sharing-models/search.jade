@@ -11,10 +11,10 @@ ui-view
             table.table.table-bordered.table-hover.table-selectable
               thead
                 tr
-                  th #{ __("Product Class") }
-                  th #{ __("Platform Percentage") }
-                  th #{ __("Provider Percentage") }
-                  th Nº #{ __("Stakeholders") }
+                  th #{ __("Name") }
+                  th #{ __("Platform revenue (%)") }
+                  th #{ __("Data provider revenue (%)") }
+                  th Nº #{ __("stakeholders") }
               tbody
                 tr(ng-repeat="rsModel in searchVM.list",
                   ui-sref="rss.models.update({ productClass: rsModel.productClass })",

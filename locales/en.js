@@ -123,7 +123,7 @@
     "Appointment": "Appointment",
     "No appointment included.": "No appointment included.",
     "Requested": "Requested",
-    "Received": "Recibidas",
+    "Received": "Received",
     "No Data orders found.": "No Data orders found.",
     "Extra Info": "Extra Info",
     "Product Name": "Product Name",

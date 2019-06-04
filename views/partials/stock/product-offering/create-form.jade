@@ -4,7 +4,7 @@ form(name="step.form", novalidate)
       .form-group(
         ng-class="{ 'has-error': createVM.hasFieldError(step.form.name) }"
       )
-        label #{ __("Enter a name") }
+        label #{ __("Name of data offering") }
         input.form-control(
           type="text"
           name="name"
@@ -23,7 +23,7 @@ form(name="step.form", novalidate)
       .form-group(
         ng-class="{ 'has-error' : createVM.hasFieldError(step.form.version) }"
       )
-        label #{ __("Enter a version") }
+        label #{ __("Version") }
         input.form-control(
           type="text"
           name="version"
@@ -39,13 +39,13 @@ form(name="step.form", novalidate)
           span(ng-message="pattern") #{ __("Invalid version format") }
   .form-group
     label
-      span #{ __("Enter a description") }
+      span #{ __("Description") }
       small.text-muted (#{ __("optional") })
     textarea.form-control(rows="3", name="description", ng-model="createVM.data.description")
   .form-group
     label
-      span #{ __("Enter places") }
-      small.text-muted (#{ __("optional") })
+      span #{ __("Cities") }
+      //small.text-muted (#{ __("optional") })
     .input-group
       input.form-control(
         type="text"
