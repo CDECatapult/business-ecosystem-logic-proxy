@@ -2,7 +2,7 @@ form(name="form" novalidate)
   .row
     .col-md-8
       .form-group(ng-class="{ 'has-error': vm.hasFieldError(form.name) }")
-        label #{ __("Enter a name") }
+        label #{ __("Name of price plan") }
         input.form-control(
           type="text"
           name="name"
@@ -27,7 +27,7 @@ form(name="form" novalidate)
   .row
     .col-md-8
       .form-group(ng-class="{ 'has-error': vm.hasFieldError(form.taxIncludedAmount) }")
-        label #{ __("Enter a price") }
+        label #{ __("Price") }
         .input-group
           input.form-control(
             type="number"
@@ -76,6 +76,6 @@ form(name="form" novalidate)
     .col-md-12
       .form-group
         label
-          span #{ __("Enter a description") }
+          span #{ __("Description") }
           small.text-muted (#{ __("optional") })
         textarea.form-control(name="description" rows="2" ng-model="pricePlan.description")

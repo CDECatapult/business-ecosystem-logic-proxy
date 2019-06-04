@@ -33,8 +33,8 @@ form(name="step.form", novalidate)
                   //th #{ __("Status") }
                   th #{ __("Name") }
                   //th #{ __("ID") }
-                  th #{ __("Brand") }
-                  th #{ __("Type") }
+                  th #{ __("Owner") }
+                  //th #{ __("Type") }
                   th #{ __("Last Updated") }
               tbody
                 tr(ng-repeat="product in searchVM.list",
@@ -47,13 +47,20 @@ form(name="step.form", novalidate)
                   th {{ product.name }}
                   //td {{ product.productNumber }}
                   td {{ product.brand }}
-                  td
+                  //td
                     span.label(ng-class="product.isBundle ? 'label-bundle' : 'label-single'")
                       | {{ product.isBundle ? '#{ __("Bundle") }' : '#{ __("Single") }' }}
                   td
                     time(am-time-ago="product.lastUpdate")
         pager(controller="searchVM", size="12", max="12" ng-init="searchVM.setFilters({status: STATUS.ACTIVE + ',' + STATUS.LAUNCHED})")
 
-  .form-group.text-right
-    a.btn.btn-default.z-depth-1(ng-click="createForm.nextStep($index + 1, createVM.stepList[$index + 1])", ng-disabled="!step.form.$valid")
-      span.item-text #{ __("Next") }
+  .form-group
+    .row
+      .col-sm-8
+        .text-left
+          a.btn.btn-default.z-depth-1(ng-click="createForm.nextStep($index - 1, createVM.stepList[$index - 1])")
+            span.item-text #{ __("Back") }
+      .col-sm-4
+        .text-right
+          a.btn.btn-default.z-depth-1(ng-click="createForm.nextStep($index + 1, createVM.stepList[$index + 1])", ng-disabled="!step.form.$valid")
+            span.item-text #{ __("Next") }

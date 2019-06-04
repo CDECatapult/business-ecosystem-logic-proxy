@@ -9,13 +9,13 @@
           dd.text-dark-secondary(ng-if="term.type == 'Custom'") {{ term.description }}
           dd(ng-if="term.type == 'Standard'") <a ng-href="{{term.description}}" target="_blank"> {{ term.description }} </a>
       .col-sm-12(ng-if="detailVM.item.productOfferingTerm[0].type === 'None'")
-        .alert.alert-info.text-center #{ __("No License included.") }
+        .alert.alert-info.text-center #{ __("No License defined.") }
 .panel.panel-default.z-depth-1
   .panel-body
     .row
       .col-sm-12(ng-if="detailVM.sla.metrics.length")
         .h4
-          strong #{ __("Service level agreeements") }
+          strong #{ __("Service Level Agreeements") }
         dl(ng-repeat="metric in detailVM.sla.metrics")   
           //- dt #{ __("Type") }
           //- dt {{ metric.type }}  
@@ -26,7 +26,7 @@
           dd.text-dark-secondary(ng-if="metric.type == 'Delay'") {{ metric.type + ": " + metric.threshold + " " + metric.unitMeasure }}
           dd.text-dark-secondary(ng-if="metric.type == 'Delay'") <i>{{ metric.description }}</i>
       .col-sm-12(ng-if="!detailVM.sla.metrics.length")
-        .alert.alert-info.text-center #{ __("No SLA included.") }
+        .alert.alert-info.text-center #{ __("No Service Level Agreements defined.") }
 .panel.panel-default.z-depth-1
   .panel-body
     .row
@@ -34,4 +34,4 @@
         .container-flex
           div(offering-priceplan, ng-repeat="priceplan in detailVM.item.productOfferingPrice")
       .col-sm-12(ng-if="!detailVM.item.productOfferingPrice.length")
-        .alert.alert-info.text-center #{ __("No price plans included.") }
+        .alert.alert-info.text-center #{ __("No price plans defined.") }
