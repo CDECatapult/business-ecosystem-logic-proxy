@@ -805,17 +805,17 @@
                 templateUrl: 'stock/product/create/bundle'
             },*/
             {
-                title: 'Assets',
+                title: 'Access information',
                 templateUrl: 'stock/product/create/assets'
             },
-            {
+            /*{
                 title: 'Characteristics',
                 templateUrl: 'stock/product/create/characteristics'
-            },
-            {
+            },*/
+            /*{
                 title: 'Attachments',
                 templateUrl: 'stock/product/create/attachments'
-            },
+            },*/
 /*            {
                 title: 'Relationships',
                 templateUrl: 'stock/product/create/relationships'

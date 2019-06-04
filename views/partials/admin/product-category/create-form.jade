@@ -1,6 +1,6 @@
 form(name="step.form", novalidate)
   .form-group(ng-class="{ 'has-error': createForm.hasError(step.form.name) }")
-    label #{ __("Enter a name") }
+    label #{ __("Name of data asset") }
     input.form-control(
       type="text"
       name="name"
