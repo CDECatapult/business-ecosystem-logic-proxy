@@ -4,7 +4,7 @@ form(name="updateVM.form", novalidate)
       .form-group(
         ng-class="{ 'has-error': updateForm.hasError(updateVM.form.productClass) }"
       )
-        label #{ __("Product class") }
+        label #{ __("Name of the model") }
         input.form-control(
           type="text"
           name="productClass"
@@ -22,7 +22,7 @@ form(name="updateVM.form", novalidate)
   .row
     .col-sm-6
       .form-group
-        label #{ __("Platform percentage") }
+        label #{ __("Platform revenue (%)") }
           .input-group
             input.form-control(
               type="text"
@@ -34,7 +34,7 @@ form(name="updateVM.form", novalidate)
       .form-group(
         ng-class="{ 'has-error' : updateForm.hasError(updateVM.form.providerValue) }"
       )
-        label #{ __("Provider percentage") }
+        label #{ __("Data provider (%)") }
         .input-group
           input.form-control(
             type="number"
