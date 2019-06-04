@@ -5,11 +5,11 @@ form(name="form" novalidate)
         label #{ __("Choose a metric") }
         .dropdown
           a.btn.btn-block.btn-default.dropdown-toggle.z-depth-0(data-toggle="dropdown")
-            span.item-text {{ vm.metric.type | uppercase }}
+            span.item-text {{ vm.metric.type }}
             span.item-icon.fa.fa-caret-down
           .dropdown-menu.dropdown-menu-right.z-depth-2
             a.dropdown-menu-item(ng-repeat="(key, value) in vm.METRICS" ng-if="vm.metricsUsed.indexOf(value)<0" ng-click="vm.metric.setType(key)")
-              span.item-text{{ value | uppercase }}
+              span.item-text{{ value }}
   .row(ng-if="vm.metric.type !== ''")
     .col-md-12
       .form-group
@@ -29,9 +29,10 @@ form(name="form" novalidate)
           )
           .help-block(ng-messages="form.threshold.$error" ng-show="vm.hasFieldError(form.threshold)")
             span(ng-message="required") #{ __("This field is required.") }
+          span.input-group-addon /
           .input-group-btn
             a.btn.btn-default.dropdown-toggle.z-depth-0(data-toggle="dropdown")
-              span.item-text {{ vm.metric.unitMeasure | uppercase }}
+              span.item-text {{ vm.metric.unitMeasure }}
               span.item-icon.fa.fa-caret-down
             .dropdown-menu.dropdown-menu-right.z-depth-2
               a.dropdown-menu-item(ng-repeat="(key, value) in vm.TIMERANGE" ng-click="vm.metric.setUnit(key)")
@@ -50,7 +51,7 @@ form(name="form" novalidate)
           )
           .input-group-btn
             a.btn.btn-default.dropdown-toggle.z-depth-0(data-toggle="dropdown")
-              span.item-text {{ vm.metric.unitMeasure | uppercase }}
+              span.item-text {{ vm.metric.unitMeasure }}
               span.item-icon.fa.fa-caret-down
             .dropdown-menu.dropdown-menu-right.z-depth-2
               a.dropdown-menu-item(ng-repeat="(key, value) in vm.UNITS" ng-click="vm.metric.setUnit(key)")
@@ -69,7 +70,7 @@ form(name="form" novalidate)
           )
           .input-group-btn
             a.btn.btn-default.dropdown-toggle.z-depth-0(data-toggle="dropdown")
-              span.item-text {{ vm.metric.unitMeasure | uppercase }}
+              span.item-text {{ vm.metric.unitMeasure }}
               span.item-icon.fa.fa-caret-down
             .dropdown-menu.dropdown-menu-right.z-depth-2
               a.dropdown-menu-item(ng-repeat="(key, value) in vm.UNITS" ng-click="vm.metric.setUnit(key)")

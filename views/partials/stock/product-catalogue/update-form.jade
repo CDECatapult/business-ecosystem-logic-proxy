@@ -1,10 +1,8 @@
 form(name="updateVM.form", novalidate)
-  .h4.text-dark-secondary
-    strong #{ __("General") }
   .form-group(
     ng-class="{ 'has-error': updateForm.hasError(updateVM.form.name) }"
   )
-    label #{ __("Name") }
+    label #{ __("Name of the catalog") }
     input.form-control(
       type="text"
       name="name"

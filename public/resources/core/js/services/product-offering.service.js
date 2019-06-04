@@ -99,9 +99,9 @@
                 MONTH: 'month'
             },
             UNITS: {
-                MSEC: 'ms',
-                SEC: 's',
-                MIN: 'min'
+                MSEC: 'milliseconds',
+                SEC: 'seconds',
+                MIN: 'minutes'
             }
         };
 

@@ -887,6 +887,7 @@ a.dropdown-menu-item:hover {
 .nav-pills.nav-router > li.active > a.bg-view1:focus {
     color: rgb(255, 255, 255);
     background-color: rgb(025, 060, 110);
+    /*background-color: rgb(070, 185, 200);*/
 }
 
 .nav-pills.nav-router > li > a.bg-view2 > .item-icon-container,
@@ -895,8 +896,8 @@ a.dropdown-menu-item:hover {
 .nav-pills.nav-router > li.active > a.bg-view2,
 .nav-pills.nav-router > li.active > a.bg-view2:hover,
 .nav-pills.nav-router > li.active > a.bg-view2:focus {
-    color: rgb(255, 255, 255);
-    background-color: rgb(070, 185, 200);
+    color: rgb(025, 060, 110);
+    background-color: #F5F5F5;
 }
 
 .nav-pills.nav-router > li > a.bg-view3 > .item-icon-container,
@@ -905,8 +906,8 @@ a.dropdown-menu-item:hover {
 .nav-pills.nav-router > li.active > a.bg-view3,
 .nav-pills.nav-router > li.active > a.bg-view3:hover,
 .nav-pills.nav-router > li.active > a.bg-view3:focus {
-    color: rgb(255, 255, 255);
-    background-color: rgb(255, 125, 45);
+    color: rgb(025, 060, 110);
+    background-color: #F5F5F5;
 }
 
 .nav-pills.nav-router > li > a.bg-view4 > .item-icon-container,
@@ -916,7 +917,7 @@ a.dropdown-menu-item:hover {
 .nav-pills.nav-router > li.active > a.bg-view4:hover,
 .nav-pills.nav-router > li.active > a.bg-view4:focus {
     color: rgb(025, 060, 110);
-    background-color: rgb(255, 230, 22);
+    background-color: #F5F5F5;
 }
 
 /* ===================================================================================
@@ -2214,3 +2215,13 @@ a.thumbnail:focus {
     margin-bottom: 5px;
     margin-top: 5px;
 }
+
+/* ===================================================================================
+ * Digital Catapult
+ * =================================================================================== */
+
+.same-height-columns-container {
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+  }
