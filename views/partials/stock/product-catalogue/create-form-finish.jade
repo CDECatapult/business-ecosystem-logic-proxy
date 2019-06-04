@@ -22,10 +22,17 @@ form(name="step.form", novalidate)
       ng-model="createVM.data.description"
       readonly
     )
-  .form-group.text-right
-    a.btn.btn-warning(
-      ng-click="createVM.create()"
-      ng-disabled="!step.form.$valid || createVM.create.status === createVM.STATUS.PENDING"
-    )
-      span.item-icon.fa.fa-spin.fa-spinner(ng-if="createVM.create.status === createVM.STATUS.PENDING")
-      span.item-text #{ __("Create") }
+  .form-group
+    .row
+      .col-sm-6
+        .text-left
+          a.btn.btn-default.z-depth-1(ng-click="createForm.nextStep($index - 1, createVM.stepList[$index - 1])")
+            span.item-text #{ __("Back") }
+      .col-sm-6  
+        .text-right   
+          a.btn.btn-warning(
+            ng-click="createVM.create()"
+            ng-disabled="!step.form.$valid || createVM.create.status === createVM.STATUS.PENDING"
+          )
+            span.item-icon.fa.fa-spin.fa-spinner(ng-if="createVM.create.status === createVM.STATUS.PENDING")
+            span.item-text #{ __("Create") }

@@ -39,7 +39,7 @@
                 ng-model="updateVM.loggedUser.email"
                 readonly
               )
-    .a(ng-if="!updateVM.isOrganization()")
+    //.a(ng-if="!updateVM.isOrganization()")
       include ./update-profile.jade
-    .a(ng-if="updateVM.isOrganization()")
+    //.a(ng-if="updateVM.isOrganization()")
       include ./update-profile-org.jade
