@@ -328,16 +328,16 @@
             if (collection.length) {
                 return ProductSpec.search(searchParams);
             } else {
-                return $q.reject('Sorry! In order to create a product offering, you must first create at least one product catalogue.');
+                return $q.reject('Sorry! In order to create a data offering, you must first create at least one product catalogue.');
             }
         }).then(function (collection) {
             if (!collection.length) {
-                return $q.reject('Sorry! In order to create a product offering, you must first create at least one product specification.');
+                return $q.reject('Sorry! In order to create a data offering, you must first create at least one product specification.');
             }
         });
 
         searchPromise.catch(function (response) {
-            vm.errorMessage = Utils.parseError(response, 'Unexpected error trying to retrieve Data source specifications and catalogues.');
+            vm.errorMessage = Utils.parseError(response, 'Unexpected error trying to retrieve data assets and catalogs.');
         });
 
         Object.defineProperty(vm, 'status', {

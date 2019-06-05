@@ -386,7 +386,7 @@
             if (typeList.length) {
                 // Initialize digital asset characteristics
                 vm.digitalChars.push(ProductSpec.createCharacteristic({
-                    name: "Asset Type",
+                    name: "Data asset type",
                     description: "Type of this data asset"
                 }));
                 vm.digitalChars[0].productSpecCharacteristicValue.push(ProductSpec.createCharacteristicValue({
@@ -394,14 +394,14 @@
                     value: typeList[0].name
                 }));
                 vm.digitalChars.push(ProductSpec.createCharacteristic({
-                    name: "Media Type",
+                    name: "Data format",
                     description: "Data format of this data asset"
                 }));
                 vm.digitalChars[1].productSpecCharacteristicValue.push(ProductSpec.createCharacteristicValue({
                     default: true
                 }));
                 vm.digitalChars.push(ProductSpec.createCharacteristic({
-                    name: "Location",
+                    name: "Endpoint URL",
                     description: "URL pointing to this data asset"
                 }));
                 vm.digitalChars[2].productSpecCharacteristicValue.push(ProductSpec.createCharacteristicValue({
