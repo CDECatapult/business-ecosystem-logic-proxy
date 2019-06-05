@@ -32,7 +32,7 @@ services:
     image: digicatsynch/charging7:latest
     restart: always
     links:
-       - mongo
+      - mongo
     depends_on:
       - mongo
       - apis
