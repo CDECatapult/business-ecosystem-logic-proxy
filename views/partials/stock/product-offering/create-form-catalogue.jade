@@ -28,7 +28,7 @@ form(name="step.form", novalidate)
               tr
                 //th #{ __("Status") }
                 th #{ __("Name") }
-                th #{ __("Role") }
+                //th #{ __("Role") }
                 th #{ __("Last Updated") }
             tbody
               tr(ng-repeat="catalogue in searchVM.list", ng-class="{ active: createVM.catalogue.id == catalogue.id }", ng-click="createVM.setCatalogue(catalogue)")
@@ -37,7 +37,7 @@ form(name="step.form", novalidate)
                 //    span.item-icon
                 //    span.item-text {{ catalogue.lifecycleStatus }}
                 th {{ catalogue.name }}
-                td {{ catalogue.getRoleOf(user.id) }}
+                //td {{ catalogue.getRoleOf(user.id) }}
                 td
                   time(am-time-ago="catalogue.lastUpdate")
       pager(controller="searchVM", size="12", max="12")
