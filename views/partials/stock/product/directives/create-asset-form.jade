@@ -6,14 +6,14 @@ div(ng-controller="AssetController as assetVM")
           .form-group(ng-init="assetVM.setForm(assetForm)")
             .row
               .col-sm-8
-                label #{ __("Digital Asset Type") }
+                label #{ __("Data asset type") }
                 select.form-control(name="asset", ng-model="assetVM.digitalChars[0].productSpecCharacteristicValue[0].value", ng-change="assetVM.setCurrentType()")
                   option(ng-repeat="asset in assetVM.assetTypes", value="{{ asset.name }}") {{ asset.name }}
-              .col-sm-4
-                label #{ __("How to provide?") }
-                select.form-control(ng-model="assetVM.currFormat", ng-options="format for format in assetVM.currentType.formats")
+              //.col-sm-4
+              //  label #{ __("How to provide?") }
+              //  select.form-control(ng-model="assetVM.currFormat", ng-options="format for format in assetVM.currentType.formats")
           .form-group(ng-if="assetVM.isSelected('URL')")
-            label #{ __("Asset URL") }
+            label #{ __("Endpoint URL") }
             .form-group(
               ng-class="{ 'has-error': assetFormCtl.hasError(assetForm.url) }"
             )
@@ -48,7 +48,7 @@ div(ng-controller="AssetController as assetVM")
               )
                 span(ng-message="requiredFile") #{ __("This field is required.") }
           .form-group
-            label #{ __("Media Type") }
+            label #{ __("Data format") }
             div(ng-if="!assetVM.currentType.mediaTypes.length" ng-init="assetVM.initMediaType()")
               .form-group(
                 ng-class="{ 'has-error': assetFormCtl.hasError(assetForm.mediaType) }"

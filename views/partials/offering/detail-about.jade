@@ -10,33 +10,34 @@
     .row
       .col-md-12
         dl
+          dt #{ __("Description") }
           dd.text-dark-secondary.text-preline {{ detailVM.item.description ? detailVM.item.description : '#{ __("No description provided.") }' }}
 
     .row
       .col-md-12
-        .h4.text-dark-secondary
-          strong #{ __("Extra Info") }
     .row
       .col-md-6
         dl
-          dt #{ __("Offering Version") }
+          dt #{ __("Data offering version") }
           dd.text-dark-secondary {{ detailVM.item.version }}
       .col-md-6
         dl
-          dt #{ __("Last Updated") }
+          dt #{ __("Last update") }
           dd.text-dark-secondary
             time {{ detailVM.item.lastUpdate | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}
     .row(ng-if="!detailVM.item.isBundle")
       .col-md-6
         dl
-          dt #{ __("Product Name") }
+          dt #{ __("Data asset") }
           dd.text-dark-secondary {{ detailVM.item.productSpecification.name }}
-          dt #{ __("Brand") }
-          dd.text-dark-secondary {{ detailVM.item.productSpecification.brand }}
       .col-md-6
         dl
-          dt #{ __("Product Version") }
+          dt #{ __("Data asset version") }
           dd.text-dark-secondary {{ detailVM.item.productSpecification.version }}
+      .col-md-12
+        dl
+          dt #{ __("Owner") }
+          dd.text-dark-secondary {{ detailVM.item.productSpecification.brand }}
           //dt #{ __("ID Number") }
           //dd.text-dark-secondary {{ detailVM.item.productSpecification.productNumber }}
     //- .row
@@ -64,13 +65,13 @@
                 .row
                   .col-md-6
                     dl
-                      dt #{ __("Product Name") }
+                      dt #{ __("Data asset") }
                       dd.text-dark-secondary {{ product.name }}
-                      dt #{ __("Brand") }
+                      dt #{ __("Owner") }
                       dd.text-dark-secondary {{ product.brand }}
                   .col-md-6
                     dl
-                      dt #{ __("Product Version") }
+                      dt #{ __("Data asset version") }
                       dd.text-dark-secondary {{ product.version }}
-                      dt #{ __("ID Number") }
-                      dd.text-dark-secondary {{ product.productNumber }}
+                      //dt #{ __("ID Number") }
+                      //dd.text-dark-secondary {{ product.productNumber }}

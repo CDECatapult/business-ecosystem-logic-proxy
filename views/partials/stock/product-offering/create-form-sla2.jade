@@ -3,10 +3,10 @@
     sla-table(controller="createVM" data="createVM.sla")
   .col-xs-12(ng-if="!createVM.sla.metrics.length")
     .alert.alert-info.text-center
-      | #{ __("No SLA included.") }
+      | #{ __("No Service Level Agreements defined.") }
   .col-xs-12(ng-if="createVM.slaEnabled")
     .h4.text-dark-primary
-      strong #{ __("Define SLA") }
+      strong #{ __("Define Service Level Agreements") }
     hr
     sla-form(form="createVM.slaCreateForm" controller="createVM" data="createVM.sla")
     .form-group.text-left
@@ -17,8 +17,11 @@
     .form-group.text-left
       a.btn.btn-default.z-depth-1(ng-click="createVM.slaEnabled = true")
         span.item-text #{ __("Define new metric") }
-  .col-xs-12
-    form(name="step.form" novalidate)
-      .form-group.text-right
-        a.btn.btn-default.z-depth-1(ng-click="createForm.nextStep($index + 1, createVM.stepList[$index + 1])")
-          span.item-text #{ __("Next") }
+  .col-sm-6(style="padding-bottom: 1rem")
+    .text-left
+      a.btn.btn-default.z-depth-1(ng-click="createForm.nextStep($index - 1, createVM.stepList[$index - 1])")
+        span.item-text #{ __("Back") }
+  .col-sm-6
+    .text-right
+      a.btn.btn-default.z-depth-1(ng-click="createForm.nextStep($index + 1, createVM.stepList[$index + 1])")
+        span.item-text #{ __("Next") }

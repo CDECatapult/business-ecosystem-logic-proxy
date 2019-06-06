@@ -75,11 +75,11 @@
                 params['relatedParty.role'] = filters.role;
             }
 
-            if (filters.owner) {
+            /*if (filters.owner) {
                 params['relatedParty.id'] = User.loggedUser.currentUser.id;
             } else {
                 params['lifecycleStatus'] = LIFECYCLE_STATUS.LAUNCHED;
-            }
+            }*/
 
             if (filters.offset !== undefined) {
                 params['offset'] = filters.offset;

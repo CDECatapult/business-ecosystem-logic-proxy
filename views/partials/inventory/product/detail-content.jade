@@ -20,15 +20,15 @@
         li(ui-sref-active-eq="active")
           a(ui-sref="inventory.product.detail")
             span.item-icon.fa.fa-newspaper-o
-            span.item-text.hidden-xs #{ __("About") }
+            span.item-text.hidden-xs #{ __("General") }
         li(ui-sref-active-eq="active")
           a(ui-sref="inventory.product.detail.productCharacteristic")
             span.item-icon.fa.fa-gears
-            span.item-text.hidden-xs #{ __("Characteristics") }
+            span.item-text.hidden-xs #{ __("Access information") }
         li(ui-sref-active-eq="active")
           a(ui-sref="inventory.product.detail.access")
             span.item-icon.fa.fa-key
-            span.item-text.hidden-xs #{ __("Access") }
+            span.item-text.hidden-xs #{ __("Access token") }
         li(ui-sref-active-eq="active")
           a(ui-sref="inventory.product.detail.productPrice")
             span.item-icon.fa.fa-credit-card
@@ -45,12 +45,11 @@
     ui-view
       .panel.panel-default.z-depth-1
         .panel-body
-          .h4.text-dark-secondary
-            strong #{ __("General") }
           dl
             dt #{ __("Description") }
             dd.text-dark-secondary {{ detailVM.product.description ? detailVM.product.description : 'No description provided.' }}
-            dt #{ __("Offering") }
+            br
+            dt #{ __("Data offering") }
             dd
               a(ui-sref="offering.detail({ offeringId: detailVM.item.productOffering.id })", ui-sref-opts="{ inherit: false }") {{ detailVM.item.productOffering.name }}
             dt(ng-if="detailVM.item.startDate") #{ __("Start date") }

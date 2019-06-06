@@ -13,7 +13,6 @@ table.table.table-bordered(ng-if="createVM.data.stakeholders.length")
           span.item-icon.fa.fa-trash
 .alert.alert-info.text-center(ng-if="!createVM.data.stakeholders.length")
   | #{ __("No stakeholders included.") }
-
 .col-xs-12(ng-switch="createVM.providers.status")
   div(ng-switch-when="LOADED")
     .form-group.text-left
@@ -72,6 +71,16 @@ table.table.table-bordered(ng-if="createVM.data.stakeholders.length")
 form(name="step.form", novalidate)
   input(type="hidden", name="stakeholders", ng-model="createVM.data.stakeholders", field-array, limit-from="0", required)
 
-.form-group.text-right
+.form-group
+    .row
+      .col-sm-8
+        .text-left
+          a.btn.btn-default.z-depth-1(ng-click="createForm.nextStep($index - 1, createVM.stepList[$index - 1])")
+            span.item-text #{ __("Back") }
+      .col-sm-4
+        .text-right
+          a.btn.btn-default.z-depth-1(ng-click="createForm.nextStep($index + 1, createVM.stepList[$index + 1])", ng-disabled="!step.form.$valid")
+            span.item-text #{ __("Next") }
+//.form-group.text-right
   a.btn.btn-default.z-depth-1(ng-click="createForm.nextStep($index + 1, createVM.stepList[$index + 1])", ng-disabled="!step.form.$valid")
     span.item-text #{ __("Next") }

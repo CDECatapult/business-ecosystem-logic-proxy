@@ -6,9 +6,9 @@
       .panel.panel-default.z-depth-1(ng-repeat="characteristic in offering.productSpecification.productSpecCharacteristic")
         .panel-heading
           .h4
-            strong {{ characteristic.name }}
+            strong {{ characteristic.name === 'Asset type' ? 'Data asset type' : characteristic.name === 'Media type' ? 'Data format' : characteristic.name === 'Location' ? 'Endpoint URL' : characteristic.name === 'Fiware-Service' ? 'Fiware-Service (tenant name)' : characteristic.name}}
         .panel-body
-          p.text-dark-secondary {{ characteristic.description ? characteristic.description : '#{ __("No description provided.") }' }}
+          //p.text-dark-secondary {{ characteristic.description ? characteristic.description : '#{ __("No description provided.") }' }}
           .form-group
             p(ng-repeat="characteristicValue in characteristic.productSpecCharacteristicValue")
               span.fa.fa-fw(ng-class="detailVM.characteristicValueSelected(characteristic, characteristicValue, offering.id) ? 'fa-check-circle': 'fa-circle-o'")
@@ -31,4 +31,4 @@
                 span  {{ detailVM.formatCharacteristicValue(characteristic, characteristicValue) }}
 
   .col-xs-12(ng-if="!detailVM.item.productCharacteristic.length")
-    .alert.alert-info.text-center #{ __("No characteristics included.") }
+    .alert.alert-info.text-center #{ __("No access information included.") }

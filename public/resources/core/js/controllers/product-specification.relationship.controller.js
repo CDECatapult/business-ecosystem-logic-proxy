@@ -100,7 +100,7 @@
                     angular.copy(productList, vm.list);
                     vm.list.status = vm.STATUS.LOADED;
                 }, function (response) {
-                    vm.errorMessage = Utils.parseError(response, 'Unexpected error trying to retrieve Data source specifications.');
+                    vm.errorMessage = Utils.parseError(response, 'Unexpected error trying to retrieve data assets.');
                     vm.list.status = vm.STATUS.ERROR;
                 });
             }

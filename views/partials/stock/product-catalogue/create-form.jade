@@ -2,7 +2,7 @@ form(name="step.form", novalidate)
   .form-group(
     ng-class="{ 'has-error': createForm.hasError(step.form.name) }"
   )
-    label #{ __("Enter a name") }
+    label #{ __("Name of the catalog") }
     input.form-control(
       type="text"
       name="name"
@@ -20,7 +20,7 @@ form(name="step.form", novalidate)
       span(ng-message="unique") #{ __("This name is already taken.") }
   .form-group
     label
-      span #{ __("Enter a description") }
+      span #{ __("Description") }
       small.text-muted (#{ __("optional") })
     textarea.form-control(name="description", rows="3", ng-model="createVM.data.description")
   .form-group.text-right

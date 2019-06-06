@@ -184,12 +184,12 @@
                 title: 'General',
                 templateUrl: 'stock/product-offering/create/general'
             },
-            {
+            /*{
                 title: 'Bundle',
                 templateUrl: 'stock/product-offering/create/bundle'
-            },
+            },*/
             {
-                title: 'Data source spec.',
+                title: 'Data assets',
                 templateUrl: 'stock/product-offering/create/product'
             },/*
             {
@@ -197,13 +197,13 @@
                 templateUrl: 'stock/product-offering/create/product-bundle'
             },*/
             {
-                title: 'Catalogue',
+                title: 'Catalog',
                 templateUrl: 'stock/product-offering/create/catalogue'
             },
-            {
+            /*{
                 title: 'Category',
                 templateUrl: 'stock/product-offering/create/categories'
-            },
+            },*/
             {
                 title: 'License',
                 templateUrl: 'stock/product-offering/create/terms'
@@ -213,11 +213,11 @@
                 templateUrl: 'stock/product-offering/create/sla'
             },
             {
-                title: 'Price Plans',
+                title: 'Price plans',
                 templateUrl: 'stock/product-offering/create/priceplan'
             },
             {
-                title: 'RS Model',
+                title: 'Revenue sharing',
                 templateUrl: 'stock/product-offering/create/sharing'
             },
             {
@@ -328,16 +328,16 @@
             if (collection.length) {
                 return ProductSpec.search(searchParams);
             } else {
-                return $q.reject('Sorry! In order to create a product offering, you must first create at least one product catalogue.');
+                return $q.reject('Sorry! In order to create a data offering, you must first create at least one product catalogue.');
             }
         }).then(function (collection) {
             if (!collection.length) {
-                return $q.reject('Sorry! In order to create a product offering, you must first create at least one product specification.');
+                return $q.reject('Sorry! In order to create a data offering, you must first create at least one product specification.');
             }
         });
 
         searchPromise.catch(function (response) {
-            vm.errorMessage = Utils.parseError(response, 'Unexpected error trying to retrieve Data source specifications and catalogues.');
+            vm.errorMessage = Utils.parseError(response, 'Unexpected error trying to retrieve data assets and catalogs.');
         });
 
         Object.defineProperty(vm, 'status', {
