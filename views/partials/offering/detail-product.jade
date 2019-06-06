@@ -3,7 +3,7 @@
     .panel.panel-default.z-depth-1(ng-repeat="characteristic in detailVM.item.productSpecification.productSpecCharacteristic", ng-init="characteristicIndex = $index")
       .panel-heading
         .h4
-          strong {{ characteristic.name }}
+          strong {{ characteristic.name === 'Asset Type' ? 'Data asset type' : characteristic.name === 'Media Type' ? 'Data format' : characteristic.name === 'Location' ? 'Endpoint URL' : characteristic.name === 'Fiware-Service' ? 'Fiware-Service (tenant name)' : characteristic.name }}
       .panel-body
         p.text-dark-secondary.text-preline {{ characteristic.description ? characteristic.description : '#{ __("No description provided.") }' }}
         .form-group
