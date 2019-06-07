@@ -6,7 +6,7 @@
       .panel.panel-default.z-depth-1(ng-repeat="characteristic in offering.productSpecification.productSpecCharacteristic")
         .panel-heading
           .h4
-            strong {{ characteristic.name === 'Asset type' ? 'Data asset type' : characteristic.name === 'Media type' ? 'Data format' : characteristic.name === 'Location' ? 'Endpoint URL' : characteristic.name === 'Fiware-Service' ? 'Fiware-Service (tenant name)' : characteristic.name}}
+            strong {{ characteristic.name === 'Asset Type' ? 'Data asset type' : characteristic.name === 'Media Type' ? 'Data format' : characteristic.name === 'Location' ? 'Endpoint URL' : characteristic.name === 'Fiware-Service' ? 'Fiware-Service (tenant name)' : characteristic.name}}
         .panel-body
           //p.text-dark-secondary {{ characteristic.description ? characteristic.description : '#{ __("No description provided.") }' }}
           .form-group
