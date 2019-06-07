@@ -29,7 +29,7 @@
     angular
         .module('app')
         .config(['$stateProvider', StockRouteConfig])
-        .controller('RouteStockCtl', ['$state', StockController]);
+        .controller('RouteStockCtl', ['$state', 'ROLES', 'User', StockController]);
 
     function StockRouteConfig($stateProvider) {
 
@@ -52,10 +52,17 @@
             });
     }
 
-    function StockController($state) {
+    function StockController($state, ROLES, User) {
+        function isManager() {
+            return User.loggedUser.currentUser.roles.findIndex(x => x.name.toLowerCase() === ROLES.manager.toLowerCase()) > -1;
+        }
 
         if ($state.is('stock')) {
-            $state.go('stock.product');
+            if (User.isAuthenticated() && isManager()) {
+                $state.go('stock.catalogue');
+            } else {
+                $state.go('stock.product');
+            }
         }
     }
 
