@@ -63,6 +63,7 @@
         vm.showProfile = showProfile;
         vm.isAdmin = isAdmin;
         vm.isSeller = isSeller;
+        vm.isManager = isManager;
         vm.isAuthenticated = isAuthenticated;
         vm.orgsVisible = orgsVisible;
         vm.orgsInvisible = orgsInvisible;
@@ -137,6 +138,10 @@
 
         function isSeller() {
             return vm.currentUser.roles.findIndex(x => x.name.toLowerCase() === ROLES.seller.toLowerCase()) > -1;
+        }
+
+        function isManager() {
+            return vm.currentUser.roles.findIndex(x => x.name.toLowerCase() === ROLES.manager.toLowerCase()) > -1;
         }
 
         function isAuthenticated() {

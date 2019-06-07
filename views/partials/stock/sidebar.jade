@@ -1,6 +1,6 @@
 .panel.panel-default.z-depth-2
   ul.nav.nav-responsive.nav-pills
-    li(ui-sref-active="active")
+    li(ui-sref-active="active", ng-show="user.isManager()")
       a(ui-sref="stock.catalogue", ui-sref-opts="{ reload: true, inherit: false }")
         span.item-icon.fa.fa-book
         span.item-text.hidden-xs #{ __("Catalogs") }
