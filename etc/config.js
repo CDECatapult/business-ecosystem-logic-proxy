@@ -49,7 +49,7 @@ const env = cleanEnv(process.env, {
   }),
   OAUTH2_ROLES: json({
     default:
-      '{"admin":"provider","customer":"customer","seller":"seller","orgAdmin":"orgAdmin"}'
+      '{"admin":"provider","customer":"customer","seller":"seller","orgAdmin":"orgAdmin","manager":"manager"}'
   }),
   CUSTOMER_ROLE_REQUIRED: bool({ default: false }),
   // Mongo
