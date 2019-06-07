@@ -55,7 +55,7 @@
     function StockController($state) {
 
         if ($state.is('stock')) {
-            $state.go('stock.catalogue');
+            $state.go('stock.product');
         }
     }
 
