@@ -29,10 +29,8 @@ services:
       - MYSQL_DATABASE=RSS
 
   charging:
-    image: digicatsynch/charging7:latest
+    image: digicatsynch/charging7:7.0.2
     restart: always
-    links:
-      - mongo
     depends_on:
       - mongo
       - apis
@@ -45,10 +43,28 @@ services:
           - charging.docker
     volumes:
       - ./charging-plugins:/business-ecosystem-charging-backend/src/plugins
-      - ./charging-settings:/business-ecosystem-charging-backend/src/user_settings
     environment:
-      - PAYPAL_CLIENT_ID=client_id_here
-      - PAYPAL_CLIENT_SECRET=client_secret_here
+      - PAYPAL_CLIENT_ID=${PAYPAL_CLIENT_ID}
+      - PAYPAL_CLIENT_SECRET=${PAYPAL_CLIENT_SECRET}
+      - SITE=http://proxy.docker:8004/
+      - LOCAL_SITE=http://charging.docker:8006/
+      - CATALOG=http://apis.docker:8080/DSProductCatalog
+      - INVENTORY=http://apis.docker:8080/DSProductInventory
+      - ORDERING=http://apis.docker:8080/DSProductOrdering
+      - BILLING=http://apis.docker:8080/DSBillingManagement
+      - USAGE=http://apis.docker:8080/DSUsageManagement
+      - RSS=http://rss.docker:8080/DSRevenueSharing
+      - AUTHORIZE_SERVICE=http://proxy.docker:8004/authorizeService/token
+      - KEYSTONE_PROTOCOL=http
+      - KEYSTONE_HOST=idm.docker
+      #- KEYSTONE_USER=admin@test.com
+      #- KEYSTONE_PWD=1234
+      - APP_CLIENT_ID=${APP_CLIENT_ID}
+      - APP_URL=http://pep.docker:7000/v2/entities/
+
+      - DEBUG=true
+      - DB_HOST=mongo
+      #- SECRET_KEY=${SECRET_KEY}
 
   apis:
     image: digicatsynch/docker-tmf-apis:1.0.0
