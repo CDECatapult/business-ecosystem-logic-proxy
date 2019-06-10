@@ -8,7 +8,7 @@ div(ng-controller="AssetController as assetVM")
               .col-sm-8
                 label #{ __("Data asset type") }
                 select.form-control(name="asset", ng-model="assetVM.digitalChars[0].productSpecCharacteristicValue[0].value", ng-change="assetVM.setCurrentType()")
-                  option(ng-repeat="asset in assetVM.assetTypes", value="{{ asset.name }}") {{ asset.name }}
+                  option(ng-repeat="asset in assetVM.assetTypes", value="{{ asset.name }}") {{ asset.name === 'HistoricalAPI Query' ? 'Historical data set' :  asset.name === 'Orion Query' ? 'Real-time data stream' : asset.name }}
               //.col-sm-4
               //  label #{ __("How to provide?") }
               //  select.form-control(ng-model="assetVM.currFormat", ng-options="format for format in assetVM.currentType.formats")

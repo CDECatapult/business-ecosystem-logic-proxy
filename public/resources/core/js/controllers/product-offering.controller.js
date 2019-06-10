@@ -137,7 +137,7 @@
                     vm.error = Utils.parseError(response, 'It was impossible to load the list of offerings');
                     vm.list.status = ERROR;
                 });
-                
+
             }
         }
 
@@ -165,7 +165,7 @@
             }, function (response) {
                 vm.error = Utils.parseError(response, 'It was impossible to load the reputation score');
                 vm.list.status = ERROR;
-            });            
+            });
         }
 
         $scope.$watch(function () {
@@ -419,7 +419,7 @@
                     var tmpdata = JSON.parse(JSON.stringify(data));
                     tmpdata.isBundle = false;
                     tmpdata.name = data.name+index.toString();
-                    var terms = []; 
+                    var terms = [];
                     terms[0] = vm.license.toJSON();
                     createPromise.push(Offering.create(tmpdata, prod, vm.catalogue, terms));
 
@@ -444,12 +444,12 @@
                     });
                 });
             }
-            
+
             Promise.all(createPromise).then(function(){
                 //var data = angular.copy(vm.data);
                 vm.data.category = formatCategory();
                 vm.data.place = formatPlaces();
-                var terms = []; 
+                var terms = [];
                 terms[0] = vm.license.toJSON();
                 var offerPromise = Offering.create(vm.data, vm.product, vm.catalogue, terms);
                 offerPromise.then(function (offeringCreated) {
@@ -591,7 +591,7 @@
             vm.metricsUsed.push(vm.metric.type);
             vm.metric = new Offering.Metric();
         }
-        
+
         function createSla() {
             //vm.metrics.push(vm.sla);
             vm.sla = new Offering.Sla();
@@ -606,7 +606,7 @@
 
         function removeMetric(index) {
             var value = vm.sla.metrics[index].type;
- 
+
             var idx = vm.metricsUsed.indexOf(value);
             if (idx > -1) {
                 vm.metricsUsed.splice(idx, 1);
@@ -734,14 +734,14 @@
             vm.error = Utils.parseError(response, 'The requested offering could not be retrieved');
             vm.item.status = ERROR;
         }));
-        
+
         createPromise.push(Offering.getSla($state.params.offeringId).then(function (slaRetrieved) {
             vm.sla = slaRetrieved;
         }, function (response){
             vm.error = Utils.parseError(response, 'The requested SLA could not be retrieved');
             vm.item.status = ERROR;
         }));
-    
+
         Promise.all(createPromise).then(function(){
             vm.item.status = LOADED;
             }, function (response){
@@ -754,7 +754,14 @@
 
             switch (characteristic.valueType) {
             case ProductSpec.VALUE_TYPES.STRING.toLowerCase():
-                result = characteristicValue.value;
+                switch (characteristicValue.value) {
+                  case 'Orion Query':
+                    return 'Real-time data stream'
+                  case 'HistoricalAPI Query':
+                    return 'Historical data set'
+                  default:
+                    return characteristicValue.value
+                }
                 break;
             case ProductSpec.VALUE_TYPES.NUMBER.toLowerCase():
                 if (characteristicValue.value && characteristicValue.value.length) {

@@ -38,13 +38,13 @@
         var priceplan = null;
 
         vm.characteristicsTab = {
-            title: "Characteristics"
+            title: "Access information"
         };
         vm.priceplansTab = {
             title: "Price plans"
         };
         vm.legalTab = {
-            title: "Terms & Conditions"
+            title: "Agreements"
         };
 
         vm.tabs = [];
@@ -165,7 +165,7 @@
                     return (!vm.priceplans.length || priceplan != null);
             }
             return false;
-                
+
         }
 
         function formatCharacteristicValue(characteristic, characteristicValue) {
@@ -173,7 +173,14 @@
 
             switch (characteristic.valueType) {
             case ProductSpec.VALUE_TYPES.STRING.toLowerCase():
-                result = characteristicValue.value;
+                switch (characteristicValue.value) {
+                  case 'Orion Query':
+                    return 'Real-time data stream'
+                  case 'HistoricalAPI Query':
+                    return 'Historical data set'
+                  default:
+                    return characteristicValue.value
+                }
                 break;
             case ProductSpec.VALUE_TYPES.NUMBER.toLowerCase():
                 if (characteristicValue.value && characteristicValue.value.length) {
