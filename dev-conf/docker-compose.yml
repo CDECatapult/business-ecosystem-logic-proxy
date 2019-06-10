@@ -12,6 +12,8 @@ services:
 
   redis:
     image: redis:3.2.8-alpine
+    ports:
+      - "6379:6379"
     networks:
       synchronicity:
 
@@ -41,8 +43,6 @@ services:
       synchronicity:
         aliases:
           - charging.docker
-    volumes:
-      - ./charging-plugins:/business-ecosystem-charging-backend/src/plugins
     environment:
       - PAYPAL_CLIENT_ID=${PAYPAL_CLIENT_ID}
       - PAYPAL_CLIENT_SECRET=${PAYPAL_CLIENT_SECRET}
