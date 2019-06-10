@@ -161,7 +161,7 @@
                 });
             }
         }
-	
+
         $scope.$watch(function () {
             return vm.offset;
         }, productSearch);
@@ -1049,7 +1049,7 @@
 
             if (vm.isDigital) {
                 data.productSpecCharacteristic = data.productSpecCharacteristic.concat(vm.assetCtl.getDigitalChars());
-                
+
                 var metaInfo = vm.assetCtl.getMetaInfo();
                 if (metaInfo.application_id !== undefined) {
                     // Include the application ID
@@ -1058,19 +1058,19 @@
                         name: 'appId',
                         description: 'Application ID of the data source described in this product specification'
                     });
-    
+
                     appIdChar.productSpecCharacteristicValue.push(ProductSpec.createCharacteristicValue({
                         default: true,
                         value: appId
                     }));
-    
+
                     data.productSpecCharacteristic.push(appIdChar);
                 }
 
                 if (metaInfo.service !== undefined) {
                     // Include the Fiware-Service
                     var fiware_service = metaInfo.service;
-                    
+
                     if (fiware_service != "") {
                         var fiware_serviceChar = ProductSpec.createCharacteristic({
                             name: 'Fiware-Service (HTTP header to support multitenancy)',
@@ -1088,10 +1088,10 @@
                         default: true,
                         value: fiware_service
                     }));
-    
+
                     data.productSpecCharacteristic.push(fiware_serviceChar);
                 }
-                
+
             }
 
             if (vm.terms.title || vm.terms.text) {
@@ -1375,7 +1375,14 @@
 
             switch (characteristic.valueType) {
             case ProductSpec.VALUE_TYPES.STRING.toLowerCase():
-                result = characteristicValue.value;
+                switch (characteristicValue.value) {
+                  case 'Orion Query':
+                    return 'Real-time data stream'
+                  case 'HistoricalAPI Query':
+                    return 'Historical data set'
+                  default:
+                    return characteristicValue.value
+                }
                 break;
             case ProductSpec.VALUE_TYPES.NUMBER.toLowerCase():
 

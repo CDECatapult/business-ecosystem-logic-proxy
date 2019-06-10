@@ -27,7 +27,7 @@
 (function () {
 
     'use strict';
-    
+
     var LOADING = 'LOADING';
     var LOADED = 'LOADED';
     var ERROR = 'ERROR';
@@ -41,7 +41,7 @@
     function InventorySearchController($scope, $state, $rootScope, EVENTS, InventoryProduct, INVENTORY_STATUS, Utils) {
         /* jshint validthis: true */
         var vm = this;
-        
+
         vm.state = $state;
 
         vm.list = [];
@@ -93,7 +93,7 @@
                 });
             }
         }
-	
+
 
         $scope.$watch(function () {
             return vm.offset;
@@ -196,7 +196,7 @@
         vm.refreshToken = "";
         vm.token = retrieveToken();
         vm.sla = "";
-    
+
         InventoryProduct.detail($state.params.productId).then(function (productRetrieved) {
             locations = [];
             load = false;
@@ -280,7 +280,7 @@
             var hasMedia = false;
             var hasLocation = false;
             var hasAssetType = false;
-            
+
 
             // Check if the product is digital
             if (characteristics) {
@@ -474,7 +474,7 @@
                     vm.token = "Token expired";
                 else
                     vm.token = tokenBody.authToken;
-                vm.refreshToken = tokenBody.refreshToken;    
+                vm.refreshToken = tokenBody.refreshToken;
                 return vm.token;
             }, function (response) {
                 load = false;
@@ -515,7 +515,14 @@
 
             switch (characteristic.valueType) {
             case ProductSpec.VALUE_TYPES.STRING.toLowerCase():
-                result = characteristicValue.value;
+                switch (characteristicValue.value) {
+                  case 'Orion Query':
+                    return 'Real-time data stream'
+                  case 'HistoricalAPI Query':
+                    return 'Historical data set'
+                  default:
+                    return characteristicValue.value
+                }
                 break;
             case ProductSpec.VALUE_TYPES.NUMBER.toLowerCase():
                 if (characteristicValue.value && characteristicValue.value.length) {
