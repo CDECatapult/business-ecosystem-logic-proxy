@@ -3,7 +3,7 @@
     .modal-content
       .modal-header
         .h4
-          strong #{ __("Available Options") }
+          strong #{ __("Available options") }
       .modal-body
         .row
           .col-xs-12
@@ -28,15 +28,13 @@
 
               .form-group(ng-repeat="charObject in product.characteristics" ng-show="charObject.characteristic.name != 'appId'")
                 .h4.text-dark-secondary
-                  strong {{ charObject.characteristic.name }}
+                  strong {{ charObject.characteristic.name === 'Asset type' ? 'Data asset type' : charObject.characteristic.name === 'Media type' ? 'Data format' : charObject.characteristic.name === 'Location' ? 'Endpoint URL' : charObject.characteristic.name === 'Fiware-Service' ? 'Fiware-Service (tenant name)' : charObject.characteristic.name }}
                 hr
-                p.text-dark-secondary {{ charObject.characteristic.description ? charObject.characteristic.description : '#{ __("No description provided.") }' }}
-                .item-radio(ng-repeat="characteristicValue in charObject.characteristic.productSpecCharacteristicValue")
-                  label.radio
-                    .track
-                      input(type="radio", ng-model="charObject.value" ng-value="characteristicValue")
-                      i.fa.fa-lg
-                    | {{ createVM.formatCharacteristicValue(charObject.characteristic, characteristicValue) }}
+                //- p.text-dark-secondary {{ charObject.characteristic.description ? charObject.characteristic.description : '#{ __("No description provided.") }' }}
+                p(ng-repeat="characteristicValue in charObject.characteristic.productSpecCharacteristicValue")
+                  span.fa.fa-fw.fa-check-circle
+                  span  {{ createVM.formatCharacteristicValue(charObject.characteristic, characteristicValue) }}
+          
           .col-xs-12(ng-if="createVM.tabActive == createVM.legalTab")
             div(ng-if="createVM.isBundle")
               select.form-control(

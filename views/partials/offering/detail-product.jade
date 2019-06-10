@@ -5,14 +5,10 @@
         .h4
           strong {{ characteristic.name === 'Asset Type' ? 'Data asset type' : characteristic.name === 'Media Type' ? 'Data format' : characteristic.name === 'Location' ? 'Endpoint URL' : characteristic.name === 'Fiware-Service' ? 'Fiware-Service (tenant name)' : characteristic.name }}
       .panel-body
-        p.text-dark-secondary.text-preline {{ characteristic.description ? characteristic.description : '#{ __("No description provided.") }' }}
         .form-group
-          .item-radio.readonly(ng-repeat="characteristicValue in characteristic.productSpecCharacteristicValue")
-            label.radio
-              .track
-                input(type="radio", name="{{ 'detailVM_char' + characteristicIndex }}", ng-checked="{{ characteristicValue.default }}")
-                i.fa.fa-lg
-              | {{ detailVM.formatCharacteristicValue(characteristic, characteristicValue) }}
+          p(ng-repeat="characteristicValue in characteristic.productSpecCharacteristicValue")
+            span.fa.fa-fw.fa-check-circle
+            span  {{ detailVM.formatCharacteristicValue(characteristic, characteristicValue) }}
 
     div(ng-repeat="product in detailVM.item.productSpecification.bundledProductSpecification" ng-init="bundleIndex = $index")
       hr

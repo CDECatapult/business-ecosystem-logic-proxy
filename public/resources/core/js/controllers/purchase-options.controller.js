@@ -38,13 +38,13 @@
         var priceplan = null;
 
         vm.characteristicsTab = {
-            title: "Characteristics"
+            title: "Access information"
         };
         vm.priceplansTab = {
             title: "Price plans"
         };
         vm.legalTab = {
-            title: "Terms & Conditions"
+            title: "Agreements"
         };
 
         vm.tabs = [];
