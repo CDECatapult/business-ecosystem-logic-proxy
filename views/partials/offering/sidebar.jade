@@ -1,7 +1,7 @@
 .panel.panel-default.z-depth-1(ng-switch="listVM.list.status")
   .panel-heading
     .h4
-      strong #{ __("Search by catalog") }
+      strong #{ __("Search by city") }
   .nav.nav-stacked.nav-pills
         input.form-control(ng-change="listVM.updateList()", ng-model="listVM.sidebarInput", type="text", placeholder="#{ __('Search') }...", id="sidebarsearch")
   ul.nav.nav-stacked.nav-pills(ng-switch-when="LOADED")

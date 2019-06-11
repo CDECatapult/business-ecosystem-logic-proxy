@@ -11,7 +11,7 @@
           //p.text-dark-secondary {{ characteristic.description ? characteristic.description : '#{ __("No description provided.") }' }}
           .form-group
             p(ng-repeat="characteristicValue in characteristic.productSpecCharacteristicValue")
-              span.fa.fa-fw(ng-class="detailVM.characteristicValueSelected(characteristic, characteristicValue, offering.id) ? 'fa-check-circle': 'fa-circle-o'")
+              span.fa.fa-fw.fa-check-circle
               span  {{ detailVM.formatCharacteristicValue(characteristic, characteristicValue) }}
 
       div(ng-repeat="bundle in offering.productSpecification.bundledProductSpecification")
