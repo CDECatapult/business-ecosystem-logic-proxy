@@ -184,10 +184,10 @@
                 title: 'General',
                 templateUrl: 'stock/product-offering/create/general'
             },
-            /*{
-                title: 'Bundle',
-                templateUrl: 'stock/product-offering/create/bundle'
-            },*/
+            {
+                title: 'City',
+                templateUrl: 'stock/product-offering/create/catalogue'
+            },
             {
                 title: 'Data assets',
                 templateUrl: 'stock/product-offering/create/product'
@@ -196,10 +196,6 @@
                 title: 'Data source spec.',
                 templateUrl: 'stock/product-offering/create/product-bundle'
             },*/
-            {
-                title: 'Catalog',
-                templateUrl: 'stock/product-offering/create/catalogue'
-            },
             /*{
                 title: 'Category',
                 templateUrl: 'stock/product-offering/create/categories'

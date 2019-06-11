@@ -13,6 +13,9 @@
           time(am-time-ago="offering.lastUpdate")
         p v{{ offering.version }}
         p.item-description {{ offering.description ? offering.description : '#{ __("No description provided.") }' }}
+        p
+          b Owner:
+          {{ " " + offering.productSpecification.brand }}
       .h5.text-right
         strong {{ offering.formatCheapestPriceplan() }}
       //.status-group
