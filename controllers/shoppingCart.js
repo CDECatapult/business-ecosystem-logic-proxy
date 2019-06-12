@@ -46,6 +46,7 @@ var shoppingCart = (function() {
         CartItem.find({ user: userName }, function(err, result) {
 
             if (err) {
+              console.error('SHOPPING-CART::getCart', err.message, err, userName)
                 endRequest(res, 500, null, { error: err.message });
             } else {
 
@@ -68,6 +69,7 @@ var shoppingCart = (function() {
         CartItem.findOne({ user: userName, itemId: itemId }, function(err, result) {
 
             if (err) {
+              console.error('SHOPPING-CART::getItem', err.message, err, userName, itemId)
                 endRequest(res, 500, null, { error: err.message });
             } else {
                 if (result) {
@@ -99,6 +101,7 @@ var shoppingCart = (function() {
                 item.save(function (err) {
 
                     if (err) {
+                      console.error('SHOPPING-CART::add', err.message, err, item)
 
                         if (err.code === 11000) {
                             // duplicate key
@@ -133,6 +136,7 @@ var shoppingCart = (function() {
         CartItem.remove({ user: userName, itemId: itemId }, function(err, dbRes) {
 
             if (err) {
+                console.error('SHOPPING-CART::remove', err.message, err)
                 endRequest(res, 500, null, { error: err.message });
             } else {
 
@@ -154,6 +158,7 @@ var shoppingCart = (function() {
         CartItem.remove({ user: userName }, function(err) {
 
             if (err) {
+              console.error('SHOPPING-CART::empty', err.message, err)
                 endRequest(res, 500, null, { error: err.message });
             } else {
                 endRequest(res, 204, null, null);
