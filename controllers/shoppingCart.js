@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
+/* eslint no-console: 0 */
 var CartItem = require('../db/schemas/cartItem');
 
 var shoppingCart = (function() {
