@@ -67,10 +67,10 @@ done
 echo "Creating indexes..."
 node fill_indexes.js
 
-if [ "$NODE_ENV" == "development" ]; then
-  echo "Starting server in development mode..."
-  nodemon --verbose --ignore 'locales/*.js' server.js
-else
+# if [ "$NODE_ENV" == "development" ]; then
+#   echo "Starting server in development mode..."
+#   nodemon --verbose --ignore 'locales/*.js' server.js
+# else
   echo "Starting server in production mode..."
   node server.js
-fi
+# fi
