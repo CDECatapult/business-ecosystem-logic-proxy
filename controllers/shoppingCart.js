@@ -31,6 +31,9 @@ var shoppingCart = (function() {
                 res.setHeader(header, headers[header]);
             }
         }
+        res.setHeader('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+  res.setHeader('Expires', '-1');
+  res.setHeader('Pragma', 'no-cache');
 
         if (content) {
             res.json(content);
@@ -86,6 +89,8 @@ var shoppingCart = (function() {
 
         var userName = req.user.id;
 
+        console.error('SHOPPING-CART::add', userName, req)
+
         try {
 
             var item = new CartItem();
@@ -112,6 +117,7 @@ var shoppingCart = (function() {
                         }
 
                     } else {
+                      console.error('SHOPPING-CART::add', userName, req)
 
                         var slash = req.url.slice(-1) === '/' ? '' : '/';
                         var headers = { 'location': req.url + slash + itemId };
@@ -133,12 +139,15 @@ var shoppingCart = (function() {
         var itemId = req.params.id;
         var userName = req.user.id;
 
+        console.log('SHOPPING-CART::remove', itemId, userName, req)
+
         CartItem.remove({ user: userName, itemId: itemId }, function(err, dbRes) {
 
             if (err) {
                 console.error('SHOPPING-CART::remove', err.message, err)
                 endRequest(res, 500, null, { error: err.message });
             } else {
+              console.error('SHOPPING-CART::remove', dbRes)
 
                 if (dbRes.result['n'] > 0) {
                     endRequest(res, 204, null, null);
