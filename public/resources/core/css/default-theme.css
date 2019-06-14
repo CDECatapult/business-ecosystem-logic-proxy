@@ -1040,8 +1040,11 @@ a.dropdown-menu-item:hover {
  * =================================================================================== */
 
 .navbar-brand {
-    height: 50px;
-    padding: 10px 0;
+  padding-left: 0;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  color: #33CCCC;
+  font-size: 40px;
+  line-height: 39px;
 }
 .navbar-brand > img {
     height: 50px;
