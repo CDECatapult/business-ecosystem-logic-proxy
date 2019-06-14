@@ -1134,7 +1134,7 @@
         }
 
         function loadPictureController() {
-            buildPictureController(vm, $scope, vm.stepList[4].form, Asset);
+            buildPictureController(vm, $scope, vm.stepList[0].form, Asset);
         }
     }
 
