@@ -2236,12 +2236,22 @@ a.thumbnail:focus {
     position: relative;
     border-color: rgb(210, 210, 210);
     border-radius: 0;
+    height: 160px;
+    width: 320px;
+}
+
+.product-container-photo {
+    height: 160px;
+    width: 320px;
+    border-width: 0 0 1px;
+    object-fit: fill;
 }
 
 .product-thumbnail > img {
     position: relative;
     top: 50%;
-    max-height: 100%;
+    height: 100%;
+    width: 100%;
     -webkit-transform: translateY(-50%);
        -moz-transform: translateY(-50%);
         -ms-transform: translateY(-50%);
@@ -2297,7 +2307,7 @@ a.product-thumbnail:focus {
 
  .product-container {
      display: flex;
-     height: 320px;
+     max-height: 320px;
      width: 320px;
      flex-flow: row wrap;
      justify-content: flex-end;
@@ -2359,12 +2369,6 @@ a.product-thumbnail:focus {
 .product-container-rating {
 
 }
- .product-container-photo {
-     height: 160px;
-     width: 320px;
-     border-width: 0 0 1px;
-     clip: rect(0px,160px, 320px, 0px );
- }
 
  .product-container-info {
     height: 105px;

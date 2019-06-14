@@ -17,7 +17,7 @@
                 span(ng-if="star.value" class="fa fa-star checked") 
                 span(ng-if="!star.value" class="fa fa-star rating" )
               span #{ __(" ") }
-              // number of ratings is commented-out 
+              // number of ratings is commented-out
               //span ({{ offering.repCount }})
       .form-group.text-dark-secondary
         p.product-container-description {{ offering.description ? offering.description : '#{ __("No description provided.") }' }}
