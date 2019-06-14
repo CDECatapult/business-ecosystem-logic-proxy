@@ -29,7 +29,7 @@ ul.rating {
 body {
     padding-top: 55px;
     margin-bottom: 6rem;
-    background-color: #ECEFF1; /* BLUE GREY - 50 */
+    background-color: #F1F1F1; /* BLUE GREY - 50 */
 }
 
 @media (min-width: 768px) {
@@ -1157,10 +1157,6 @@ a.dropdown-menu-item:hover {
 /* ===================================================================================
  *   COMPONENT - NAVBAR DEFAULT
  * =================================================================================== */
-
-.navbar-default {
-    background-color: #EEEEEE; /* GREY - 200 */
-}
 
 .navbar-default .navbar-text {
     color: rgba(0,0,0,0.54);
