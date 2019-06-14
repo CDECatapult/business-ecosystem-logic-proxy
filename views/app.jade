@@ -15,7 +15,7 @@ block navbars
         span.badge.badge-success(ng-switch-when="LOADED") {{ listVM.list.length }}
         span.badge(ng-switch-when="LOADING") ...
         span.badge.badge-error(ng-switch-when="ERROR") !!!
-      span.item-text.hidden-xs #{ __("Shopping Cart") }
+      span.item-text.hidden-xs #{ __("Cart") }
     .dropdown-menu.z-depth-3(ng-switch="listVM.list.status")
       .dropdown-header #{ __("My Shopping Cart") }
       .alert.alert-info.text-center(ng-switch-when="LOADED", ng-if="!listVM.list.length")
