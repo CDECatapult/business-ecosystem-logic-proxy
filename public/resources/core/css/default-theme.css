@@ -2259,17 +2259,17 @@ a.thumbnail:focus {
  /** Rating circles*/
 
  .rating .circle-filled {
-    /* Original colour 
+    /* Original colour
     color: orange;
     */
     color: #828282;
-} 
+}
 .circle-empty {
     color: #BDBDBD;
 }
- 
 
- 
+
+
  .product-thumbnail-container {
     position: relative;
     border-color: rgb(210, 210, 210);
@@ -2360,7 +2360,7 @@ a.product-thumbnail:focus {
      margin-bottom: 30px;
  }
 
- 
+
 
  /* BOTTOM HALF OF CONTAINER */
 
@@ -2373,8 +2373,8 @@ a.product-thumbnail:focus {
     display: flex;
     flex-flow: row wrap;
  }
- 
- /* The first row of the bottom half of the container. 
+
+ /* The first row of the bottom half of the container.
  Will contain the title, rating, and price of the product */
  .product-container-info-row{
     height: 40px;
@@ -2388,7 +2388,7 @@ a.product-thumbnail:focus {
     display: flex;
     flex-flow: column;
     height: 40px;
-    width: 98px; 
+    width: 98px;
     align-items: flex-end;
 
  }
@@ -2415,7 +2415,7 @@ a.product-thumbnail:focus {
     font-size: 9px;
     line-height: 14px;
     margin-right: 10px;
-    
+
 }
 
 
@@ -2434,7 +2434,7 @@ a.product-thumbnail:focus {
     display: -webkit-box;
     height: 58px;
     max-height: 51px;
-    line-height: 17px;     /* fallback */   
+    line-height: 17px;     /* fallback */
     -webkit-line-clamp: 3; /* number of lines to show */
     -webkit-box-orient: vertical;
  }
@@ -2444,10 +2444,10 @@ a.product-thumbnail:focus {
     overflow: hidden;
     display: -webkit-box;
     max-height: 40px;
-    line-height: 40px;     /* fallback */   
+    line-height: 40px;     /* fallback */
     -webkit-line-clamp: 1; /* number of lines to show */
     -webkit-box-orient: vertical;
-    font-size: 26px;
+    font-size: 22px;
     font-weight: 700;
     color: #333333;
     width: 190px;
@@ -2464,7 +2464,7 @@ a.product-thumbnail:focus {
     border-color: #33CCCC;
 
  }
-    
+
     /* My Stock -> Data asset  configuration */
     .my_stock-container-info {
         height: auto;
@@ -2472,7 +2472,7 @@ a.product-thumbnail:focus {
         background-color: #fff;
         padding-left: 16px;
         padding-right: 16px;
-    
+
      }
 
     .my_stock-container-version {
@@ -2481,9 +2481,9 @@ a.product-thumbnail:focus {
         display: flex;
         flex-flow: column;
         height: 40px;
-        width: 98px; 
+        width: 98px;
         align-items: flex-end;
-        
+
     }
 
 
