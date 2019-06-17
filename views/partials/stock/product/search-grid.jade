@@ -1,20 +1,18 @@
+// My stock -> Data Assets
+// Nikos 17/06/2019
 .container-flex
-  .panel.panel-default.item-product.z-depth-1(ng-repeat="product in searchVM.list")
-    a.thumbnail.thumbnail-lg(ui-sref="stock.product.update({ productId: product.id })", ui-sref-opts="{ inherit: false }")
+  .product-container.item-offering.z-depth-1(ng-repeat="product in searchVM.list")
+    a.product-thumbnail.product-container-photo(ui-sref="stock.product.update({ productId: product.id })", ui-sref-opts="{ inherit: false }")
       img(no-image, ng-src="{{ product.getPicture() }}")
-    .panel-body
-      .h4.text-ellipsis
-        strong
-          a(ui-sref="stock.product.update({ productId: product.id })", ui-sref-opts="{ inherit: false }") {{ product.name }}
+      // displaying offering owner
+      span.product-city-label {{ "" + product.brand }}  
+    .my_stock-container-info
+      .product-container-info-row
+        a.product-container-title(ui-sref="stock.product.update({ productId: product.id })", ui-sref-opts="{ inherit: false }") {{ product.name }}
+        .my_stock-container-version v {{ product.version }}
       .form-group.text-dark-secondary
-        span.pull-right
+        p 
+          b Last updated: 
           time(am-time-ago="product.lastUpdate")
-        p v{{ product.version }}
-        p.item-description {{ product.description ? product.description : '#{ __("No description provided.") }' }}
-        p
-          b Owner:
-          {{ " " + product.brand }}
-      //.status-group
-      //  .status-item.active(class="status-{{ product.lifecycleStatus | lowercase }}")
-      //    span.item-icon
-      //    span.item-text {{ product.lifecycleStatus }}
+        p.product-container-description {{product.description ? product.description : '#{ __("No description provided.") }' }}
+
