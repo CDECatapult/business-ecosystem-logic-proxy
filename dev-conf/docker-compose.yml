@@ -31,7 +31,7 @@ services:
       - MYSQL_DATABASE=RSS
 
   charging:
-    image: digicatsynch/charging7:7.0.2
+    image: digicatsynch/charging7:7.0.3
     restart: always
     depends_on:
       - mongo
