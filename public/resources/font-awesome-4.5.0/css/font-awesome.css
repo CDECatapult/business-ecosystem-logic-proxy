@@ -932,6 +932,8 @@
 }
 .fa-circle-o:before {
   content: "\f10c";
+  margin-right: 0.5px;
+  margin-left: 0.5px;
 }
 .fa-quote-left:before {
   content: "\f10d";
@@ -944,6 +946,8 @@
 }
 .fa-circle:before {
   content: "\f111";
+  margin-right: 0.5px;
+  margin-left: 0.5px;
 }
 .fa-mail-reply:before,
 .fa-reply:before {

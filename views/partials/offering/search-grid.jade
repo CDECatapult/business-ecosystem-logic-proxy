@@ -6,16 +6,15 @@
         span.product-city-label {{ offering.productSpecification.brand }}      
     .product-container-info
       .product-container-info-row
-        .product-container-title
-          a(ui-sref="offering.detail({ offeringId: offering.id })", ui-sref-opts="{ inherit: false }") {{ offering.name }}
+        a.product-container-title(ui-sref="offering.detail({ offeringId: offering.id })", ui-sref-opts="{ inherit: false }") {{ offering.name }}
         .product-container-extra
           .product-container-price {{ offering.formatCheapestPricePlan() }}
           .product-container-version-rating 
             .product-container-version v {{ offering.version }}
             .span
               strong(ng-repeat="star in offering.repAvgStars")
-                span(ng-if="star.value" class="fa fa-star checked") 
-                span(ng-if="!star.value" class="fa fa-star rating" )
+                span(ng-if="star.value" class="fa fa-circle circle-filled") 
+                span(ng-if="!star.value" class="fa fa-circle-o circle-empty" )
               span #{ __(" ") }
               // number of ratings is commented-out
               //span ({{ offering.repCount }})
@@ -23,7 +22,5 @@
         p.product-container-description {{ offering.description ? offering.description : '#{ __("No description provided.") }' }}
     .btn-group.btn-group-justified(ng-show="user.isAuthenticated()")
       a.btn.product-container-button(ng-click="user.order(offering)", ng-disabled="user.contains(offering)")
-        span.item-icon.fa(class="fa-{{ user.contains(offering) }}")
+        span.fa(class="fa-{{ user.contains(offering) }}")
         span.item-text {{ user.contains(offering) ? '#{ __("Added") }' : '#{ __("Get this data offering") }' }}
-
-
