@@ -2464,7 +2464,27 @@ a.product-thumbnail:focus {
     border-color: #33CCCC;
 
  }
+    
+    /* My Stock -> Data asset  configuration */
+    .my_stock-container-info {
+        height: auto;
+        width: 100%;
+        background-color: #fff;
+        padding-left: 16px;
+        padding-right: 16px;
+    
+     }
 
+    .my_stock-container-version {
+        padding-top: 10px;
+        vertical-align: middle;
+        display: flex;
+        flex-flow: column;
+        height: 40px;
+        width: 98px; 
+        align-items: flex-end;
+        
+    }
 
 
 

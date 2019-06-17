@@ -1,24 +1,20 @@
+// My stock -> Data Offerings
+// Nikos 17/06/2019
 .container-flex
-  .panel.panel-default.item-offering.z-depth-1(ng-repeat="offering in searchVM.list")
-    a.thumbnail.thumbnail-lg(ui-sref="stock.offering.update({ offeringId: offering.id })", ui-sref-opts="{ inherit: false }")
-      span.label(class="label-{{ offering.isBundle ? 'bundle' : 'single' }}")
-        | {{ offering.isBundle ? offering.bundledProductOffering.length + ' #{ __("bundled") }' : '#{ __("Single") }' }}
+  .product-container.item-offering.z-depth-1(ng-repeat="offering in searchVM.list")
+    a.product-thumbnail.product-container-photo(ui-sref="stock.offering.update({ offeringId: offering.id })", ui-sref-opts="{ inherit: false }")
       img(no-image, ng-src="{{ offering.getPicture() }}")
-    .panel-body
-      .h4.text-ellipsis
-        strong
-          a(ui-sref="stock.offering.update({ offeringId: offering.id })", ui-sref-opts="{ inherit: false }") {{ offering.name }}
+      // displaying offering owner
+      span.product-city-label {{ "" + offering.productSpecification.brand }}  
+    .my_stock-container-info
+      .product-container-info-row
+        a.product-container-title(ui-sref="stock.profferingoduct.update({ offeringId: offering.id })", ui-sref-opts="{ inherit: false }") {{ offering.name }}
+        .my_stock-container-version v {{ offering.version }}
       .form-group.text-dark-secondary
-        span.pull-right
+        p 
+          b Last updated: 
           time(am-time-ago="offering.lastUpdate")
-        p v{{ offering.version }}
-        p.item-description {{ offering.description ? offering.description : '#{ __("No description provided.") }' }}
-        p
-          b Owner:
-          {{ " " + offering.productSpecification.brand }}
-      .h5.text-right
+        p.product-container-description {{product.description ? product.description : '#{ __("No description provided.") }' }}
+    //
         strong {{ offering.formatCheapestPriceplan() }}
-      //.status-group
-      //  .status-item.active(class="status-{{ offering.lifecycleStatus | lowercase }}")
-      //    span.item-icon
-      //    span.item-text {{ offering.lifecycleStatus }}
+
