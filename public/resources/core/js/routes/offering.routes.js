@@ -36,7 +36,7 @@
             .state('offering', {
                 url: '/offering?catalogueId&categoryId&type&body&productSpecId&sort',
                 data: {
-                    title: 'IoT Data Marketplace',
+                    title: 'Home',
                     loggingRequired: false,
                     filters: ['type', 'sort']
                 },
