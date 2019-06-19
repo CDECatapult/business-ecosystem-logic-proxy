@@ -24,7 +24,7 @@ COPY ./default_locales default_locales
 COPY ./public public
 COPY ./views views
 COPY ./collect_static.js .
-RUN node collect_static.js
+#RUN node collect_static.js
 
 # Project sources
 COPY ./controllers controllers
