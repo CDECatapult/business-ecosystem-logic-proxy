@@ -315,7 +315,7 @@ app.use(function(req, res, next) {
 // Static files && templates
 
 // Check if a theme has been loaded or the system is in production
-var staticPath = config.theme || !debug ? '/static' : '' ;
+var staticPath = config.theme || '' ;
 
 app.use(config.portalPrefix + '/', express.static(__dirname + staticPath + '/public'));
 app.set('views', __dirname + staticPath + '/views');
@@ -467,7 +467,7 @@ app.post(config.reputationServicePath + '/reputation/set', reputationService.sav
 /////////////////////////////////////////////////////////////////////
 
 // Load active file imports
-var importPath = config.theme || !debug ? './static/public/imports' : './public/imports' ;
+var importPath = config.theme || './public/imports';
 var imports = require(importPath).imports;
 
 var renderTemplate = function(req, res, viewName) {
