@@ -126,14 +126,14 @@ let jsAdminFilesToInject = [
     return 'resources/core/js/' + path + '.js';
 });
 
-if (process.env.NODE_ENV == 'production') {
-    // If the software is is production all js files have been minimized into bae.min.js
-    jsAppFilesToInject = [
-        'resources/core/js/bae.min.js'
-    ];
-    jsStockFilesToInject = [];
-    jsAdminFilesToInject = [];
-}
+// if (process.env.NODE_ENV == 'production') {
+//     // If the software is is production all js files have been minimized into bae.min.js
+//     jsAppFilesToInject = [
+//         'resources/core/js/bae.min.js'
+//     ];
+//     jsStockFilesToInject = [];
+//     jsAdminFilesToInject = [];
+// }
 
 exports.imports = {
     cssFilesToInject: cssFilesToInject,
@@ -142,4 +142,3 @@ exports.imports = {
     jsStockFilesToInject: jsStockFilesToInject,
     jsAdminFilesToInject: jsAdminFilesToInject
 };
-
