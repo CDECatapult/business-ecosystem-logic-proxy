@@ -37,8 +37,8 @@ services:
 
       - ENDPOINT_CHARGING_HOST=charging.docker
       - ENDPOINT_RSS_HOST=rss.docker
+      - ENDPOINT_CATALOG_HOST=catalog.docker
 
-      - ENDPOINT_CATALOG_HOST=apis.docker
       - ENDPOINT_ORDERING_HOST=apis.docker
       - ENDPOINT_INVENTORY_HOST=apis.docker
       - ENDPOINT_PARTY_HOST=apis.docker
