@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.13.1
+version: v1.13.5
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
 patch:
@@ -9,3 +9,66 @@ patch:
   'npm:uglify-js:20151024':
     - jade > transformers > uglify-js:
         patched: '2018-12-03T08:52:23.169Z'
+  SNYK-JS-LODASH-450202:
+    - node-minify > babel-core > babel-register > babel-core > babel-template > lodash:
+        patched: '2019-07-08T15:45:43.863Z'
+    - mongoose > async > lodash:
+        patched: '2019-07-08T15:45:43.863Z'
+    - search-index > search-index-adder > async > lodash:
+        patched: '2019-07-08T15:45:43.863Z'
+    - node-minify > babel-core > babel-register > lodash:
+        patched: '2019-07-08T15:45:43.863Z'
+    - node-minify > babel-core > babel-template > lodash:
+        patched: '2019-07-08T15:45:43.863Z'
+    - node-minify > babel-core > babel-traverse > lodash:
+        patched: '2019-07-08T15:45:43.863Z'
+    - node-minify > babel-core > babel-generator > lodash:
+        patched: '2019-07-08T15:45:43.863Z'
+    - node-minify > babel-core > babel-types > lodash:
+        patched: '2019-07-08T15:45:43.863Z'
+    - node-minify > babel-core > babel-traverse > babel-types > lodash:
+        patched: '2019-07-08T15:45:43.863Z'
+    - node-minify > babel-core > babel-generator > babel-types > lodash:
+        patched: '2019-07-08T15:45:43.863Z'
+    - node-minify > babel-core > babel-template > babel-types > lodash:
+        patched: '2019-07-08T15:45:43.863Z'
+    - node-minify > babel-core > babel-register > babel-core > lodash:
+        patched: '2019-07-08T15:45:43.863Z'
+    - node-minify > babel-core > babel-helpers > babel-template > lodash:
+        patched: '2019-07-08T15:45:43.863Z'
+    - node-minify > babel-core > babel-template > babel-traverse > lodash:
+        patched: '2019-07-08T15:45:43.863Z'
+    - node-minify > babel-core > babel-register > babel-core > babel-generator > lodash:
+        patched: '2019-07-08T15:45:43.863Z'
+    - node-minify > babel-core > lodash:
+        patched: '2019-07-08T15:45:43.863Z'
+    - node-minify > babel-core > babel-template > babel-traverse > babel-types > lodash:
+        patched: '2019-07-08T15:45:43.863Z'
+    - node-minify > babel-core > babel-helpers > babel-template > babel-types > lodash:
+        patched: '2019-07-08T15:45:43.863Z'
+    - node-minify > babel-core > babel-helpers > babel-template > babel-traverse > lodash:
+        patched: '2019-07-08T15:45:43.863Z'
+    - node-minify > babel-core > babel-register > babel-core > babel-traverse > lodash:
+        patched: '2019-07-08T15:45:43.863Z'
+    - node-minify > babel-core > babel-register > babel-core > babel-types > lodash:
+        patched: '2019-07-08T15:45:43.863Z'
+    - node-minify > babel-core > babel-register > babel-core > babel-helpers > babel-template > lodash:
+        patched: '2019-07-08T15:45:43.863Z'
+    - node-minify > babel-core > babel-register > babel-core > babel-generator > babel-types > lodash:
+        patched: '2019-07-08T15:45:43.863Z'
+    - node-minify > babel-core > babel-helpers > babel-template > babel-traverse > babel-types > lodash:
+        patched: '2019-07-08T15:45:43.863Z'
+    - node-minify > babel-core > babel-register > babel-core > babel-traverse > babel-types > lodash:
+        patched: '2019-07-08T15:45:43.863Z'
+    - node-minify > babel-core > babel-register > babel-core > babel-template > babel-types > lodash:
+        patched: '2019-07-08T15:45:43.863Z'
+    - node-minify > babel-core > babel-register > babel-core > babel-template > babel-traverse > lodash:
+        patched: '2019-07-08T15:45:43.863Z'
+    - node-minify > babel-core > babel-register > babel-core > babel-helpers > babel-template > babel-types > lodash:
+        patched: '2019-07-08T15:45:43.863Z'
+    - node-minify > babel-core > babel-register > babel-core > babel-template > babel-traverse > babel-types > lodash:
+        patched: '2019-07-08T15:45:43.863Z'
+    - node-minify > babel-core > babel-register > babel-core > babel-helpers > babel-template > babel-traverse > lodash:
+        patched: '2019-07-08T15:45:43.863Z'
+    - node-minify > babel-core > babel-register > babel-core > babel-helpers > babel-template > babel-traverse > babel-types > lodash:
+        patched: '2019-07-08T15:45:43.863Z'
