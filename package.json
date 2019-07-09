@@ -24,7 +24,7 @@
     "log4js": "0.6.x",
     "merge-dirs": "^0.2.1",
     "moment": "^2.13.0",
-    "mongoose": "^4.3.6",
+    "mongoose": "^5.6.3",
     "node-minify": "^3.6.0",
     "normalize-url": "^1.8.0",
     "on-finished": "^2.3.0",
