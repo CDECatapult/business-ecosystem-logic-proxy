@@ -56,7 +56,7 @@ jobs:
       - run:
           name: Tag the docker image
           command: |
-            docker tag logicproxy7 digicatsynch/logicproxy7:$CIRCLE_SHA1
+            docker tag logicproxy7 digicatsynch/logicproxy7:fork-$CIRCLE_SHA1
             docker tag logicproxy7 digicatsynch/logicproxy7:ci-$CIRCLE_BUILD_NUM
             docker tag logicproxy7 digicatsynch/logicproxy7:${CIRCLE_BRANCH##feature/}
 
