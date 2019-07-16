@@ -51,14 +51,14 @@ GLASSFISH_SCH=$(get_protocol "$ENDPOINT_INVENTORY_APP_SSL")
 GLASSFISH_PATH=${ENDPOINT_INVENTORY_PATH}
 
 echo "Testing Glasfish APIs deployed"
-wget ${GLASSFISH_SCH}://${GLASSFISH_HOST}:${GLASSFISH_PORT}/${GLASSFISH_PATH}
+wget -qO- ${GLASSFISH_SCH}://${GLASSFISH_HOST}:${GLASSFISH_PORT}/${GLASSFISH_PATH}
 STATUS=$?
 I=0
 while [[ ${STATUS} -ne 0  && ${I} -lt 50 ]]; do
     echo "Glassfish APIs not deployed yet, retrying in 5 seconds..."
 
     sleep 5
-    wget ${GLASSFISH_SCH}://${GLASSFISH_HOST}:${GLASSFISH_PORT}/${GLASSFISH_PATH}
+    wget -qO- ${GLASSFISH_SCH}://${GLASSFISH_HOST}:${GLASSFISH_PORT}/${GLASSFISH_PATH}
     STATUS=$?
 
     I=${I}+1
