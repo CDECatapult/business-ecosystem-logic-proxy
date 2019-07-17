@@ -29,16 +29,12 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=my-secret-pw
       - MYSQL_DATABASE=RSS
-
+  
   charging:
-    image: digicatsynch/charging7:7.0.2
+    image: charging7:local15
     restart: always
-    depends_on:
-      - mongo
-      - apis
-      - rss
     ports:
-      - 8006:8006
+      - "8006:8006"
     networks:
       synchronicity:
         aliases:
@@ -57,8 +53,8 @@ services:
       - AUTHORIZE_SERVICE=http://proxy.docker:8004/authorizeService/token
       - KEYSTONE_PROTOCOL=http
       - KEYSTONE_HOST=idm.docker
-      #- KEYSTONE_USER=admin@test.com
-      #- KEYSTONE_PWD=1234
+      #- KEYSTONE_USER=${KEYSTONE_USER}
+      #- KEYSTONE_PWD=${KEYSTONE_PWD}
       - APP_CLIENT_ID=${APP_CLIENT_ID}
       - APP_URL=http://pep.docker:7000/v2/entities/
 
