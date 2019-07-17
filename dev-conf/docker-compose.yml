@@ -4,7 +4,7 @@ services:
     image: mongo:3.2
     restart: always
     ports:
-      - 27017:27017
+      - "27017:27017"
     networks:
       synchronicity:
     volumes:
@@ -21,7 +21,7 @@ services:
     image: mysql:5.7
     restart: always
     ports:
-      - 3333:3306
+      - "3333:3306"
     volumes:
       - mysql-data:/var/lib/mysql
     networks:
@@ -31,8 +31,13 @@ services:
       - MYSQL_DATABASE=RSS
   
   charging:
-    image: charging7:local15
+    image: digicatsynch/charging7:7.0.3
     restart: always
+    depends_on:
+      - mongo
+      - apis
+      - catalog
+      - rss
     ports:
       - "8006:8006"
     networks:
@@ -44,7 +49,7 @@ services:
       - PAYPAL_CLIENT_SECRET=${PAYPAL_CLIENT_SECRET}
       - SITE=http://proxy.docker:8004/
       - LOCAL_SITE=http://charging.docker:8006/
-      - CATALOG=http://apis.docker:8080/DSProductCatalog
+      - CATALOG=http://catalog.docker:8080/DSProductCatalog
       - INVENTORY=http://apis.docker:8080/DSProductInventory
       - ORDERING=http://apis.docker:8080/DSProductOrdering
       - BILLING=http://apis.docker:8080/DSBillingManagement
@@ -63,11 +68,11 @@ services:
       #- SECRET_KEY=${SECRET_KEY}
 
   apis:
-    image: digicatsynch/docker-tmf-apis:1.0.0
+    image: digicatsynch/docker-tmf-apis:2.0.0
     restart: always
     ports:
-      - 4848:4848
-      - 8080:8080
+      - "4848:4848"
+      - "8080:8080"
     depends_on:
       - mysql
     networks:
@@ -80,13 +85,31 @@ services:
       - MYSQL_ROOT_PASSWORD=my-secret-pw
       - MYSQL_HOST=mysql
 
+  catalog:
+    image: digicatsynch/catalog:8.0.0
+    restart: always
+    ports:
+      - "5353:4848"
+      - "9005:8080"
+    depends_on:
+      - mysql
+    networks:
+      synchronicity:
+        aliases:
+          - catalog.docker
+    volumes:
+      - ./apis-conf:/etc/default/tmf/
+    environment:
+      - MYSQL_ROOT_PASSWORD=my-secret-pw
+      - MYSQL_HOST=mysql
+
   rss:
     image: conwetlab/biz-ecosystem-rss:v6.4.0
     restart: always
     ports:
-      - 9999:8080
-      - 4444:4848
-      - 1111:8181
+      - "9999:8080"
+      - "4444:4848"
+      - "1111:8181"
     depends_on:
       - mysql
     networks:

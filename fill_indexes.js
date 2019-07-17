@@ -46,6 +46,7 @@ function genericRequest(options, extra) {
               console.log('parsedBody', parsedBody)
               resolve(parsedBody);
           } else {
+              console.error(options, response, body)
               reject(new Error("Unexpected HTTP error code: " + response.statusCode));
               return;
           }

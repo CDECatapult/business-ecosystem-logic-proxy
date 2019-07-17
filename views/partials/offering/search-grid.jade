@@ -1,28 +1,26 @@
-
 .container-flex
-  .panel.panel-default.item-offering.z-depth-1(ng-repeat="offering in searchVM.list")
-    a.thumbnail.thumbnail-lg(ui-sref="offering.detail({ offeringId: offering.id })", ui-sref-opts="{ inherit: false }")
-      span.label(class="label-{{ offering.isBundle ? 'bundle' : 'single' }}")
-        | {{ offering.isBundle ? offering.bundledProductOffering.length + ' #{ __("bundled") }' : '#{ __("Single") }' }}
-      img(no-image, ng-src="{{ offering.getPicture() }}")
-    .panel-body
-      .h4.text-ellipsis
-        strong
-          a(ui-sref="offering.detail({ offeringId: offering.id })", ui-sref-opts="{ inherit: false }") {{ offering.name }}
+  .product-container.item-offering.z-depth-1(ng-repeat="offering in searchVM.list")
+    a.product-thumbnail.product-container-photo(ui-sref="offering.detail({ offeringId: offering.id })", ui-sref-opts="{ inherit: false }")
+        img( no-image, ng-src="{{ offering.getPicture() }}")
+        // displaying offering owner
+        span.product-city-label {{ offering.productSpecification.brand }}      
+    .product-container-info
+      .product-container-info-row
+        a.product-container-title(ui-sref="offering.detail({ offeringId: offering.id })", ui-sref-opts="{ inherit: false }") {{ offering.name }}
+        .product-container-extra
+          .product-container-price {{ offering.formatCheapestPricePlan() }}
+          .product-container-version-rating 
+            .product-container-version v {{ offering.version }}
+            .span
+              strong(ng-repeat="star in offering.repAvgStars")
+                span(ng-if="star.value" class="fa fa-circle circle-filled") 
+                span(ng-if="!star.value" class="fa fa-circle-o circle-empty" )
+              span #{ __(" ") }
+              // number of ratings is commented-out
+              //span ({{ offering.repCount }})
       .form-group.text-dark-secondary
-        span.pull-right
-          time(am-time-ago="offering.lastUpdate")
-        p v{{ offering.version }}
-        p.item-description {{ offering.description ? offering.description : '#{ __("No description provided.") }' }}
-      .h5.text-right
-        strong {{ offering.formatCheapestPricePlan() }}
-      .h5.text-right
-        strong(ng-repeat="star in offering.repAvgStars")
-          span(ng-if="star.value" class="fa fa-star checked") 
-          span(ng-if="!star.value" class="fa fa-star rating" )
-        span #{ __(" ") }
-        span ({{ offering.repCount }})
+        p.product-container-description {{ offering.description ? offering.description : '#{ __("No description provided.") }' }}
     .btn-group.btn-group-justified(ng-show="user.isAuthenticated()")
-      a.btn.btn-success.z-depth-1(ng-click="user.order(offering)", ng-disabled="user.contains(offering)")
-        span.item-icon.fa(class="fa-{{ user.contains(offering) ? 'check-circle' : 'shopping-cart' }}")
-        span.item-text {{ user.contains(offering) ? '#{ __("Added") }' : '#{ __("Add to cart") }' }}
+      a.btn.product-container-button(ng-click="user.order(offering)", ng-disabled="user.contains(offering)")
+        span.fa(class="fa-{{ user.contains(offering) }}")
+        span.item-text {{ user.contains(offering) ? '#{ __("Added") }' : '#{ __("Get this data offering") }' }}

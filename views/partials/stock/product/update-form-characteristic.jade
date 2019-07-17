@@ -3,7 +3,7 @@
     .panel.panel-default.z-depth-1(ng-repeat="characteristic in updateVM.item.productSpecCharacteristic", ng-init="characteristicIndex = $index")
       .panel-heading
         .h4
-          strong {{ characteristic.name === 'Asset type' ? 'Data asset type' : characteristic.name === 'Media type' ? 'Data format' : characteristic.name === 'Location' ? 'Endpoint URL' : characteristic.name === 'Fiware-Service' ? 'Fiware-Service (tenant name)' : characteristic.name }}      
+          strong {{ characteristic.name.toLowerCase() === 'asset type' ? 'Data asset type' : characteristic.name.toLowerCase() === 'media type' ? 'Data format' : characteristic.name.toLowerCase() === 'location' ? 'Endpoint URL' : characteristic.name.toLowerCase() === 'fiware-service' ? 'Fiware-Service (tenant name)' : characteristic.name }}      
       .panel-body
         p.text-dark-secondary {{ characteristic.name === 'Fiware-Service' ? 'HTTP header to support multitenancy. The header needs to be added to the requests to identify the service/tenant.' : '' }}
         .form-group

@@ -1,4 +1,5 @@
 /* eslint no-unused-vars: 0 */
+/* eslint no-console: 0 */
 var authorizeService = require('./controllers/authorizeService').authorizeService,
     slaService = require('./controllers/slaService').slaService,
     reputationService = require('./controllers/reputationService').reputationService,
@@ -315,7 +316,7 @@ app.use(function(req, res, next) {
 // Static files && templates
 
 // Check if a theme has been loaded or the system is in production
-var staticPath = config.theme || !debug ? '/static' : '' ;
+var staticPath = config.theme || '' ;
 
 app.use(config.portalPrefix + '/', express.static(__dirname + staticPath + '/public'));
 app.set('views', __dirname + staticPath + '/views');
@@ -365,10 +366,12 @@ var failIfNotAuthenticated = function(req, res, next) {
 // Configure Passport to use FIWARE as authentication strategy
 
 passport.serializeUser(function(user, done) {
+  console.log('serializeUser', user)
     done(null, user);
 });
 
 passport.deserializeUser(function(obj, done) {
+  console.log('deserializeUser', obj)
     done(null, obj);
 });
 
@@ -467,10 +470,11 @@ app.post(config.reputationServicePath + '/reputation/set', reputationService.sav
 /////////////////////////////////////////////////////////////////////
 
 // Load active file imports
-var importPath = config.theme || !debug ? './static/public/imports' : './public/imports' ;
+var importPath = config.theme || './public/imports';
 var imports = require(importPath).imports;
 
 var renderTemplate = function(req, res, viewName) {
+  console.log('render user', req.user)
 
     // TODO: Maybe an object with extra properties (if required)
     var options = {

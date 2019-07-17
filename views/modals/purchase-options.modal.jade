@@ -28,7 +28,7 @@
 
               .form-group(ng-repeat="charObject in product.characteristics" ng-show="charObject.characteristic.name != 'appId'")
                 .h4.text-dark-secondary
-                  strong {{ charObject.characteristic.name === 'Asset type' ? 'Data asset type' : charObject.characteristic.name === 'Media type' ? 'Data format' : charObject.characteristic.name === 'Location' ? 'Endpoint URL' : charObject.characteristic.name === 'Fiware-Service' ? 'Fiware-Service (tenant name)' : charObject.characteristic.name }}
+                  strong {{ charObject.characteristic.name.toLowerCase() === 'asset type' ? 'Data asset type' : charObject.characteristic.name.toLowerCase() === 'media type' ? 'Data format' : charObject.characteristic.name.toLowerCase() === 'location' ? 'Endpoint URL' : charObject.characteristic.name.toLowerCase() === 'fiware-service' ? 'Fiware-Service (tenant name)' : charObject.characteristic.name }}
                 hr
                 //- p.text-dark-secondary {{ charObject.characteristic.description ? charObject.characteristic.description : '#{ __("No description provided.") }' }}
                 p(ng-repeat="characteristicValue in charObject.characteristic.productSpecCharacteristicValue")
