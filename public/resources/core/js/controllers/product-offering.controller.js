@@ -447,7 +447,10 @@
                 vm.data.place = formatPlaces();
                 var terms = [];
                 terms[0] = vm.license.toJSON();
-                var offerPromise = Offering.create(vm.data, vm.product, vm.catalogue, terms);
+                //Create SLA that will be POSTed to the TMF API along with the data offering and license agreemennt
+                var slaToAPI = vm.sla.toJSON4API();
+                delete slaToAPI.offerId;
+                var offerPromise = Offering.create(vm.data, vm.product, vm.catalogue, terms, slaToAPI);
                 offerPromise.then(function (offeringCreated) {
                     //Create SLA
                     var sla = vm.sla.toJSON();
@@ -548,8 +551,6 @@
         function hasProduct(product) {
             return filterProduct(product) > -1;
         }
-
-
 
         function toggleBundle() {
             if (!vm.data.isBundle) {
@@ -730,14 +731,14 @@
             vm.error = Utils.parseError(response, 'The requested offering could not be retrieved');
             vm.item.status = ERROR;
         }));
-
+        
         createPromise.push(Offering.getSla($state.params.offeringId).then(function (slaRetrieved) {
             vm.sla = slaRetrieved;
         }, function (response){
             vm.error = Utils.parseError(response, 'The requested SLA could not be retrieved');
             vm.item.status = ERROR;
         }));
-
+        
         Promise.all(createPromise).then(function(){
             vm.item.status = LOADED;
             }, function (response){
@@ -832,7 +833,7 @@
         }, function (response) {
             vm.error = Utils.parseError(response, 'Unexpected error trying to retrieve the offering.');
         });
-
+        
         var slaPromise = Offering.getSla($state.params.offeringId);
         slaPromise.then(function (slaRetrieved) {
             vm.sla = slaRetrieved;
@@ -840,7 +841,7 @@
             vm.error = Utils.parseError(response, 'The requested SLA could not be retrieved');
             vm.item.status = ERROR;
         });
-
+        
         Object.defineProperty(vm, 'status', {
             get: function () { return detailPromise != null ? detailPromise.$$state.status : -1; }
         });
