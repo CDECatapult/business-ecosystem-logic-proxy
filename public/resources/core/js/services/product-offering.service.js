@@ -679,12 +679,43 @@
             this.metrics = [];
             return this;
         };
-
-        Sla.prototype.toJSON = function toJSON() {
+        
+        Sla.prototype.toJSON4API = function toJSON4API() {
+            var editMetrics = angular.copy(this.metrics);
+            var returnMetrics = {updates : null, updatesPeriod : null, respTime : null, respTimeUnit : null, delay : null, delayUnit : null};
+            console.log(JSON.stringify(editMetrics));
+            for (var i = 0; i < editMetrics.length; i++) {
+                switch (editMetrics[i].type) {
+                    case 'Updates rate':{
+                        returnMetrics.updates = editMetrics[i].threshold;
+                        returnMetrics.updatesPeriod = editMetrics[i].unitMeasure;
+                        break;
+                    }
+                    case 'Response time':{
+                        returnMetrics.respTime = editMetrics[i].threshold;
+                        returnMetrics.respTimeUnit = editMetrics[i].unitMeasure;
+                        break;
+                    }
+                    case 'Delay':{
+                        returnMetrics.delay = editMetrics[i].threshold;
+                        returnMetrics.delayUnit = editMetrics[i].unitMeasure;
+                        break;
+                    }
+                }
+            }
             return {
                 offerId : this.offerId,
-                services : JSON.parse(JSON.stringify(this.metrics))
-            };
+                "serviceLevelAgreement" : JSON.parse(JSON.stringify([returnMetrics]))
+            }
+        };
+
+        Sla.prototype.toJSON = function toJSON() {
+            var slaJSON = JSON.stringify(this.metrics);
+            console.log(slaJSON);
+            return {
+                offerId : this.offerId,
+                "services" : JSON.parse(JSON.stringify(this.metrics))
+            }
         };
 
         return {
@@ -895,7 +926,7 @@
 //        "href": "http://127.0.0.1:8000/DSProductCatalog/api/catalogManagement/v2/productSpecification/4:(0.1)"
 //    }
 //}
-        function create(data, product, catalogue, terms) {
+        function create(data, product, catalogue, terms, sla) {
             var deferred = $q.defer();
             var params = {
                 catalogue: 'catalog',
@@ -918,11 +949,12 @@
                 });
                 
             }
-
-            
+ 
             angular.extend(data, {
                 productOfferingTerm: terms
             });
+
+            angular.extend(data, sla);
 
             data.validFor = {
                 startDateTime: moment().format()
@@ -951,7 +983,7 @@
             });
             return deferred.promise;
         }
-
+        
         function getSla(id) {
             var deferred = $q.defer();
             var params = {
