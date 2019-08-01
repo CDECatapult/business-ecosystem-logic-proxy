@@ -947,7 +947,7 @@ describe("Test index helper library", function () {
             searchdata: []
         };
 
-        var errMsg = 'The offering specified in the product is not indexed5';
+        var errMsg = 'The offering specified in the product is not indexed{"id":12,"productOffering":{"id":5,"href":"http://myserver.com/catalog/offering/5"},"relatedParty":[{"id":"rock","role":"customer"}],"href":"http://12","name":"inventoryName","status":"status","startDate":"2017-06-01","orderDate":232323231,"searchable":["offername2","description2"]}';
 
         helper(extra, 'saveIndexInventory', () => {
             expect("Error, promise resolved instead of rejected").toBe(true);
