@@ -950,7 +950,7 @@ describe("Test index helper library", function () {
         var errMsg = 'The offering specified in the product is not indexed';
 
         helper(extra, 'saveIndexInventory', () => {
-            expect("Error, promise resolved instead of rejected").toBe(true);
+            expect("Error, promise resolved instead of rejected5").toBe(true);
             done();
         }, (si, err) => {
             expect(si.search).toHaveBeenCalledWith({query: {AND: {sortedId: ['000000000005']}}});
